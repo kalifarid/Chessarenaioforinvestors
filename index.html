@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ChessArena.io — Global Chess & P2P Competition Platform. Rəsmi layihə təqdimatı.">
+<title>ChessArena.io — Global Chess Platform</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:#080b0a;
+  --surface:#101512;
+  --surface2:#151d18;
+  --green:#b7f36b;
+  --green2:#83c94c;
+  --white:#f3f6f1;
+  --muted:#929d94;
+  --border:rgba(183,243,107,.13);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  background:var(--bg);
+  color:var(--white);
+  font-family:Inter,sans-serif;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+a { color:inherit; text-decoration:none; }
+
+.container {
+  width:min(1160px,90%);
+  margin:auto;
+}
+
+nav {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+  background:rgba(8,11,10,.85);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-inner {
+  width:min(1160px,90%);
+  margin:auto;
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo {
+  font-family:"Space Grotesk",sans-serif;
+  font-size:23px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+.logo span { color:var(--green); }
+
+.nav-links {
+  display:flex;
+  gap:27px;
+  align-items:center;
+}
+
+.nav-links a {
+  font-size:12px;
+  color:var(--muted);
+  transition:.25s;
+}
+
+.nav-links a:hover { color:var(--green); }
+
+.nav-button {
+  padding:11px 18px;
+  background:var(--green);
+  color:#10150c;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.hero {
+  min-height:760px;
+  padding:160px 0 100px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before {
+  content:"";
+  position:absolute;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle,rgba(151,220,84,.12),transparent 68%);
+  top:30px;
+  right:-200px;
+  pointer-events:none;
+}
+
+.hero-grid {
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:60px;
+  align-items:center;
+}
+
+.eyebrow {
+  color:var(--green);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+
+h1 {
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(48px,7vw,86px);
+  line-height:1.04;
+  letter-spacing:-5px;
+  margin-bottom:28px;
+}
+
+h1 span { color:var(--green); }
+
+.hero-description {
+  color:var(--muted);
+  max-width:580px;
+  font-size:16px;
+  line-height:1.9;
+}
+
+.hero-actions {
+  display:flex;
+  gap:14px;
+  margin-top:35px;
+  flex-wrap:wrap;
+}
+
+.btn {
+  padding:15px 23px;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:800;
+  transition:.25s;
+  display:inline-block;
+}
+
+.btn-primary {
+  background:var(--green);
+  color:#10150c;
+}
+
+.btn-primary:hover {
+  background:#d0ff9b;
+  transform:translateY(-3px);
+}
+
+.btn-secondary {
+  border:1px solid var(--border);
+  color:var(--white);
+}
+
+.btn-secondary:hover { border-color:var(--green); }
+
+.board-wrap {
+  background:linear-gradient(145deg,#18231b,#0c110e);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 30px 100px rgba(0,0,0,.4);
+  transform:rotate(2deg);
+}
+
+.board {
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  aspect-ratio:1;
+  overflow:hidden;
+  border-radius:7px;
+}
+
+.square {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:clamp(20px,4vw,40px);
+}
+
+.light { background:#dce8c9; }
+.dark { background:#6e8b5a; }
+
+.board-caption {
+  display:flex;
+  justify-content:space-between;
+  margin-top:20px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-top:70px;
+}
+
+.stat {
+  padding:22px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+}
+
+.stat strong {
+  display:block;
+  font-size:29px;
+  color:var(--green);
+  font-family:"Space Grotesk";
+}
+
+.stat span {
+  font-size:10px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+section { padding:110px 0; }
+
+.section-label {
+  color:var(--green);
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:800;
+  margin-bottom:17px;
+}
+
+.section-title {
+  font-family:"Space Grotesk";
+  font-size:clamp(32px,5vw,52px);
+  line-height:1.15;
+  letter-spacing:-2px;
+  max-width:800px;
+  margin-bottom:23px;
+}
+
+.section-description {
+  color:var(--muted);
+  max-width:720px;
+  font-size:14px;
+}
+
+.section-heading { margin-bottom:48px; }
+
+.dark-section {
+  background:#0c100e;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+
+.grid-3 {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.grid-2 {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.card {
+  padding:29px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  border-radius:12px;
+  transition:.3s;
+}
+
+.card:hover {
+  transform:translateY(-5px);
+  border-color:rgba(183,243,107,.45);
+}
+
+.card-icon {
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.card h3 {
+  font-family:"Space Grotesk";
+  font-size:19px;
+  margin-bottom:12px;
+}
+
+.card p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.9;
+}
+
+.tag {
+  display:inline-block;
+  border:1px solid var(--border);
+  padding:6px 10px;
+  border-radius:5px;
+  color:var(--green);
+  font-size:10px;
+  margin:4px;
+}
+
+.language-grid {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+
+.language {
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:18px;
+  border-radius:8px;
+  font-size:13px;
+}
+
+.language small {
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.comparison {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.comparison-box {
+  padding:35px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+
+.comparison-box.featured {
+  border-color:var(--green);
+  background:linear-gradient(145deg,#19241a,#101512);
+}
+
+.comparison-box h3 {
+  font-size:24px;
+  font-family:"Space Grotesk";
+  margin-bottom:10px;
+}
+
+.comparison-box p {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.feature-list {
+  list-style:none;
+  margin-top:25px;
+}
+
+.feature-list li {
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+  color:#c5cec6;
+}
+
+.feature-list li::before {
+  content:"✓";
+  color:var(--green);
+  margin-right:10px;
+}
+
+.calculator {
+  background:linear-gradient(145deg,#18251a,#0e130f);
+  border:1px solid var(--border);
+  padding:35px;
+  border-radius:14px;
+  margin-top:35px;
+}
+
+.calculator label {
+  color:var(--muted);
+  font-size:12px;
+}
+
+.calculator input {
+  display:block;
+  width:100%;
+  max-width:350px;
+  margin:13px 0 25px;
+  padding:15px;
+  border-radius:7px;
+  background:#080b09;
+  color:var(--green);
+  border:1px solid var(--border);
+  font-size:20px;
+  outline:none;
+}
+
+.calc-results {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.calc-item {
+  background:rgba(0,0,0,.2);
+  padding:20px;
+  border-radius:8px;
+}
+
+.calc-item small {
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.calc-item strong {
+  display:block;
+  color:var(--green);
+  font-size:25px;
+  margin-top:8px;
+}
+
+.table-wrap {
+  overflow-x:auto;
+  margin-top:30px;
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:550px;
+}
+
+th,td {
+  padding:16px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+
+th {
+  color:var(--green);
+  background:var(--surface2);
+}
+
+td { color:#c3ccc4; }
+
+.timeline {
+  border-left:1px solid var(--green);
+  margin-left:12px;
+}
+
+.phase {
+  position:relative;
+  padding:0 0 40px 35px;
+}
+
+.phase::before {
+  content:"";
+  position:absolute;
+  left:-6px;
+  top:8px;
+  width:11px;
+  height:11px;
+  background:var(--green);
+  border-radius:50%;
+  box-shadow:0 0 15px var(--green);
+}
+
+.phase h3 {
+  color:var(--green);
+  font-family:"Space Grotesk";
+  font-size:19px;
+}
+
+.phase p {
+  color:var(--muted);
+  font-size:13px;
+  margin-top:8px;
+}
+
+.phase ul {
+  margin:15px 0 0 17px;
+  color:#c4cec5;
+  font-size:12px;
+}
+
+.phase li { padding:4px 0; }
+
+.architecture {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.arch-item {
+  background:var(--surface);
+  padding:22px;
+  text-align:center;
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+
+.arch-item strong {
+  display:block;
+  color:var(--green);
+  font-size:13px;
+}
+
+.arch-item small {
+  color:var(--muted);
+  font-size:10px;
+}
+
+.quote {
+  padding:60px;
+  border:1px solid var(--border);
+  background:linear-gradient(130deg,#18231a,#0c100d);
+  border-radius:14px;
+  text-align:center;
+}
+
+.quote h2 {
+  font-family:"Space Grotesk";
+  font-size:clamp(25px,5vw,44px);
+  letter-spacing:-1px;
+}
+
+.quote h2 span { color:var(--green); }
+
+.quote p {
+  color:var(--muted);
+  margin-top:17px;
+  font-size:13px;
+}
+
+footer {
+  padding:45px 0;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:11px;
+}
+
+.footer-inner {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.progress {
+  position:fixed;
+  top:0;
+  left:0;
+  height:3px;
+  width:0;
+  background:var(--green);
+  z-index:200;
+}
+
+@media(max-width:850px) {
+  .hero-grid,.grid-2,.comparison { grid-template-columns:1fr; }
+  .grid-3 { grid-template-columns:1fr 1fr; }
+  .stats { grid-template-columns:1fr 1fr; }
+  .language-grid { grid-template-columns:repeat(2,1fr); }
+  .architecture { grid-template-columns:1fr 1fr; }
+  .nav-links { display:none; }
+  .hero { padding-top:130px; }
+}
+
+@media(max-width:550px) {
+  .grid-3 { grid-template-columns:1fr; }
+  .calc-results { grid-template-columns:1fr; }
+  .quote { padding:30px 20px; }
+  h1 { letter-spacing:-2px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="logo">CHESS<span>ARENA</span>.IO</a>
+
+    <div class="nav-links">
+      <a href="#vision">Vizyon</a>
+      <a href="#platform">Platforma</a>
+      <a href="#competition">Rəqabət</a>
+      <a href="#security">Təhlükəsizlik</a>
+      <a href="#technology">Texnologiya</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+
+    <a href="#contact" class="nav-button">LAYİHƏNİ KƏŞF ET</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero" id="home">
+<div class="container">
+
+  <div class="hero-grid">
+
+    <div>
+      <div class="eyebrow">GLOBAL CHESS & P2P COMPETITION PLATFORM</div>
+
+      <h1>
+        THE WORLD.<br>
+        ONE <span>ARENA.</span>
+      </h1>
+
+      <p class="hero-description">
+        ChessArena.io dünyanın müxtəlif ölkələrindən olan şahmatçıları
+        real vaxtlı oyunlar, beynəlxalq turnirlər, sosial əlaqələr və
+        könüllü mükafatlı rəqabət imkanları ətrafında birləşdirən
+        qlobal rəqəmsal şahmat ekosistemidir.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#vision" class="btn btn-primary">LAYİHƏNİ KƏŞF ET ↗</a>
+        <a href="#platform" class="btn btn-secondary">PLATFORMA HAQQINDA</a>
+      </div>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board" id="chessboard"></div>
+      <div class="board-caption">
+        <span>CHESSARENA.IO</span>
+        <span>REAL PLAYERS · REAL CHESS</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="stats">
+    <div class="stat"><strong>10</strong><span>İnterfeys dili</span></div>
+    <div class="stat"><strong>1%</strong><span>Platforma komissiyası</span></div>
+    <div class="stat"><strong>2</strong><span>Oyun modeli</span></div>
+    <div class="stat"><strong>GLOBAL</strong><span>Hədəf bazar</span></div>
+  </div>
+
+</div>
+</header>
+
+<!-- VISION -->
+
+<section id="vision">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">01 / PROJECT OVERVIEW</div>
+    <h2 class="section-title">Şahmatı yeni qlobal rəqabət ekosisteminə çeviririk.</h2>
+    <p class="section-description">
+      ChessArena.io yalnız şahmat oynamaq üçün nəzərdə tutulmuş
+      platforma deyil. Məqsəd real oyunçuları, beynəlxalq icmanı,
+      ədalətli rəqabəti və könüllü mükafat mexanizmini vahid sistemdə
+      birləşdirməkdir.
+    </p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon">♟</div>
+      <h3>Missiya</h3>
+      <p>
+        Dünyanın müxtəlif ölkələrindən şahmatçıları bir araya gətirmək,
+        onlara sərbəst oynamaq, rəqabət aparmaq və bacarıqlarını
+        nümayiş etdirmək üçün etibarlı qlobal mühit yaratmaq.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">◎</div>
+      <h3>Vizyon</h3>
+      <p>
+        ChessArena.io-nu dünyanın ən əlçatan, sosial, etibarlı və
+        rəqabət yönümlü beynəlxalq şahmat platformalarından birinə
+        çevirmək.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">◇</div>
+      <h3>Əsas prinsip</h3>
+      <p>
+        Real oyunçular, real şahmat, könüllü iştirak, şəffaf maliyyə,
+        istifadəçi azadlığı, təhlükəsizlik və ədalətli rəqabət.
+      </p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- PLATFORM -->
+
+<section class="dark-section" id="platform">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">02 / PLATFORM ECOSYSTEM</div>
+    <h2 class="section-title">Bir platforma. Bütün şahmat təcrübəsi.</h2>
+    <p class="section-description">
+      Bütün funksiyalar vahid istifadəçi hesabı və əlaqələndirilmiş
+      sistem modulları üzərindən işləyəcək.
+    </p>
+  </div>
+
+  <div class="grid-3">
+
+    <div class="card"><div class="card-icon">♟</div>
+      <h3>Real Chess Engine</h3>
+      <p>Real oyunçular arasında canlı şahmat, oyun saatı, gediş tarixçəsi, PGN və oyun təkrarı.</p>
+    </div>
+
+    <div class="card"><div class="card-icon">🌐</div>
+      <h3>Global Community</h3>
+      <p>Beynəlxalq profillər, ölkələr, dostlar, onlayn status və istifadəçi əlaqələri.</p>
+    </div>
+
+    <div class="card"><div class="card-icon">⚔</div>
+      <h3>P2P Competition</h3>
+      <p>İstəyə bağlı iştirak haqqı və qarşılıqlı mükafat fondu ilə rəqabət modeli.</p>
+    </div>
+
+    <div class="card"><div class="card-icon">🏆</div>
+      <h3>Tournaments</h3>
+      <p>Gündəlik, həftəlik, aylıq, ölkə və beynəlxalq turnirlər.</p>
+    </div>
+
+    <div class="card"><div class="card-icon">💬</div>
+      <h3>Live Chat</h3>
+      <p>Oyun zamanı mesajlaşma, sürətli mesajlar, emoji və dostluq sistemi.</p>
+    </div>
+
+    <div class="card"><div class="card-icon">🛡</div>
+      <h3>Fair Play</h3>
+      <p>KYC, FIDE ID, çoxqatlı Anti-Cheat və insan tərəfindən araşdırma mexanizmi.</p>
+    </div>
+
+    <div class="card"><div class="card-icon">💳</div>
+      <h3>Wallet</h3>
+      <p>Depozit, çıxarış, bloklanmış balans, mükafatlar və əməliyyat tarixçəsi.</p>
+    </div>
+
+    <div class="card"><div class="card-icon">📊</div>
+      <h3>Rating System</h3>
+      <p>Bullet, Blitz, Rapid, turnir və ümumi reytinq göstəriciləri.</p>
+    </div>
+
+    <div class="card"><div class="card-icon">⚙</div>
+      <h3>Admin Dashboard</h3>
+      <p>İstifadəçilər, oyunlar, maliyyə, təhlükəsizlik və sistem idarəetməsi.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- LANGUAGES -->
+
+<section id="languages">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">03 / GLOBAL LOCALIZATION</div>
+    <h2 class="section-title">Dünya miqyasında vahid təcrübə.</h2>
+    <p class="section-description">
+      İlkin versiyada 10 interfeys dili. İstifadəçi tətbiq dilini
+      ölkəsindən asılı olmayaraq istənilən vaxt dəyişə bilər.
+    </p>
+  </div>
+
+  <div class="language-grid">
+    <div class="language">🇦🇿 Azərbaycan dili<small>AZ</small></div>
+    <div class="language">🇬🇧 English<small>EN</small></div>
+    <div class="language">🇹🇷 Türkçe<small>TR</small></div>
+    <div class="language">🇷🇺 Русский<small>RU</small></div>
+    <div class="language">🇸🇦 العربية<small>AR · RTL</small></div>
+    <div class="language">🇪🇸 Español<small>ES</small></div>
+    <div class="language">🇫🇷 Français<small>FR</small></div>
+    <div class="language">🇩🇪 Deutsch<small>DE</small></div>
+    <div class="language">🇵🇹 Português<small>PT</small></div>
+    <div class="language">🇨🇳 简体中文<small>ZH-CN</small></div>
+  </div>
+
+</div>
+</section>
+
+<!-- COMPETITION -->
+
+<section class="dark-section" id="competition">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">04 / COMPETITION MODEL</div>
+    <h2 class="section-title">İki fərqli oyun təcrübəsi. Bir seçim azadlığı.</h2>
+    <p class="section-description">
+      Ödənişli rəqabət məcburi deyil. İstifadəçilər bütün əsas
+      şahmat funksiyalarından pulsuz istifadə edə bilərlər.
+    </p>
+  </div>
+
+  <div class="comparison">
+
+    <div class="comparison-box">
+      <h3>FREE CHESS</h3>
+      <p>Hər kəs üçün sərbəst və ödənişsiz şahmat.</p>
+      <ul class="feature-list">
+        <li>İştirak haqqı yoxdur</li>
+        <li>Depozit tələb olunmur</li>
+        <li>Real oyunçularla oyun</li>
+        <li>Oyun tarixçəsi</li>
+        <li>Elo reytinqi</li>
+        <li>Oyun daxili chat</li>
+        <li>Dostlarla özəl otaqlar</li>
+      </ul>
+    </div>
+
+    <div class="comparison-box featured">
+      <h3>PAID CHESS</h3>
+      <p>Könüllü iştirak haqqı ilə P2P mükafatlı rəqabət.</p>
+      <ul class="feature-list">
+        <li>İstifadəçi özü iştirak məbləğini seçir</li>
+        <li>Rəqib eyni məbləğdə iştirak edir</li>
+        <li>Ümumi mükafat fondu formalaşır</li>
+        <li>Platforma komissiyası 1%</li>
+        <li>Qalib ümumi fondun 99%-ni alır</li>
+        <li>Vəsaitlər oyunadək bloklanır</li>
+        <li>Nəticə təsdiqindən sonra payout</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="calculator">
+    <div class="section-label">INTERACTIVE P2P CALCULATOR</div>
+    <h3 style="font-size:24px;margin-bottom:20px">Mükafat mexanizmini hesabla</h3>
+
+    <label>Hər oyunçunun iştirak məbləği ($)</label>
+    <input type="number" id="stake" value="10" min="0" step="0.01">
+
+    <div class="calc-results">
+      <div class="calc-item">
+        <small>ÜMUMİ MÜKAFAT FONDU</small>
+        <strong id="pool">$20.00</strong>
+      </div>
+
+      <div class="calc-item">
+        <small>PLATFORMA KOMİSSİYASI · 1%</small>
+        <strong id="fee">$0.20</strong>
+      </div>
+
+      <div class="calc-item">
+        <small>QALİBİN QAZANCI · 99%</small>
+        <strong id="winner">$19.80</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Oyunçu A</th>
+          <th>Oyunçu B</th>
+          <th>Ümumi fond</th>
+          <th>Komissiya</th>
+          <th>Qalib</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>$1</td><td>$1</td><td>$2</td><td>$0.02</td><td>$1.98</td></tr>
+        <tr><td>$2</td><td>$2</td><td>$4</td><td>$0.04</td><td>$3.96</td></tr>
+        <tr><td>$5</td><td>$5</td><td>$10</td><td>$0.10</td><td>$9.90</td></tr>
+        <tr><td>$10</td><td>$10</td><td>$20</td><td>$0.20</td><td>$19.80</td></tr>
+        <tr><td>$25</td><td>$25</td><td>$50</td><td>$0.50</td><td>$49.50</td></tr>
+        <tr><td>$50</td><td>$50</td><td>$100</td><td>$1.00</td><td>$99.00</td></tr>
+        <tr><td>$100</td><td>$100</td><td>$200</td><td>$2.00</td><td>$198.00</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="color:var(--muted);font-size:11px;margin-top:18px">
+    Qeyd: Heç-heçə, texniki problem, bağlantı itkisi, ləğv və mübahisəli
+    nəticələr üçün ayrıca açıqlanmış refund qaydaları tətbiq edilməlidir.
+  </p>
+
+</div>
+</section>
+
+<!-- CHESS -->
+
+<section>
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">05 / REAL CHESS EXPERIENCE</div>
+    <h2 class="section-title">Simulyasiya deyil. Real oyunçular arasında real şahmat.</h2>
+    <p class="section-description">
+      Oyun mexanizmi standart şahmat qaydalarına əsaslanır.
+      Oyun nəticələri server tərəfindən təsdiqlənir.
+    </p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>Bullet</h3>
+      <p>1+0 və 1+1 vaxt nəzarəti.</p>
+    </div>
+    <div class="card">
+      <h3>Blitz</h3>
+      <p>3+0, 3+2 və 5+0 vaxt nəzarəti.</p>
+    </div>
+    <div class="card">
+      <h3>Rapid</h3>
+      <p>10+0, 10+5 və 15+10 vaxt nəzarəti.</p>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px">
+    <div class="card">
+      <h3>Oyun funksiyaları</h3>
+      <ul class="feature-list">
+        <li>Real vaxt şahmat taxtası</li>
+        <li>Avtomatik gediş yoxlanılması</li>
+        <li>Canlı oyun saatı</li>
+        <li>Draw və Resign</li>
+        <li>Rematch</li>
+        <li>PGN ixracı</li>
+        <li>Oyun təkrarı</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Oyun tarixçəsi</h3>
+      <ul class="feature-list">
+        <li>Oyun identifikatoru</li>
+        <li>İştirakçı profilləri</li>
+        <li>Bütün gedişlər</li>
+        <li>Oyun nəticəsi</li>
+        <li>Əvvəlki və sonrakı Elo</li>
+        <li>Oyun rejimi</li>
+        <li>Fair Play yoxlama statusu</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- SECURITY -->
+
+<section class="dark-section" id="security">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">06 / TRUST & SECURITY</div>
+    <h2 class="section-title">Etibar. Şəffaflıq. Ədalətli rəqabət.</h2>
+    <p class="section-description">
+      Standart oyunlar üçün kamera və mikrofon məcburi deyil.
+      Təhlükəsizlik identifikasiya, oyun analitikası və davranış
+      yoxlamalarının çoxqatlı sistemi ilə təmin edilməlidir.
+    </p>
+  </div>
+
+  <div class="grid-2">
+
+    <div class="card">
+      <h3>KYC Verification</h3>
+      <p>
+        Şəxsiyyət sənədinin yoxlanılması, məlumatların uyğunlaşdırılması
+        və uyğun provayder vasitəsilə identifikasiya.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>FIDE ID Verification</h3>
+      <p>
+        FIDE profilinin uyğunluğu yoxlanılır. FIDE ID-nin mövcudluğu
+        təkbaşına hesab sahibinin şəxsiyyətini təsdiqləmir;
+        əlavə KYC və ya uyğun yoxlama tələb olunur.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Chess Engine Analysis</h3>
+      <p>
+        Gediş keyfiyyəti, oyun statistikası, müxtəlif oyunlar üzrə
+        davranış uyğunluğu və şübhəli nəticələrin təhlili.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Behavioral Analysis</h3>
+      <p>
+        Gediş vaxtları, qeyri-adi davranış dəyişiklikləri,
+        şübhəli rəqib uyğunluqları və nəticə nümunələri.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Device & Session Security</h3>
+      <p>
+        Sessiya təhlükəsizliyi, eyni vaxtda hesab istifadəsi riskləri,
+        avtomatlaşdırılmış sorğular və API sui-istifadəsinin aşkarlanması.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Human Review & Appeals</h3>
+      <p>
+        Şübhəli oyunların insan tərəfindən araşdırılması,
+        qərarların audit tarixçəsi və apellyasiya imkanı.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3>Fair Play qərar mexanizmi</h3>
+    <div style="margin-top:18px">
+      <span class="tag">LOW RISK</span>
+      <span class="tag">MEDIUM RISK</span>
+      <span class="tag">HIGH RISK</span>
+      <span class="tag">CRITICAL RISK</span>
+    </div>
+    <p style="margin-top:15px">
+      Təkcə mühərrikə uyğun yüksək keyfiyyətli gedişlər avtomatik
+      bloklama üçün kifayət etməməlidir. Yüksək riskli oyunlar
+      əlavə araşdırmaya yönləndirilməlidir.
+    </p>
+  </div>
+
+</div>
+</section>
+
+<!-- SOCIAL -->
+
+<section>
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">07 / SOCIAL EXPERIENCE</div>
+    <h2 class="section-title">Şahmatdan daha çox. Beynəlxalq icma.</h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>Live Game Chat</h3>
+      <p>Oyun zamanı mesaj, emoji, salamlaşma və oyun sonrası söhbət.</p>
+    </div>
+    <div class="card">
+      <h3>Quick Messages</h3>
+      <p>Hello, Good luck, Good game, Well played, Rematch və digər hazır mesajlar.</p>
+    </div>
+    <div class="card">
+      <h3>Friends System</h3>
+      <p>Dostluq sorğuları, onlayn status, oyun dəvətləri və özəl otaqlar.</p>
+    </div>
+    <div class="card">
+      <h3>Chat Controls</h3>
+      <p>Chat-i bağlamaq, səssizə almaq və şəxsi ünsiyyət parametrləri.</p>
+    </div>
+    <div class="card">
+      <h3>Moderation</h3>
+      <p>Spam filtri, bloklama, şikayət və təhqir moderasiyası.</p>
+    </div>
+    <div class="card">
+      <h3>Global Rankings</h3>
+      <p>Ölkə, həftəlik, aylıq və qlobal lider cədvəlləri.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- TOURNAMENTS -->
+
+<section class="dark-section">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">08 / TOURNAMENT ECOSYSTEM</div>
+    <h2 class="section-title">Fərdi oyunlardan beynəlxalq çempionatlara.</h2>
+    <p class="section-description">
+      İstifadəçilər müxtəlif formatlarda təşkil edilən yarışlarda
+      iştirak edə və turnir nəticələrini izləyə biləcəklər.
+    </p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card"><h3>Daily Tournaments</h3><p>Gündəlik yarışlar.</p></div>
+    <div class="card"><h3>Weekly Tournaments</h3><p>Həftəlik turnirlər.</p></div>
+    <div class="card"><h3>Monthly Championships</h3><p>Aylıq çempionatlar.</p></div>
+    <div class="card"><h3>Country Championships</h3><p>Ölkə səviyyəli yarışlar.</p></div>
+    <div class="card"><h3>International</h3><p>Beynəlxalq turnirlər.</p></div>
+    <div class="card"><h3>Private Tournaments</h3><p>Özəl turnirlər və dəvətli iştirakçılar.</p></div>
+  </div>
+
+</div>
+</section>
+
+<!-- WALLET -->
+
+<section>
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">09 / FINANCIAL ECOSYSTEM</div>
+    <h2 class="section-title">Şəffaf maliyyə. Aydın əməliyyatlar.</h2>
+    <p class="section-description">
+      İstifadəçi hər bir maliyyə əməliyyatını, balansını və
+      mükafatını ayrıca izləyə bilməlidir.
+    </p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card"><h3>Available Balance</h3><p>İstifadəçinin sərbəst istifadə edə bildiyi balans.</p></div>
+    <div class="card"><h3>Locked Balance</h3><p>Aktiv oyunlar üçün müvəqqəti bloklanmış vəsait.</p></div>
+    <div class="card"><h3>Transaction History</h3><p>Bütün maliyyə əməliyyatlarının tarixçəsi.</p></div>
+    <div class="card"><h3>Deposit</h3><p>Dəstəklənən ödəniş üsulları ilə balans artırılması.</p></div>
+    <div class="card"><h3>Withdraw</h3><p>Uyğunluq və yoxlamalardan sonra vəsait çıxarılması.</p></div>
+    <div class="card"><h3>Rewards & Refunds</h3><p>Oyun və turnir mükafatları, geri ödənişlər.</p></div>
+  </div>
+
+</div>
+</section>
+
+<!-- TECHNOLOGY -->
+
+<section class="dark-section" id="technology">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">10 / TECHNICAL ARCHITECTURE</div>
+    <h2 class="section-title">Miqyaslana bilən texniki infrastruktur.</h2>
+    <p class="section-description">
+      Real vaxtlı oyunların, mesajlaşmanın, istifadəçi hesablarının
+      və maliyyə əməliyyatlarının idarə edilməsi üçün modulyar arxitektura.
+    </p>
+  </div>
+
+  <div class="architecture">
+    <div class="arch-item"><strong>FRONTEND</strong><small>HTML · CSS · React · TypeScript</small></div>
+    <div class="arch-item"><strong>BACKEND</strong><small>Node.js · Express · REST API</small></div>
+    <div class="arch-item"><strong>REALTIME</strong><small>WebSocket · Socket.io</small></div>
+    <div class="arch-item"><strong>DATABASE</strong><small>PostgreSQL</small></div>
+    <div class="arch-item"><strong>CACHE</strong><small>Redis</small></div>
+    <div class="arch-item"><strong>CHESS RULES</strong><small>Chess.js / Equivalent</small></div>
+    <div class="arch-item"><strong>CHESSBOARD</strong><small>Chessboard.js / Equivalent</small></div>
+    <div class="arch-item"><strong>SECURITY</strong><small>Auth · Audit · Encryption</small></div>
+  </div>
+
+  <div class="section-heading" style="margin-top:65px">
+    <h3 class="section-title" style="font-size:29px">Əsas sistem xidmətləri</h3>
+  </div>
+
+  <div class="grid-3">
+    <div class="card"><h3>Identity</h3><p>Authentication, Profiles, Localization, Verification.</p></div>
+    <div class="card"><h3>Chess Core</h3><p>Chess Game, Room Management, Matchmaking, Rating.</p></div>
+    <div class="card"><h3>Community</h3><p>Chat, Friends, Moderation, Notifications.</p></div>
+    <div class="card"><h3>Finance</h3><p>Wallet, Payment, Payout, Ledger.</p></div>
+    <div class="card"><h3>Competition</h3><p>Tournaments, Rewards, Leaderboards.</p></div>
+    <div class="card"><h3>Governance</h3><p>Anti-Cheat, Fair Play, Admin, Audit.</p></div>
+  </div>
+
+  <p style="color:var(--muted);font-size:12px;margin-top:25px">
+    İlkin mərhələdə modullar vahid modular backend daxilində qurula,
+    istifadəçi və əməliyyat həcmi artdıqca müstəqil xidmətlərə ayrıla bilər.
+  </p>
+
+</div>
+</section>
+
+<!-- LEGAL -->
+
+<section>
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">11 / SECURITY & COMPLIANCE</div>
+    <h2 class="section-title">Təhlükəsizlik və beynəlxalq uyğunluq.</h2>
+    <p class="section-description">
+      Platformanın beynəlxalq fəaliyyəti ölkələr üzrə hüquqi və
+      maliyyə tələblərinin ayrıca qiymətləndirilməsini tələb edir.
+    </p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Platforma təhlükəsizliyi</h3>
+      <ul class="feature-list">
+        <li>HTTPS və şifrələnmiş məlumat ötürülməsi</li>
+        <li>Şifrələrin təhlükəsiz hash edilməsi</li>
+        <li>İki mərhələli autentifikasiya seçimi</li>
+        <li>Rate limiting və API təhlükəsizliyi</li>
+        <li>SQL Injection, XSS və CSRF müdafiəsi</li>
+        <li>Rol əsaslı giriş və audit log</li>
+        <li>Backup və Disaster Recovery</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Hüquqi uyğunluq</h3>
+      <ul class="feature-list">
+        <li>Ölkə üzrə ödənişli yarışların hüquqi statusu</li>
+        <li>Yaş məhdudiyyətləri</li>
+        <li>KYC və AML tələbləri</li>
+        <li>Ödəniş provayderlərinin şərtləri</li>
+        <li>Vergi və istehlakçı hüquqları</li>
+        <li>Məlumatların qorunması</li>
+        <li>İcazə və lisenziya tələbləri</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="font-size:12px;color:var(--muted);margin-top:25px">
+    Paid Rooms funksiyası bütün ölkələrdə avtomatik aktiv edilməməlidir.
+    Hüquqi baxımdan uyğun olmayan regionlarda ödənişli funksiyalar
+    deaktiv edilə bilər. Bu təqdimat hüquqi rəy və ya fəaliyyət icazəsi deyil.
+  </p>
+
+</div>
+</section>
+
+<!-- ROADMAP -->
+
+<section class="dark-section" id="roadmap">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">12 / DEVELOPMENT ROADMAP</div>
+    <h2 class="section-title">Mərhələli inkişaf. Davamlı genişlənmə.</h2>
+    <p class="section-description">
+      Platformanın bütün sistemləri bir anda deyil, ardıcıl
+      inkişaf mərhələləri üzrə istifadəyə hazırlanacaq.
+    </p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="phase">
+      <h3>PHASE 01 — CORE CHESS PLATFORM</h3>
+      <p>Əsas şahmat təcrübəsinin yaradılması.</p>
+      <ul>
+        <li>Qeydiyyat və istifadəçi profilləri</li>
+        <li>10 dil infrastrukturu</li>
+        <li>Real şahmat mühərriki</li>
+        <li>Pulsuz oyun otaqları və matchmaking</li>
+        <li>Elo, oyun tarixçəsi və chat</li>
+        <li>Dostluq sistemi</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <h3>PHASE 02 — FAIR PLAY & VERIFICATION</h3>
+      <p>İdentifikasiya və təhlükəsizlik infrastrukturunun qurulması.</p>
+      <ul>
+        <li>KYC və FIDE ID</li>
+        <li>Anti-Cheat</li>
+        <li>Fair Play Dashboard</li>
+        <li>Şikayət və apellyasiya sistemi</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <h3>PHASE 03 — P2P PAID ROOMS</h3>
+      <p>Könüllü ödənişli rəqabət mexanizmi.</p>
+      <ul>
+        <li>Wallet və ödəniş infrastrukturu</li>
+        <li>Paid Room Creation / Joining</li>
+        <li>Locked Balance</li>
+        <li>1% komissiya və payout</li>
+        <li>Refund və mübahisə idarəetməsi</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <h3>PHASE 04 — GLOBAL TOURNAMENTS</h3>
+      <p>Beynəlxalq yarış ekosisteminin genişləndirilməsi.</p>
+      <ul>
+        <li>Beynəlxalq turnirlər</li>
+        <li>Mövsümi yarışlar</li>
+        <li>Ölkə reytinqləri</li>
+        <li>Təşkilatçı paneli</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <h3>PHASE 05 — GLOBAL EXPANSION</h3>
+      <p>Yeni regionlar və tərəfdaşlıqlar.</p>
+      <ul>
+        <li>Beynəlxalq marketinq</li>
+        <li>Mobil tətbiqlər</li>
+        <li>Sosial icmalar</li>
+        <li>Yeni funksiyalar və tərəfdaşlıqlar</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- BUSINESS MODEL -->
+
+<section>
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">13 / BUSINESS MODEL</div>
+    <h2 class="section-title">Davamlı gəlir modeli.</h2>
+    <p class="section-description">
+      Əsas gəlir mexanizmi ödənişli oyunların ümumi mükafat
+      fondundan tutulan 1% platforma komissiyasıdır.
+    </p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card"><h3>1% Paid Room Commission</h3><p>Ödənişli oyunların ümumi mükafat fondundan platforma komissiyası.</p></div>
+    <div class="card"><h3>Tournament Services</h3><p>Ödənişli turnirlərin təşkilati xidmət haqqı.</p></div>
+    <div class="card"><h3>Premium</h3><p>Könüllü premium abunəlik və profil dizaynları.</p></div>
+    <div class="card"><h3>Sponsorship</h3><p>Tərəfdaşlıq və sponsorlu turnirlər.</p></div>
+    <div class="card"><h3>Brand Partnerships</h3><p>Brend əməkdaşlıqları.</p></div>
+    <div class="card"><h3>Advertising</h3><p>Uyğun reklam və brend inteqrasiyaları.</p></div>
+  </div>
+
+  <p style="color:var(--muted);font-size:12px;margin-top:22px">
+    Əlavə gəlir modelləri pulsuz şahmat təcrübəsini məhdudlaşdırmamalı
+    və premium abunəlik rəqabətdə süni üstünlük verməməlidir.
+  </p>
+
+</div>
+</section>
+
+<!-- KPI -->
+
+<section class="dark-section">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="section-label">14 / PERFORMANCE INDICATORS</div>
+    <h2 class="section-title">İnkişaf ölçülə bilən olmalıdır.</h2>
+    <p class="section-description">
+      Platformanın inkişafı istifadəçi aktivliyi, oyun keyfiyyəti,
+      maliyyə etibarlılığı və təhlükəsizlik göstəriciləri əsasında
+      qiymətləndiriləcək.
+    </p>
+  </div>
+
+  <div>
+    <span class="tag">Daily Active Users</span>
+    <span class="tag">Monthly Active Users</span>
+    <span class="tag">Completed Games</span>
+    <span class="tag">Free Games</span>
+    <span class="tag">Paid Games</span>
+    <span class="tag">Active Rooms</span>
+    <span class="tag">User Retention</span>
+    <span class="tag">Match Completion Rate</span>
+    <span class="tag">Chat Engagement</span>
+    <span class="tag">Tournament Participation</span>
+    <span class="tag">KYC Completion Rate</span>
+    <span class="tag">Anti-Cheat Accuracy</span>
+    <span class="tag">False Positive Rate</span>
+    <span class="tag">Deposit Success Rate</span>
+    <span class="tag">Payout Processing Time</span>
+    <span class="tag">Refund Rate</span>
+    <span class="tag">Country Distribution</span>
+    <span class="tag">Language Distribution</span>
+  </div>
+
+</div>
+</section>
+
+<!-- FINAL -->
+
+<section id="contact">
+<div class="container">
+
+  <div class="quote">
+    <div class="section-label">CHESSARENA.IO / THE VISION</div>
+
+    <h2>
+      REAL PLAYERS.<br>
+      REAL CHESS.<br>
+      <span>GLOBAL COMPETITION.</span>
+    </h2>
+
+    <p>
+      One platform. Every country. Every chess player. Every level.
+    </p>
+
+    <div style="margin-top:30px">
+      <a href="#home" class="btn btn-primary">YUXARI QAYIT ↑</a>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer>
+<div class="container footer-inner">
+  <div class="logo">CHESS<span>ARENA</span>.IO</div>
+  <div>GLOBAL CHESS & P2P COMPETITION PLATFORM</div>
+  <div>© 2026 ChessArena.io · Concept Presentation</div>
+</div>
+</footer>
+
+<script>
+/* Chessboard visual */
+
+const board = document.getElementById("chessboard");
+
+const pieces = [
+  "♜","♞","♝","♛","♚","♝","♞","♜",
+  "♟","♟","♟","♟","♟","♟","♟","♟",
+  "","","","","","","","",
+  "","","","","","","","",
+  "","","","","","","","",
+  "","","","","","","","",
+  "♙","♙","♙","♙","♙","♙","♙","♙",
+  "♖","♘","♗","♕","♔","♗","♘","♖"
+];
+
+pieces.forEach((piece,index) => {
+  const square = document.createElement("div");
+  const row = Math.floor(index / 8);
+  const col = index % 8;
+
+  square.className = "square " +
+    ((row + col) % 2 === 0 ? "light" : "dark");
+
+  square.textContent = piece;
+  board.appendChild(square);
+});
+
+/* P2P calculator */
+
+const stakeInput = document.getElementById("stake");
+
+function calculate() {
+  let stake = Math.max(0, Number(stakeInput.value) || 0);
+
+  const pool = stake * 2;
+  const fee = pool * 0.01;
+  const winner = pool * 0.99;
+
+  document.getElementById("pool").textContent =
+    "$" + pool.toFixed(2);
+
+  document.getElementById("fee").textContent =
+    "$" + fee.toFixed(2);
+
+  document.getElementById("winner").textContent =
+    "$" + winner.toFixed(2);
+}
+
+stakeInput.addEventListener("input", calculate);
+
+/* Scroll progress */
+
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const maxScroll =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  const progress = maxScroll > 0
+    ? (scrollTop / maxScroll) * 100
+    : 0;
+
+  document.getElementById("progress").style.width =
+    progress + "%";
+});
+</script>
+
+</body>
+</html>
