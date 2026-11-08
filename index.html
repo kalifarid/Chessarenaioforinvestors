@@ -1,14 +1,18 @@
+
 <!DOCTYPE html>
-<html lang="az">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ChessArena.io — Global Chess & P2P Competition Platform. Rəsmi layihə təqdimatı.">
+<meta name="description" content="ChessArena.io — Global Chess & P2P Competition Platform. Official project presentation.">
+<meta name="theme-color" content="#080b0a">
 <title>ChessArena.io — Global Chess Platform</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
 :root {
   --bg:#080b0a;
   --surface:#101512;
@@ -17,12 +21,13 @@
   --green2:#83c94c;
   --white:#f3f6f1;
   --muted:#929d94;
-  --border:rgba(183,243,107,.13);
+  --border:rgba(183,243,107,.14);
+  --max:1180px;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
-html { scroll-behavior:smooth; }
+html { scroll-behavior:smooth; scroll-padding-top:90px; }
 
 body {
   background:var(--bg);
@@ -32,11 +37,27 @@ body {
   overflow-x:hidden;
 }
 
+body[dir="rtl"] {
+  text-align:right;
+}
+
 a { color:inherit; text-decoration:none; }
 
+button, input { font:inherit; }
+
 .container {
-  width:min(1160px,90%);
+  width:min(var(--max),91%);
   margin:auto;
+}
+
+.progress {
+  position:fixed;
+  top:0;
+  left:0;
+  height:3px;
+  width:0;
+  background:var(--green);
+  z-index:300;
 }
 
 nav {
@@ -44,56 +65,90 @@ nav {
   top:0;
   left:0;
   width:100%;
-  z-index:100;
-  background:rgba(8,11,10,.85);
-  backdrop-filter:blur(18px);
+  z-index:200;
+  background:rgba(8,11,10,.88);
+  backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
 }
 
 .nav-inner {
-  width:min(1160px,90%);
+  width:min(var(--max),91%);
+  min-height:76px;
   margin:auto;
-  height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:20px;
 }
 
 .logo {
   font-family:"Space Grotesk",sans-serif;
-  font-size:23px;
+  font-size:22px;
   font-weight:800;
   letter-spacing:-1px;
+  white-space:nowrap;
 }
 
 .logo span { color:var(--green); }
 
 .nav-links {
   display:flex;
-  gap:27px;
   align-items:center;
+  gap:22px;
 }
 
 .nav-links a {
-  font-size:12px;
   color:var(--muted);
-  transition:.25s;
+  font-size:11px;
+  transition:.2s;
+  white-space:nowrap;
 }
 
 .nav-links a:hover { color:var(--green); }
 
+.nav-right {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.language-select {
+  background:#111713;
+  color:var(--white);
+  border:1px solid var(--border);
+  border-radius:7px;
+  padding:10px 12px;
+  outline:none;
+  cursor:pointer;
+  font-size:11px;
+  max-width:145px;
+}
+
+.language-select:focus { border-color:var(--green); }
+
 .nav-button {
-  padding:11px 18px;
+  padding:11px 16px;
   background:var(--green);
   color:#10150c;
   border-radius:7px;
-  font-size:12px;
-  font-weight:800;
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.mobile-menu {
+  display:none;
+  background:none;
+  border:1px solid var(--border);
+  color:var(--green);
+  border-radius:7px;
+  padding:8px 12px;
+  cursor:pointer;
 }
 
 .hero {
-  min-height:760px;
-  padding:160px 0 100px;
+  min-height:750px;
+  padding:155px 0 85px;
   display:flex;
   align-items:center;
   position:relative;
@@ -105,59 +160,67 @@ nav {
   position:absolute;
   width:700px;
   height:700px;
-  background:radial-gradient(circle,rgba(151,220,84,.12),transparent 68%);
-  top:30px;
+  background:radial-gradient(circle,rgba(151,220,84,.13),transparent 68%);
+  top:10px;
   right:-200px;
   pointer-events:none;
 }
 
+body[dir="rtl"] .hero::before {
+  right:auto;
+  left:-200px;
+}
+
 .hero-grid {
   display:grid;
-  grid-template-columns:1.1fr .9fr;
+  grid-template-columns:1.08fr .92fr;
   gap:60px;
   align-items:center;
 }
 
-.eyebrow {
+.eyebrow,.section-label {
   color:var(--green);
-  font-size:11px;
+  font-size:10px;
   font-weight:800;
-  letter-spacing:3px;
+  letter-spacing:2.5px;
   text-transform:uppercase;
-  margin-bottom:24px;
+  margin-bottom:20px;
 }
 
 h1 {
   font-family:"Space Grotesk",sans-serif;
-  font-size:clamp(48px,7vw,86px);
+  font-size:clamp(50px,7vw,88px);
   line-height:1.04;
   letter-spacing:-5px;
-  margin-bottom:28px;
+  margin-bottom:27px;
 }
 
-h1 span { color:var(--green); }
+h1 span,.accent { color:var(--green); }
 
 .hero-description {
   color:var(--muted);
-  max-width:580px;
-  font-size:16px;
-  line-height:1.9;
+  max-width:590px;
+  font-size:14px;
+  line-height:2;
 }
 
 .hero-actions {
   display:flex;
-  gap:14px;
-  margin-top:35px;
+  gap:13px;
+  margin-top:32px;
   flex-wrap:wrap;
 }
 
 .btn {
-  padding:15px 23px;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:14px 21px;
   border-radius:7px;
-  font-size:12px;
-  font-weight:800;
+  font-size:10px;
+  font-weight:900;
   transition:.25s;
-  display:inline-block;
+  cursor:pointer;
 }
 
 .btn-primary {
@@ -180,8 +243,8 @@ h1 span { color:var(--green); }
 .board-wrap {
   background:linear-gradient(145deg,#18231b,#0c110e);
   border:1px solid var(--border);
-  border-radius:20px;
-  padding:24px;
+  border-radius:18px;
+  padding:22px;
   box-shadow:0 30px 100px rgba(0,0,0,.4);
   transform:rotate(2deg);
 }
@@ -191,14 +254,15 @@ h1 span { color:var(--green); }
   grid-template-columns:repeat(8,1fr);
   aspect-ratio:1;
   overflow:hidden;
-  border-radius:7px;
+  border-radius:5px;
 }
 
 .square {
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:clamp(20px,4vw,40px);
+  font-size:clamp(20px,4vw,42px);
+  line-height:1;
 }
 
 .light { background:#dce8c9; }
@@ -207,66 +271,42 @@ h1 span { color:var(--green); }
 .board-caption {
   display:flex;
   justify-content:space-between;
-  margin-top:20px;
+  gap:10px;
+  margin-top:17px;
   color:var(--muted);
-  font-size:10px;
+  font-size:9px;
   letter-spacing:1px;
 }
 
 .stats {
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-top:70px;
+  gap:14px;
+  margin-top:65px;
 }
 
 .stat {
-  padding:22px;
+  padding:20px;
   background:var(--surface);
   border:1px solid var(--border);
-  border-radius:10px;
+  border-radius:9px;
 }
 
 .stat strong {
   display:block;
-  font-size:29px;
+  font-size:28px;
   color:var(--green);
   font-family:"Space Grotesk";
 }
 
 .stat span {
-  font-size:10px;
+  font-size:9px;
   color:var(--muted);
   text-transform:uppercase;
   letter-spacing:1px;
 }
 
-section { padding:110px 0; }
-
-.section-label {
-  color:var(--green);
-  font-size:10px;
-  letter-spacing:3px;
-  font-weight:800;
-  margin-bottom:17px;
-}
-
-.section-title {
-  font-family:"Space Grotesk";
-  font-size:clamp(32px,5vw,52px);
-  line-height:1.15;
-  letter-spacing:-2px;
-  max-width:800px;
-  margin-bottom:23px;
-}
-
-.section-description {
-  color:var(--muted);
-  max-width:720px;
-  font-size:14px;
-}
-
-.section-heading { margin-bottom:48px; }
+section { padding:105px 0; }
 
 .dark-section {
   background:#0c100e;
@@ -274,23 +314,41 @@ section { padding:110px 0; }
   border-bottom:1px solid var(--border);
 }
 
+.section-heading { margin-bottom:43px; }
+
+.section-title {
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(31px,5vw,52px);
+  line-height:1.17;
+  letter-spacing:-2px;
+  max-width:850px;
+  margin-bottom:20px;
+}
+
+.section-description {
+  color:var(--muted);
+  max-width:760px;
+  font-size:13px;
+  line-height:1.9;
+}
+
 .grid-3 {
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:18px;
+  gap:17px;
 }
 
 .grid-2 {
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:20px;
+  gap:18px;
 }
 
 .card {
-  padding:29px;
+  padding:27px;
   border:1px solid var(--border);
   background:var(--surface);
-  border-radius:12px;
+  border-radius:11px;
   transition:.3s;
 }
 
@@ -301,29 +359,19 @@ section { padding:110px 0; }
 
 .card-icon {
   font-size:25px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .card h3 {
-  font-family:"Space Grotesk";
-  font-size:19px;
-  margin-bottom:12px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:17px;
+  margin-bottom:10px;
 }
 
 .card p {
   color:var(--muted);
-  font-size:12px;
-  line-height:1.9;
-}
-
-.tag {
-  display:inline-block;
-  border:1px solid var(--border);
-  padding:6px 10px;
-  border-radius:5px;
-  color:var(--green);
-  font-size:10px;
-  margin:4px;
+  font-size:11px;
+  line-height:1.95;
 }
 
 .language-grid {
@@ -332,15 +380,15 @@ section { padding:110px 0; }
   gap:12px;
 }
 
-.language {
+.language-card {
   background:var(--surface);
   border:1px solid var(--border);
-  padding:18px;
+  padding:17px;
   border-radius:8px;
-  font-size:13px;
+  font-size:12px;
 }
 
-.language small {
+.language-card small {
   display:block;
   color:var(--muted);
   margin-top:4px;
@@ -349,14 +397,14 @@ section { padding:110px 0; }
 .comparison {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:20px;
+  gap:18px;
 }
 
 .comparison-box {
-  padding:35px;
+  padding:32px;
   background:var(--surface);
   border:1px solid var(--border);
-  border-radius:12px;
+  border-radius:11px;
 }
 
 .comparison-box.featured {
@@ -367,23 +415,23 @@ section { padding:110px 0; }
 .comparison-box h3 {
   font-size:24px;
   font-family:"Space Grotesk";
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 .comparison-box p {
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
 }
 
 .feature-list {
   list-style:none;
-  margin-top:25px;
+  margin-top:22px;
 }
 
 .feature-list li {
-  padding:10px 0;
+  padding:9px 0;
   border-bottom:1px solid var(--border);
-  font-size:12px;
+  font-size:11px;
   color:#c5cec6;
 }
 
@@ -393,25 +441,30 @@ section { padding:110px 0; }
   margin-right:10px;
 }
 
+body[dir="rtl"] .feature-list li::before {
+  margin-right:0;
+  margin-left:10px;
+}
+
 .calculator {
   background:linear-gradient(145deg,#18251a,#0e130f);
   border:1px solid var(--border);
-  padding:35px;
-  border-radius:14px;
-  margin-top:35px;
+  padding:30px;
+  border-radius:12px;
+  margin-top:28px;
 }
 
 .calculator label {
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
 }
 
 .calculator input {
   display:block;
   width:100%;
   max-width:350px;
-  margin:13px 0 25px;
-  padding:15px;
+  margin:12px 0 22px;
+  padding:13px;
   border-radius:7px;
   background:#080b09;
   color:var(--green);
@@ -423,44 +476,44 @@ section { padding:110px 0; }
 .calc-results {
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
+  gap:13px;
 }
 
 .calc-item {
-  background:rgba(0,0,0,.2);
-  padding:20px;
+  background:rgba(0,0,0,.22);
+  padding:18px;
   border-radius:8px;
 }
 
 .calc-item small {
   display:block;
   color:var(--muted);
-  font-size:10px;
+  font-size:9px;
 }
 
 .calc-item strong {
   display:block;
   color:var(--green);
-  font-size:25px;
+  font-size:24px;
   margin-top:8px;
 }
 
 .table-wrap {
   overflow-x:auto;
-  margin-top:30px;
+  margin-top:27px;
 }
 
 table {
   width:100%;
   border-collapse:collapse;
-  min-width:550px;
+  min-width:540px;
 }
 
 th,td {
-  padding:16px;
-  text-align:left;
+  padding:14px;
+  text-align:start;
   border-bottom:1px solid var(--border);
-  font-size:12px;
+  font-size:11px;
 }
 
 th {
@@ -470,14 +523,35 @@ th {
 
 td { color:#c3ccc4; }
 
+.tag {
+  display:inline-block;
+  border:1px solid var(--border);
+  padding:7px 10px;
+  border-radius:5px;
+  color:var(--green);
+  font-size:9px;
+  margin:4px;
+}
+
 .timeline {
   border-left:1px solid var(--green);
   margin-left:12px;
 }
 
+body[dir="rtl"] .timeline {
+  border-left:none;
+  border-right:1px solid var(--green);
+  margin-left:0;
+  margin-right:12px;
+}
+
 .phase {
   position:relative;
-  padding:0 0 40px 35px;
+  padding:0 0 37px 34px;
+}
+
+body[dir="rtl"] .phase {
+  padding:0 34px 37px 0;
 }
 
 .phase::before {
@@ -492,35 +566,40 @@ td { color:#c3ccc4; }
   box-shadow:0 0 15px var(--green);
 }
 
+body[dir="rtl"] .phase::before {
+  left:auto;
+  right:-6px;
+}
+
 .phase h3 {
   color:var(--green);
   font-family:"Space Grotesk";
-  font-size:19px;
+  font-size:18px;
 }
 
 .phase p {
   color:var(--muted);
-  font-size:13px;
-  margin-top:8px;
+  font-size:12px;
+  margin-top:7px;
 }
 
 .phase ul {
-  margin:15px 0 0 17px;
+  margin:12px 17px 0;
   color:#c4cec5;
-  font-size:12px;
+  font-size:11px;
 }
 
-.phase li { padding:4px 0; }
+.phase li { padding:3px 0; }
 
 .architecture {
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  gap:11px;
 }
 
 .arch-item {
   background:var(--surface);
-  padding:22px;
+  padding:20px 12px;
   text-align:center;
   border:1px solid var(--border);
   border-radius:8px;
@@ -529,16 +608,16 @@ td { color:#c3ccc4; }
 .arch-item strong {
   display:block;
   color:var(--green);
-  font-size:13px;
+  font-size:12px;
 }
 
 .arch-item small {
   color:var(--muted);
-  font-size:10px;
+  font-size:9px;
 }
 
 .quote {
-  padding:60px;
+  padding:55px 25px;
   border:1px solid var(--border);
   background:linear-gradient(130deg,#18231a,#0c100d);
   border-radius:14px;
@@ -547,8 +626,9 @@ td { color:#c3ccc4; }
 
 .quote h2 {
   font-family:"Space Grotesk";
-  font-size:clamp(25px,5vw,44px);
+  font-size:clamp(27px,5vw,47px);
   letter-spacing:-1px;
+  line-height:1.3;
 }
 
 .quote h2 span { color:var(--green); }
@@ -556,31 +636,75 @@ td { color:#c3ccc4; }
 .quote p {
   color:var(--muted);
   margin-top:17px;
-  font-size:13px;
+  font-size:12px;
 }
 
 footer {
-  padding:45px 0;
+  padding:42px 0 25px;
   border-top:1px solid var(--border);
   color:var(--muted);
-  font-size:11px;
+  font-size:10px;
 }
 
 .footer-inner {
   display:flex;
   justify-content:space-between;
+  align-items:center;
   gap:20px;
   flex-wrap:wrap;
 }
 
-.progress {
-  position:fixed;
-  top:0;
-  left:0;
-  height:3px;
-  width:0;
-  background:var(--green);
-  z-index:200;
+.creator {
+  margin-top:30px;
+  padding-top:23px;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+
+.creator-label {
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.creator-name {
+  display:block;
+  color:var(--green);
+  font-family:"Space Grotesk";
+  font-weight:800;
+  font-size:23px;
+  letter-spacing:.3px;
+  margin-top:5px;
+}
+
+.creator-role {
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
+}
+
+.mobile-panel {
+  display:none;
+  padding:10px 5%;
+  background:#0d120f;
+  border-top:1px solid var(--border);
+}
+
+.mobile-panel.open { display:grid; }
+
+.mobile-panel a {
+  color:var(--muted);
+  padding:11px 0;
+  font-size:12px;
+  border-bottom:1px solid var(--border);
+}
+
+@media(max-width:1050px) {
+  .nav-links { gap:12px; }
+  .nav-links a { font-size:10px; }
 }
 
 @media(max-width:850px) {
@@ -589,15 +713,24 @@ footer {
   .stats { grid-template-columns:1fr 1fr; }
   .language-grid { grid-template-columns:repeat(2,1fr); }
   .architecture { grid-template-columns:1fr 1fr; }
-  .nav-links { display:none; }
+  .nav-links,.nav-button { display:none; }
+  .mobile-menu { display:block; }
   .hero { padding-top:130px; }
 }
 
 @media(max-width:550px) {
   .grid-3 { grid-template-columns:1fr; }
   .calc-results { grid-template-columns:1fr; }
-  .quote { padding:30px 20px; }
+  .quote { padding:35px 17px; }
   h1 { letter-spacing:-2px; }
+  .nav-inner { min-height:68px; }
+  .logo { font-size:18px; }
+  .language-select { max-width:112px; padding:9px 7px; }
+  section { padding:78px 0; }
+  .board-wrap { padding:12px; }
+  .stats { gap:9px; }
+  .stat { padding:14px; }
+  .stat strong { font-size:23px; }
 }
 </style>
 </head>
@@ -611,43 +744,55 @@ footer {
     <a href="#home" class="logo">CHESS<span>ARENA</span>.IO</a>
 
     <div class="nav-links">
-      <a href="#vision">Vizyon</a>
-      <a href="#platform">Platforma</a>
-      <a href="#competition">Rəqabət</a>
-      <a href="#security">Təhlükəsizlik</a>
-      <a href="#technology">Texnologiya</a>
-      <a href="#roadmap">Roadmap</a>
+      <a href="#vision" data-i18n="navVision"></a>
+      <a href="#platform" data-i18n="navPlatform"></a>
+      <a href="#competition" data-i18n="navCompetition"></a>
+      <a href="#security" data-i18n="navSecurity"></a>
+      <a href="#technology" data-i18n="navTechnology"></a>
+      <a href="#roadmap" data-i18n="navRoadmap"></a>
     </div>
 
-    <a href="#contact" class="nav-button">LAYİHƏNİ KƏŞF ET</a>
+    <div class="nav-right">
+      <select class="language-select" id="languageSelect" aria-label="Select language">
+        <option value="az">🇦🇿 AZ</option>
+        <option value="en">🇬🇧 EN</option>
+        <option value="tr">🇹🇷 TR</option>
+        <option value="ru">🇷🇺 RU</option>
+        <option value="ar">🇸🇦 AR</option>
+        <option value="es">🇪🇸 ES</option>
+        <option value="fr">🇫🇷 FR</option>
+        <option value="de">🇩🇪 DE</option>
+        <option value="pt">🇵🇹 PT</option>
+        <option value="zh">🇨🇳 中文</option>
+      </select>
+
+      <a href="#vision" class="nav-button" data-i18n="navButton"></a>
+      <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#vision" data-i18n="navVision"></a>
+    <a href="#platform" data-i18n="navPlatform"></a>
+    <a href="#competition" data-i18n="navCompetition"></a>
+    <a href="#security" data-i18n="navSecurity"></a>
+    <a href="#technology" data-i18n="navTechnology"></a>
+    <a href="#roadmap" data-i18n="navRoadmap"></a>
   </div>
 </nav>
-
-<!-- HERO -->
 
 <header class="hero" id="home">
 <div class="container">
 
   <div class="hero-grid">
-
     <div>
-      <div class="eyebrow">GLOBAL CHESS & P2P COMPETITION PLATFORM</div>
-
-      <h1>
-        THE WORLD.<br>
-        ONE <span>ARENA.</span>
-      </h1>
-
-      <p class="hero-description">
-        ChessArena.io dünyanın müxtəlif ölkələrindən olan şahmatçıları
-        real vaxtlı oyunlar, beynəlxalq turnirlər, sosial əlaqələr və
-        könüllü mükafatlı rəqabət imkanları ətrafında birləşdirən
-        qlobal rəqəmsal şahmat ekosistemidir.
-      </p>
+      <div class="eyebrow" data-i18n="eyebrow"></div>
+      <h1 data-i18n-html="heroTitle"></h1>
+      <p class="hero-description" data-i18n="heroDesc"></p>
 
       <div class="hero-actions">
-        <a href="#vision" class="btn btn-primary">LAYİHƏNİ KƏŞF ET ↗</a>
-        <a href="#platform" class="btn btn-secondary">PLATFORMA HAQQINDA</a>
+        <a href="#vision" class="btn btn-primary" data-i18n="heroButton1"></a>
+        <a href="#platform" class="btn btn-secondary" data-i18n="heroButton2"></a>
       </div>
     </div>
 
@@ -655,233 +800,92 @@ footer {
       <div class="board" id="chessboard"></div>
       <div class="board-caption">
         <span>CHESSARENA.IO</span>
-        <span>REAL PLAYERS · REAL CHESS</span>
+        <span data-i18n="boardCaption"></span>
       </div>
     </div>
-
   </div>
 
   <div class="stats">
-    <div class="stat"><strong>10</strong><span>İnterfeys dili</span></div>
-    <div class="stat"><strong>1%</strong><span>Platforma komissiyası</span></div>
-    <div class="stat"><strong>2</strong><span>Oyun modeli</span></div>
-    <div class="stat"><strong>GLOBAL</strong><span>Hədəf bazar</span></div>
+    <div class="stat"><strong>10</strong><span data-i18n="stat1"></span></div>
+    <div class="stat"><strong>1%</strong><span data-i18n="stat2"></span></div>
+    <div class="stat"><strong>2</strong><span data-i18n="stat3"></span></div>
+    <div class="stat"><strong>GLOBAL</strong><span data-i18n="stat4"></span></div>
   </div>
 
 </div>
 </header>
 
-<!-- VISION -->
-
 <section id="vision">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">01 / PROJECT OVERVIEW</div>
-    <h2 class="section-title">Şahmatı yeni qlobal rəqabət ekosisteminə çeviririk.</h2>
-    <p class="section-description">
-      ChessArena.io yalnız şahmat oynamaq üçün nəzərdə tutulmuş
-      platforma deyil. Məqsəd real oyunçuları, beynəlxalq icmanı,
-      ədalətli rəqabəti və könüllü mükafat mexanizmini vahid sistemdə
-      birləşdirməkdir.
-    </p>
+    <div class="section-label" data-i18n="s1label"></div>
+    <h2 class="section-title" data-i18n="s1title"></h2>
+    <p class="section-description" data-i18n="s1desc"></p>
   </div>
-
-  <div class="grid-3">
-    <div class="card">
-      <div class="card-icon">♟</div>
-      <h3>Missiya</h3>
-      <p>
-        Dünyanın müxtəlif ölkələrindən şahmatçıları bir araya gətirmək,
-        onlara sərbəst oynamaq, rəqabət aparmaq və bacarıqlarını
-        nümayiş etdirmək üçün etibarlı qlobal mühit yaratmaq.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">◎</div>
-      <h3>Vizyon</h3>
-      <p>
-        ChessArena.io-nu dünyanın ən əlçatan, sosial, etibarlı və
-        rəqabət yönümlü beynəlxalq şahmat platformalarından birinə
-        çevirmək.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">◇</div>
-      <h3>Əsas prinsip</h3>
-      <p>
-        Real oyunçular, real şahmat, könüllü iştirak, şəffaf maliyyə,
-        istifadəçi azadlığı, təhlükəsizlik və ədalətli rəqabət.
-      </p>
-    </div>
-  </div>
-
+  <div class="grid-3" id="visionCards"></div>
 </div>
 </section>
-
-<!-- PLATFORM -->
 
 <section class="dark-section" id="platform">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">02 / PLATFORM ECOSYSTEM</div>
-    <h2 class="section-title">Bir platforma. Bütün şahmat təcrübəsi.</h2>
-    <p class="section-description">
-      Bütün funksiyalar vahid istifadəçi hesabı və əlaqələndirilmiş
-      sistem modulları üzərindən işləyəcək.
-    </p>
+    <div class="section-label" data-i18n="s2label"></div>
+    <h2 class="section-title" data-i18n="s2title"></h2>
+    <p class="section-description" data-i18n="s2desc"></p>
   </div>
-
-  <div class="grid-3">
-
-    <div class="card"><div class="card-icon">♟</div>
-      <h3>Real Chess Engine</h3>
-      <p>Real oyunçular arasında canlı şahmat, oyun saatı, gediş tarixçəsi, PGN və oyun təkrarı.</p>
-    </div>
-
-    <div class="card"><div class="card-icon">🌐</div>
-      <h3>Global Community</h3>
-      <p>Beynəlxalq profillər, ölkələr, dostlar, onlayn status və istifadəçi əlaqələri.</p>
-    </div>
-
-    <div class="card"><div class="card-icon">⚔</div>
-      <h3>P2P Competition</h3>
-      <p>İstəyə bağlı iştirak haqqı və qarşılıqlı mükafat fondu ilə rəqabət modeli.</p>
-    </div>
-
-    <div class="card"><div class="card-icon">🏆</div>
-      <h3>Tournaments</h3>
-      <p>Gündəlik, həftəlik, aylıq, ölkə və beynəlxalq turnirlər.</p>
-    </div>
-
-    <div class="card"><div class="card-icon">💬</div>
-      <h3>Live Chat</h3>
-      <p>Oyun zamanı mesajlaşma, sürətli mesajlar, emoji və dostluq sistemi.</p>
-    </div>
-
-    <div class="card"><div class="card-icon">🛡</div>
-      <h3>Fair Play</h3>
-      <p>KYC, FIDE ID, çoxqatlı Anti-Cheat və insan tərəfindən araşdırma mexanizmi.</p>
-    </div>
-
-    <div class="card"><div class="card-icon">💳</div>
-      <h3>Wallet</h3>
-      <p>Depozit, çıxarış, bloklanmış balans, mükafatlar və əməliyyat tarixçəsi.</p>
-    </div>
-
-    <div class="card"><div class="card-icon">📊</div>
-      <h3>Rating System</h3>
-      <p>Bullet, Blitz, Rapid, turnir və ümumi reytinq göstəriciləri.</p>
-    </div>
-
-    <div class="card"><div class="card-icon">⚙</div>
-      <h3>Admin Dashboard</h3>
-      <p>İstifadəçilər, oyunlar, maliyyə, təhlükəsizlik və sistem idarəetməsi.</p>
-    </div>
-
-  </div>
+  <div class="grid-3" id="platformCards"></div>
 </div>
 </section>
-
-<!-- LANGUAGES -->
 
 <section id="languages">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">03 / GLOBAL LOCALIZATION</div>
-    <h2 class="section-title">Dünya miqyasında vahid təcrübə.</h2>
-    <p class="section-description">
-      İlkin versiyada 10 interfeys dili. İstifadəçi tətbiq dilini
-      ölkəsindən asılı olmayaraq istənilən vaxt dəyişə bilər.
-    </p>
+    <div class="section-label" data-i18n="s3label"></div>
+    <h2 class="section-title" data-i18n="s3title"></h2>
+    <p class="section-description" data-i18n="s3desc"></p>
   </div>
-
-  <div class="language-grid">
-    <div class="language">🇦🇿 Azərbaycan dili<small>AZ</small></div>
-    <div class="language">🇬🇧 English<small>EN</small></div>
-    <div class="language">🇹🇷 Türkçe<small>TR</small></div>
-    <div class="language">🇷🇺 Русский<small>RU</small></div>
-    <div class="language">🇸🇦 العربية<small>AR · RTL</small></div>
-    <div class="language">🇪🇸 Español<small>ES</small></div>
-    <div class="language">🇫🇷 Français<small>FR</small></div>
-    <div class="language">🇩🇪 Deutsch<small>DE</small></div>
-    <div class="language">🇵🇹 Português<small>PT</small></div>
-    <div class="language">🇨🇳 简体中文<small>ZH-CN</small></div>
-  </div>
-
+  <div class="language-grid" id="languageCards"></div>
 </div>
 </section>
 
-<!-- COMPETITION -->
-
 <section class="dark-section" id="competition">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">04 / COMPETITION MODEL</div>
-    <h2 class="section-title">İki fərqli oyun təcrübəsi. Bir seçim azadlığı.</h2>
-    <p class="section-description">
-      Ödənişli rəqabət məcburi deyil. İstifadəçilər bütün əsas
-      şahmat funksiyalarından pulsuz istifadə edə bilərlər.
-    </p>
+    <div class="section-label" data-i18n="s4label"></div>
+    <h2 class="section-title" data-i18n="s4title"></h2>
+    <p class="section-description" data-i18n="s4desc"></p>
   </div>
 
   <div class="comparison">
-
     <div class="comparison-box">
-      <h3>FREE CHESS</h3>
-      <p>Hər kəs üçün sərbəst və ödənişsiz şahmat.</p>
-      <ul class="feature-list">
-        <li>İştirak haqqı yoxdur</li>
-        <li>Depozit tələb olunmur</li>
-        <li>Real oyunçularla oyun</li>
-        <li>Oyun tarixçəsi</li>
-        <li>Elo reytinqi</li>
-        <li>Oyun daxili chat</li>
-        <li>Dostlarla özəl otaqlar</li>
-      </ul>
+      <h3 data-i18n="freeTitle"></h3>
+      <p data-i18n="freeDesc"></p>
+      <ul class="feature-list" id="freeFeatures"></ul>
     </div>
-
     <div class="comparison-box featured">
-      <h3>PAID CHESS</h3>
-      <p>Könüllü iştirak haqqı ilə P2P mükafatlı rəqabət.</p>
-      <ul class="feature-list">
-        <li>İstifadəçi özü iştirak məbləğini seçir</li>
-        <li>Rəqib eyni məbləğdə iştirak edir</li>
-        <li>Ümumi mükafat fondu formalaşır</li>
-        <li>Platforma komissiyası 1%</li>
-        <li>Qalib ümumi fondun 99%-ni alır</li>
-        <li>Vəsaitlər oyunadək bloklanır</li>
-        <li>Nəticə təsdiqindən sonra payout</li>
-      </ul>
+      <h3 data-i18n="paidTitle"></h3>
+      <p data-i18n="paidDesc"></p>
+      <ul class="feature-list" id="paidFeatures"></ul>
     </div>
-
   </div>
 
   <div class="calculator">
-    <div class="section-label">INTERACTIVE P2P CALCULATOR</div>
-    <h3 style="font-size:24px;margin-bottom:20px">Mükafat mexanizmini hesabla</h3>
-
-    <label>Hər oyunçunun iştirak məbləği ($)</label>
+    <div class="section-label" data-i18n="calcLabel"></div>
+    <h3 style="font-size:22px;margin-bottom:18px" data-i18n="calcTitle"></h3>
+    <label for="stake" data-i18n="calcInput"></label>
     <input type="number" id="stake" value="10" min="0" step="0.01">
 
     <div class="calc-results">
       <div class="calc-item">
-        <small>ÜMUMİ MÜKAFAT FONDU</small>
+        <small data-i18n="calcPool"></small>
         <strong id="pool">$20.00</strong>
       </div>
-
       <div class="calc-item">
-        <small>PLATFORMA KOMİSSİYASI · 1%</small>
+        <small data-i18n="calcFee"></small>
         <strong id="fee">$0.20</strong>
       </div>
-
       <div class="calc-item">
-        <small>QALİBİN QAZANCI · 99%</small>
+        <small data-i18n="calcWinner"></small>
         <strong id="winner">$19.80</strong>
       </div>
     </div>
@@ -889,554 +893,998 @@ footer {
 
   <div class="table-wrap">
     <table>
-      <thead>
-        <tr>
-          <th>Oyunçu A</th>
-          <th>Oyunçu B</th>
-          <th>Ümumi fond</th>
-          <th>Komissiya</th>
-          <th>Qalib</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>$1</td><td>$1</td><td>$2</td><td>$0.02</td><td>$1.98</td></tr>
-        <tr><td>$2</td><td>$2</td><td>$4</td><td>$0.04</td><td>$3.96</td></tr>
-        <tr><td>$5</td><td>$5</td><td>$10</td><td>$0.10</td><td>$9.90</td></tr>
-        <tr><td>$10</td><td>$10</td><td>$20</td><td>$0.20</td><td>$19.80</td></tr>
-        <tr><td>$25</td><td>$25</td><td>$50</td><td>$0.50</td><td>$49.50</td></tr>
-        <tr><td>$50</td><td>$50</td><td>$100</td><td>$1.00</td><td>$99.00</td></tr>
-        <tr><td>$100</td><td>$100</td><td>$200</td><td>$2.00</td><td>$198.00</td></tr>
-      </tbody>
+      <thead><tr id="tableHead"></tr></thead>
+      <tbody id="tableBody"></tbody>
     </table>
   </div>
 
-  <p style="color:var(--muted);font-size:11px;margin-top:18px">
-    Qeyd: Heç-heçə, texniki problem, bağlantı itkisi, ləğv və mübahisəli
-    nəticələr üçün ayrıca açıqlanmış refund qaydaları tətbiq edilməlidir.
-  </p>
-
+  <p style="color:var(--muted);font-size:10px;margin-top:16px" data-i18n="calcNote"></p>
 </div>
 </section>
 
-<!-- CHESS -->
-
-<section>
+<section id="chess">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">05 / REAL CHESS EXPERIENCE</div>
-    <h2 class="section-title">Simulyasiya deyil. Real oyunçular arasında real şahmat.</h2>
-    <p class="section-description">
-      Oyun mexanizmi standart şahmat qaydalarına əsaslanır.
-      Oyun nəticələri server tərəfindən təsdiqlənir.
-    </p>
+    <div class="section-label" data-i18n="s5label"></div>
+    <h2 class="section-title" data-i18n="s5title"></h2>
+    <p class="section-description" data-i18n="s5desc"></p>
   </div>
-
-  <div class="grid-3">
-    <div class="card">
-      <h3>Bullet</h3>
-      <p>1+0 və 1+1 vaxt nəzarəti.</p>
-    </div>
-    <div class="card">
-      <h3>Blitz</h3>
-      <p>3+0, 3+2 və 5+0 vaxt nəzarəti.</p>
-    </div>
-    <div class="card">
-      <h3>Rapid</h3>
-      <p>10+0, 10+5 və 15+10 vaxt nəzarəti.</p>
-    </div>
-  </div>
-
-  <div class="grid-2" style="margin-top:20px">
-    <div class="card">
-      <h3>Oyun funksiyaları</h3>
-      <ul class="feature-list">
-        <li>Real vaxt şahmat taxtası</li>
-        <li>Avtomatik gediş yoxlanılması</li>
-        <li>Canlı oyun saatı</li>
-        <li>Draw və Resign</li>
-        <li>Rematch</li>
-        <li>PGN ixracı</li>
-        <li>Oyun təkrarı</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Oyun tarixçəsi</h3>
-      <ul class="feature-list">
-        <li>Oyun identifikatoru</li>
-        <li>İştirakçı profilləri</li>
-        <li>Bütün gedişlər</li>
-        <li>Oyun nəticəsi</li>
-        <li>Əvvəlki və sonrakı Elo</li>
-        <li>Oyun rejimi</li>
-        <li>Fair Play yoxlama statusu</li>
-      </ul>
-    </div>
-  </div>
-
+  <div class="grid-3" id="timeCards"></div>
+  <div class="grid-2" style="margin-top:18px" id="gameCards"></div>
 </div>
 </section>
-
-<!-- SECURITY -->
 
 <section class="dark-section" id="security">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">06 / TRUST & SECURITY</div>
-    <h2 class="section-title">Etibar. Şəffaflıq. Ədalətli rəqabət.</h2>
-    <p class="section-description">
-      Standart oyunlar üçün kamera və mikrofon məcburi deyil.
-      Təhlükəsizlik identifikasiya, oyun analitikası və davranış
-      yoxlamalarının çoxqatlı sistemi ilə təmin edilməlidir.
-    </p>
+    <div class="section-label" data-i18n="s6label"></div>
+    <h2 class="section-title" data-i18n="s6title"></h2>
+    <p class="section-description" data-i18n="s6desc"></p>
   </div>
-
-  <div class="grid-2">
-
-    <div class="card">
-      <h3>KYC Verification</h3>
-      <p>
-        Şəxsiyyət sənədinin yoxlanılması, məlumatların uyğunlaşdırılması
-        və uyğun provayder vasitəsilə identifikasiya.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>FIDE ID Verification</h3>
-      <p>
-        FIDE profilinin uyğunluğu yoxlanılır. FIDE ID-nin mövcudluğu
-        təkbaşına hesab sahibinin şəxsiyyətini təsdiqləmir;
-        əlavə KYC və ya uyğun yoxlama tələb olunur.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Chess Engine Analysis</h3>
-      <p>
-        Gediş keyfiyyəti, oyun statistikası, müxtəlif oyunlar üzrə
-        davranış uyğunluğu və şübhəli nəticələrin təhlili.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Behavioral Analysis</h3>
-      <p>
-        Gediş vaxtları, qeyri-adi davranış dəyişiklikləri,
-        şübhəli rəqib uyğunluqları və nəticə nümunələri.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Device & Session Security</h3>
-      <p>
-        Sessiya təhlükəsizliyi, eyni vaxtda hesab istifadəsi riskləri,
-        avtomatlaşdırılmış sorğular və API sui-istifadəsinin aşkarlanması.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Human Review & Appeals</h3>
-      <p>
-        Şübhəli oyunların insan tərəfindən araşdırılması,
-        qərarların audit tarixçəsi və apellyasiya imkanı.
-      </p>
-    </div>
-
+  <div class="grid-3" id="securityCards"></div>
+  <div class="card" style="margin-top:18px">
+    <h3 data-i18n="fairTitle"></h3>
+    <div id="riskTags" style="margin-top:15px"></div>
+    <p style="margin-top:12px" data-i18n="fairDesc"></p>
   </div>
-
-  <div class="card" style="margin-top:20px">
-    <h3>Fair Play qərar mexanizmi</h3>
-    <div style="margin-top:18px">
-      <span class="tag">LOW RISK</span>
-      <span class="tag">MEDIUM RISK</span>
-      <span class="tag">HIGH RISK</span>
-      <span class="tag">CRITICAL RISK</span>
-    </div>
-    <p style="margin-top:15px">
-      Təkcə mühərrikə uyğun yüksək keyfiyyətli gedişlər avtomatik
-      bloklama üçün kifayət etməməlidir. Yüksək riskli oyunlar
-      əlavə araşdırmaya yönləndirilməlidir.
-    </p>
-  </div>
-
 </div>
 </section>
 
-<!-- SOCIAL -->
-
-<section>
+<section id="community">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">07 / SOCIAL EXPERIENCE</div>
-    <h2 class="section-title">Şahmatdan daha çox. Beynəlxalq icma.</h2>
+    <div class="section-label" data-i18n="s7label"></div>
+    <h2 class="section-title" data-i18n="s7title"></h2>
   </div>
-
-  <div class="grid-3">
-    <div class="card">
-      <h3>Live Game Chat</h3>
-      <p>Oyun zamanı mesaj, emoji, salamlaşma və oyun sonrası söhbət.</p>
-    </div>
-    <div class="card">
-      <h3>Quick Messages</h3>
-      <p>Hello, Good luck, Good game, Well played, Rematch və digər hazır mesajlar.</p>
-    </div>
-    <div class="card">
-      <h3>Friends System</h3>
-      <p>Dostluq sorğuları, onlayn status, oyun dəvətləri və özəl otaqlar.</p>
-    </div>
-    <div class="card">
-      <h3>Chat Controls</h3>
-      <p>Chat-i bağlamaq, səssizə almaq və şəxsi ünsiyyət parametrləri.</p>
-    </div>
-    <div class="card">
-      <h3>Moderation</h3>
-      <p>Spam filtri, bloklama, şikayət və təhqir moderasiyası.</p>
-    </div>
-    <div class="card">
-      <h3>Global Rankings</h3>
-      <p>Ölkə, həftəlik, aylıq və qlobal lider cədvəlləri.</p>
-    </div>
-  </div>
-
+  <div class="grid-3" id="socialCards"></div>
 </div>
 </section>
 
-<!-- TOURNAMENTS -->
-
-<section class="dark-section">
+<section class="dark-section" id="tournaments">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">08 / TOURNAMENT ECOSYSTEM</div>
-    <h2 class="section-title">Fərdi oyunlardan beynəlxalq çempionatlara.</h2>
-    <p class="section-description">
-      İstifadəçilər müxtəlif formatlarda təşkil edilən yarışlarda
-      iştirak edə və turnir nəticələrini izləyə biləcəklər.
-    </p>
+    <div class="section-label" data-i18n="s8label"></div>
+    <h2 class="section-title" data-i18n="s8title"></h2>
+    <p class="section-description" data-i18n="s8desc"></p>
   </div>
-
-  <div class="grid-3">
-    <div class="card"><h3>Daily Tournaments</h3><p>Gündəlik yarışlar.</p></div>
-    <div class="card"><h3>Weekly Tournaments</h3><p>Həftəlik turnirlər.</p></div>
-    <div class="card"><h3>Monthly Championships</h3><p>Aylıq çempionatlar.</p></div>
-    <div class="card"><h3>Country Championships</h3><p>Ölkə səviyyəli yarışlar.</p></div>
-    <div class="card"><h3>International</h3><p>Beynəlxalq turnirlər.</p></div>
-    <div class="card"><h3>Private Tournaments</h3><p>Özəl turnirlər və dəvətli iştirakçılar.</p></div>
-  </div>
-
+  <div class="grid-3" id="tournamentCards"></div>
 </div>
 </section>
 
-<!-- WALLET -->
-
-<section>
+<section id="wallet">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">09 / FINANCIAL ECOSYSTEM</div>
-    <h2 class="section-title">Şəffaf maliyyə. Aydın əməliyyatlar.</h2>
-    <p class="section-description">
-      İstifadəçi hər bir maliyyə əməliyyatını, balansını və
-      mükafatını ayrıca izləyə bilməlidir.
-    </p>
+    <div class="section-label" data-i18n="s9label"></div>
+    <h2 class="section-title" data-i18n="s9title"></h2>
+    <p class="section-description" data-i18n="s9desc"></p>
   </div>
-
-  <div class="grid-3">
-    <div class="card"><h3>Available Balance</h3><p>İstifadəçinin sərbəst istifadə edə bildiyi balans.</p></div>
-    <div class="card"><h3>Locked Balance</h3><p>Aktiv oyunlar üçün müvəqqəti bloklanmış vəsait.</p></div>
-    <div class="card"><h3>Transaction History</h3><p>Bütün maliyyə əməliyyatlarının tarixçəsi.</p></div>
-    <div class="card"><h3>Deposit</h3><p>Dəstəklənən ödəniş üsulları ilə balans artırılması.</p></div>
-    <div class="card"><h3>Withdraw</h3><p>Uyğunluq və yoxlamalardan sonra vəsait çıxarılması.</p></div>
-    <div class="card"><h3>Rewards & Refunds</h3><p>Oyun və turnir mükafatları, geri ödənişlər.</p></div>
-  </div>
-
+  <div class="grid-3" id="walletCards"></div>
 </div>
 </section>
-
-<!-- TECHNOLOGY -->
 
 <section class="dark-section" id="technology">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">10 / TECHNICAL ARCHITECTURE</div>
-    <h2 class="section-title">Miqyaslana bilən texniki infrastruktur.</h2>
-    <p class="section-description">
-      Real vaxtlı oyunların, mesajlaşmanın, istifadəçi hesablarının
-      və maliyyə əməliyyatlarının idarə edilməsi üçün modulyar arxitektura.
-    </p>
+    <div class="section-label" data-i18n="s10label"></div>
+    <h2 class="section-title" data-i18n="s10title"></h2>
+    <p class="section-description" data-i18n="s10desc"></p>
   </div>
+  <div class="architecture" id="architecture"></div>
 
-  <div class="architecture">
-    <div class="arch-item"><strong>FRONTEND</strong><small>HTML · CSS · React · TypeScript</small></div>
-    <div class="arch-item"><strong>BACKEND</strong><small>Node.js · Express · REST API</small></div>
-    <div class="arch-item"><strong>REALTIME</strong><small>WebSocket · Socket.io</small></div>
-    <div class="arch-item"><strong>DATABASE</strong><small>PostgreSQL</small></div>
-    <div class="arch-item"><strong>CACHE</strong><small>Redis</small></div>
-    <div class="arch-item"><strong>CHESS RULES</strong><small>Chess.js / Equivalent</small></div>
-    <div class="arch-item"><strong>CHESSBOARD</strong><small>Chessboard.js / Equivalent</small></div>
-    <div class="arch-item"><strong>SECURITY</strong><small>Auth · Audit · Encryption</small></div>
+  <div class="section-heading" style="margin-top:55px">
+    <h3 class="section-title" style="font-size:28px" data-i18n="modulesTitle"></h3>
   </div>
-
-  <div class="section-heading" style="margin-top:65px">
-    <h3 class="section-title" style="font-size:29px">Əsas sistem xidmətləri</h3>
-  </div>
-
-  <div class="grid-3">
-    <div class="card"><h3>Identity</h3><p>Authentication, Profiles, Localization, Verification.</p></div>
-    <div class="card"><h3>Chess Core</h3><p>Chess Game, Room Management, Matchmaking, Rating.</p></div>
-    <div class="card"><h3>Community</h3><p>Chat, Friends, Moderation, Notifications.</p></div>
-    <div class="card"><h3>Finance</h3><p>Wallet, Payment, Payout, Ledger.</p></div>
-    <div class="card"><h3>Competition</h3><p>Tournaments, Rewards, Leaderboards.</p></div>
-    <div class="card"><h3>Governance</h3><p>Anti-Cheat, Fair Play, Admin, Audit.</p></div>
-  </div>
-
-  <p style="color:var(--muted);font-size:12px;margin-top:25px">
-    İlkin mərhələdə modullar vahid modular backend daxilində qurula,
-    istifadəçi və əməliyyat həcmi artdıqca müstəqil xidmətlərə ayrıla bilər.
-  </p>
-
+  <div class="grid-3" id="moduleCards"></div>
 </div>
 </section>
 
-<!-- LEGAL -->
-
-<section>
+<section id="legal">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">11 / SECURITY & COMPLIANCE</div>
-    <h2 class="section-title">Təhlükəsizlik və beynəlxalq uyğunluq.</h2>
-    <p class="section-description">
-      Platformanın beynəlxalq fəaliyyəti ölkələr üzrə hüquqi və
-      maliyyə tələblərinin ayrıca qiymətləndirilməsini tələb edir.
-    </p>
+    <div class="section-label" data-i18n="s11label"></div>
+    <h2 class="section-title" data-i18n="s11title"></h2>
+    <p class="section-description" data-i18n="s11desc"></p>
   </div>
-
-  <div class="grid-2">
-    <div class="card">
-      <h3>Platforma təhlükəsizliyi</h3>
-      <ul class="feature-list">
-        <li>HTTPS və şifrələnmiş məlumat ötürülməsi</li>
-        <li>Şifrələrin təhlükəsiz hash edilməsi</li>
-        <li>İki mərhələli autentifikasiya seçimi</li>
-        <li>Rate limiting və API təhlükəsizliyi</li>
-        <li>SQL Injection, XSS və CSRF müdafiəsi</li>
-        <li>Rol əsaslı giriş və audit log</li>
-        <li>Backup və Disaster Recovery</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Hüquqi uyğunluq</h3>
-      <ul class="feature-list">
-        <li>Ölkə üzrə ödənişli yarışların hüquqi statusu</li>
-        <li>Yaş məhdudiyyətləri</li>
-        <li>KYC və AML tələbləri</li>
-        <li>Ödəniş provayderlərinin şərtləri</li>
-        <li>Vergi və istehlakçı hüquqları</li>
-        <li>Məlumatların qorunması</li>
-        <li>İcazə və lisenziya tələbləri</li>
-      </ul>
-    </div>
-  </div>
-
-  <p style="font-size:12px;color:var(--muted);margin-top:25px">
-    Paid Rooms funksiyası bütün ölkələrdə avtomatik aktiv edilməməlidir.
-    Hüquqi baxımdan uyğun olmayan regionlarda ödənişli funksiyalar
-    deaktiv edilə bilər. Bu təqdimat hüquqi rəy və ya fəaliyyət icazəsi deyil.
-  </p>
-
+  <div class="grid-2" id="legalCards"></div>
+  <p style="color:var(--muted);font-size:11px;margin-top:20px" data-i18n="legalNote"></p>
 </div>
 </section>
-
-<!-- ROADMAP -->
 
 <section class="dark-section" id="roadmap">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">12 / DEVELOPMENT ROADMAP</div>
-    <h2 class="section-title">Mərhələli inkişaf. Davamlı genişlənmə.</h2>
-    <p class="section-description">
-      Platformanın bütün sistemləri bir anda deyil, ardıcıl
-      inkişaf mərhələləri üzrə istifadəyə hazırlanacaq.
-    </p>
+    <div class="section-label" data-i18n="s12label"></div>
+    <h2 class="section-title" data-i18n="s12title"></h2>
+    <p class="section-description" data-i18n="s12desc"></p>
   </div>
-
-  <div class="timeline">
-
-    <div class="phase">
-      <h3>PHASE 01 — CORE CHESS PLATFORM</h3>
-      <p>Əsas şahmat təcrübəsinin yaradılması.</p>
-      <ul>
-        <li>Qeydiyyat və istifadəçi profilləri</li>
-        <li>10 dil infrastrukturu</li>
-        <li>Real şahmat mühərriki</li>
-        <li>Pulsuz oyun otaqları və matchmaking</li>
-        <li>Elo, oyun tarixçəsi və chat</li>
-        <li>Dostluq sistemi</li>
-      </ul>
-    </div>
-
-    <div class="phase">
-      <h3>PHASE 02 — FAIR PLAY & VERIFICATION</h3>
-      <p>İdentifikasiya və təhlükəsizlik infrastrukturunun qurulması.</p>
-      <ul>
-        <li>KYC və FIDE ID</li>
-        <li>Anti-Cheat</li>
-        <li>Fair Play Dashboard</li>
-        <li>Şikayət və apellyasiya sistemi</li>
-      </ul>
-    </div>
-
-    <div class="phase">
-      <h3>PHASE 03 — P2P PAID ROOMS</h3>
-      <p>Könüllü ödənişli rəqabət mexanizmi.</p>
-      <ul>
-        <li>Wallet və ödəniş infrastrukturu</li>
-        <li>Paid Room Creation / Joining</li>
-        <li>Locked Balance</li>
-        <li>1% komissiya və payout</li>
-        <li>Refund və mübahisə idarəetməsi</li>
-      </ul>
-    </div>
-
-    <div class="phase">
-      <h3>PHASE 04 — GLOBAL TOURNAMENTS</h3>
-      <p>Beynəlxalq yarış ekosisteminin genişləndirilməsi.</p>
-      <ul>
-        <li>Beynəlxalq turnirlər</li>
-        <li>Mövsümi yarışlar</li>
-        <li>Ölkə reytinqləri</li>
-        <li>Təşkilatçı paneli</li>
-      </ul>
-    </div>
-
-    <div class="phase">
-      <h3>PHASE 05 — GLOBAL EXPANSION</h3>
-      <p>Yeni regionlar və tərəfdaşlıqlar.</p>
-      <ul>
-        <li>Beynəlxalq marketinq</li>
-        <li>Mobil tətbiqlər</li>
-        <li>Sosial icmalar</li>
-        <li>Yeni funksiyalar və tərəfdaşlıqlar</li>
-      </ul>
-    </div>
-
-  </div>
+  <div class="timeline" id="roadmapItems"></div>
 </div>
 </section>
 
-<!-- BUSINESS MODEL -->
-
-<section>
+<section id="business">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">13 / BUSINESS MODEL</div>
-    <h2 class="section-title">Davamlı gəlir modeli.</h2>
-    <p class="section-description">
-      Əsas gəlir mexanizmi ödənişli oyunların ümumi mükafat
-      fondundan tutulan 1% platforma komissiyasıdır.
-    </p>
+    <div class="section-label" data-i18n="s13label"></div>
+    <h2 class="section-title" data-i18n="s13title"></h2>
+    <p class="section-description" data-i18n="s13desc"></p>
   </div>
-
-  <div class="grid-3">
-    <div class="card"><h3>1% Paid Room Commission</h3><p>Ödənişli oyunların ümumi mükafat fondundan platforma komissiyası.</p></div>
-    <div class="card"><h3>Tournament Services</h3><p>Ödənişli turnirlərin təşkilati xidmət haqqı.</p></div>
-    <div class="card"><h3>Premium</h3><p>Könüllü premium abunəlik və profil dizaynları.</p></div>
-    <div class="card"><h3>Sponsorship</h3><p>Tərəfdaşlıq və sponsorlu turnirlər.</p></div>
-    <div class="card"><h3>Brand Partnerships</h3><p>Brend əməkdaşlıqları.</p></div>
-    <div class="card"><h3>Advertising</h3><p>Uyğun reklam və brend inteqrasiyaları.</p></div>
-  </div>
-
-  <p style="color:var(--muted);font-size:12px;margin-top:22px">
-    Əlavə gəlir modelləri pulsuz şahmat təcrübəsini məhdudlaşdırmamalı
-    və premium abunəlik rəqabətdə süni üstünlük verməməlidir.
-  </p>
-
+  <div class="grid-3" id="businessCards"></div>
+  <p style="color:var(--muted);font-size:11px;margin-top:20px" data-i18n="businessNote"></p>
 </div>
 </section>
 
-<!-- KPI -->
-
-<section class="dark-section">
+<section class="dark-section" id="kpi">
 <div class="container">
-
   <div class="section-heading">
-    <div class="section-label">14 / PERFORMANCE INDICATORS</div>
-    <h2 class="section-title">İnkişaf ölçülə bilən olmalıdır.</h2>
-    <p class="section-description">
-      Platformanın inkişafı istifadəçi aktivliyi, oyun keyfiyyəti,
-      maliyyə etibarlılığı və təhlükəsizlik göstəriciləri əsasında
-      qiymətləndiriləcək.
-    </p>
+    <div class="section-label" data-i18n="s14label"></div>
+    <h2 class="section-title" data-i18n="s14title"></h2>
+    <p class="section-description" data-i18n="s14desc"></p>
   </div>
-
-  <div>
-    <span class="tag">Daily Active Users</span>
-    <span class="tag">Monthly Active Users</span>
-    <span class="tag">Completed Games</span>
-    <span class="tag">Free Games</span>
-    <span class="tag">Paid Games</span>
-    <span class="tag">Active Rooms</span>
-    <span class="tag">User Retention</span>
-    <span class="tag">Match Completion Rate</span>
-    <span class="tag">Chat Engagement</span>
-    <span class="tag">Tournament Participation</span>
-    <span class="tag">KYC Completion Rate</span>
-    <span class="tag">Anti-Cheat Accuracy</span>
-    <span class="tag">False Positive Rate</span>
-    <span class="tag">Deposit Success Rate</span>
-    <span class="tag">Payout Processing Time</span>
-    <span class="tag">Refund Rate</span>
-    <span class="tag">Country Distribution</span>
-    <span class="tag">Language Distribution</span>
-  </div>
-
+  <div id="kpiTags"></div>
 </div>
 </section>
 
-<!-- FINAL -->
+<section id="admin">
+<div class="container">
+  <div class="section-heading">
+    <div class="section-label" data-i18n="s15label"></div>
+    <h2 class="section-title" data-i18n="s15title"></h2>
+    <p class="section-description" data-i18n="s15desc"></p>
+  </div>
+  <div class="grid-3" id="adminCards"></div>
+</div>
+</section>
+
+<section class="dark-section" id="conclusion">
+<div class="container">
+  <div class="section-heading">
+    <div class="section-label" data-i18n="s16label"></div>
+    <h2 class="section-title" data-i18n="s16title"></h2>
+    <p class="section-description" data-i18n="s16desc"></p>
+  </div>
+  <div class="grid-3" id="principleCards"></div>
+</div>
+</section>
 
 <section id="contact">
 <div class="container">
-
   <div class="quote">
     <div class="section-label">CHESSARENA.IO / THE VISION</div>
-
-    <h2>
-      REAL PLAYERS.<br>
-      REAL CHESS.<br>
-      <span>GLOBAL COMPETITION.</span>
-    </h2>
-
-    <p>
-      One platform. Every country. Every chess player. Every level.
-    </p>
-
-    <div style="margin-top:30px">
-      <a href="#home" class="btn btn-primary">YUXARI QAYIT ↑</a>
+    <h2 data-i18n-html="finalTitle"></h2>
+    <p data-i18n="finalDesc"></p>
+    <div style="margin-top:28px">
+      <a href="#home" class="btn btn-primary" data-i18n="backTop"></a>
     </div>
   </div>
-
 </div>
 </section>
 
 <footer>
-<div class="container footer-inner">
-  <div class="logo">CHESS<span>ARENA</span>.IO</div>
-  <div>GLOBAL CHESS & P2P COMPETITION PLATFORM</div>
-  <div>© 2026 ChessArena.io · Concept Presentation</div>
+<div class="container">
+  <div class="footer-inner">
+    <div class="logo">CHESS<span>ARENA</span>.IO</div>
+    <div data-i18n="footerDescription"></div>
+    <div>© 2026 ChessArena.io. <span data-i18n="rights"></span></div>
+  </div>
+
+  <div class="creator">
+    <span class="creator-label">Created By</span>
+    <span class="creator-name">Humbatzada Farid</span>
+    <span class="creator-role">Founder & Creator · ChessArena.io</span>
+  </div>
 </div>
 </footer>
 
 <script>
-/* Chessboard visual */
+const languages = {
+az: {
+  name:"Azərbaycan dili",
+  navVision:"Vizyon",navPlatform:"Platforma",navCompetition:"Rəqabət",
+  navSecurity:"Təhlükəsizlik",navTechnology:"Texnologiya",navRoadmap:"İnkişaf planı",
+  navButton:"LAYİHƏNİ KƏŞF ET",
+  eyebrow:"QLOBAL ŞAHMAT VƏ P2P RƏQABƏT PLATFORMASI",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io dünyanın müxtəlif ölkələrindən şahmatçıları real vaxtlı oyunlar, beynəlxalq turnirlər, sosial əlaqələr və könüllü mükafatlı rəqabət imkanları ətrafında birləşdirən qlobal rəqəmsal şahmat ekosistemidir.",
+  heroButton1:"LAYİHƏNİ KƏŞF ET ↗",heroButton2:"PLATFORMA HAQQINDA",
+  boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"İnterfeys dili",stat2:"Platforma komissiyası",stat3:"Oyun modeli",stat4:"Hədəf bazar",
+  s1label:"01 / LAYİHƏYƏ BAXIŞ",s1title:"Şahmatı yeni qlobal rəqabət ekosisteminə çeviririk.",
+  s1desc:"ChessArena.io sadəcə şahmat oynamaq üçün nəzərdə tutulmuş platforma deyil. Məqsəd real oyunçuları, beynəlxalq icmanı, ədalətli rəqabəti və könüllü mükafat mexanizmini vahid sistemdə birləşdirməkdir.",
+  visionCards:[
+    ["♟","Missiya","Dünyanın müxtəlif ölkələrindən şahmatçıları bir araya gətirmək, sərbəst oynamaq və bacarıqlarını nümayiş etdirmək üçün etibarlı qlobal mühit yaratmaq."],
+    ["◎","Vizyon","ChessArena.io-nu əlçatan, sosial, etibarlı və rəqabət yönümlü beynəlxalq şahmat platformasına çevirmək."],
+    ["◇","Əsas prinsip","Real oyunçular, real şahmat, könüllü iştirak, şəffaf maliyyə, istifadəçi azadlığı və ədalətli rəqabət."]
+  ],
+  s2label:"02 / PLATFORMANIN EKOSİSTEMİ",s2title:"Bir platforma. Bütün şahmat təcrübəsi.",
+  s2desc:"Bütün funksiyalar vahid istifadəçi hesabı və əlaqələndirilmiş sistem modulları üzərindən işləyəcək.",
+  platformCards:[
+    ["♟","Real Chess Engine","Real oyunçular arasında canlı şahmat, oyun saatı, gediş tarixçəsi, PGN və oyun təkrarı."],
+    ["🌐","Global Community","Beynəlxalq profillər, ölkələr, dostlar, onlayn status və istifadəçi əlaqələri."],
+    ["⚔","P2P Competition","İstəyə bağlı iştirak haqqı və qarşılıqlı mükafat fondu ilə rəqabət modeli."],
+    ["🏆","Tournaments","Gündəlik, həftəlik, aylıq, ölkə və beynəlxalq turnirlər."],
+    ["💬","Live Chat","Oyun zamanı mesajlaşma, sürətli mesajlar, emoji və dostluq sistemi."],
+    ["🛡","Fair Play","KYC, FIDE ID, çoxqatlı Anti-Cheat və insan tərəfindən araşdırma."],
+    ["💳","Wallet","Depozit, çıxarış, bloklanmış balans, mükafatlar və əməliyyat tarixçəsi."],
+    ["📊","Rating System","Bullet, Blitz, Rapid, turnir və ümumi reytinq göstəriciləri."],
+    ["⚙","Admin Dashboard","İstifadəçilər, oyunlar, maliyyə, təhlükəsizlik və sistem idarəetməsi."]
+  ],
+  s3label:"03 / BEYNƏLXALQ LOKALİZASİYA",s3title:"Dünya miqyasında vahid təcrübə.",
+  s3desc:"İlkin versiyada 10 interfeys dili. İstifadəçi tətbiq dilini ölkəsindən asılı olmayaraq istənilən vaxt dəyişə bilər.",
+  languageNames:[["🇦🇿","Azərbaycan dili","AZ"],["🇬🇧","English","EN"],["🇹🇷","Türkçe","TR"],["🇷🇺","Русский","RU"],["🇸🇦","العربية","AR"],["🇪🇸","Español","ES"],["🇫🇷","Français","FR"],["🇩🇪","Deutsch","DE"],["🇵🇹","Português","PT"],["🇨🇳","简体中文","ZH-CN"]],
+  s4label:"04 / RƏQABƏT MODELİ",s4title:"İki fərqli oyun təcrübəsi. Bir seçim azadlığı.",
+  s4desc:"Ödənişli rəqabət məcburi deyil. İstifadəçilər əsas şahmat funksiyalarından pulsuz istifadə edə bilərlər.",
+  freeTitle:"FREE CHESS",freeDesc:"Hər kəs üçün sərbəst və ödənişsiz şahmat.",
+  freeFeatures:["İştirak haqqı yoxdur","Depozit tələb olunmur","Real oyunçularla oyun","Oyun tarixçəsi","Elo reytinqi","Oyun daxili chat","Dostlarla özəl otaqlar"],
+  paidTitle:"PAID CHESS",paidDesc:"Könüllü iştirak haqqı ilə P2P mükafatlı rəqabət.",
+  paidFeatures:["İstifadəçi özü iştirak məbləğini seçir","Rəqib eyni məbləğdə iştirak edir","Ümumi mükafat fondu formalaşır","Platforma komissiyası 1%","Qalib fondun 99%-ni alır","Vəsaitlər oyunadək bloklanır","Nəticə təsdiqindən sonra payout"],
+  calcLabel:"İNTERAKTİV P2P KALKULYATOR",calcTitle:"Mükafat mexanizmini hesabla",
+  calcInput:"Hər oyunçunun iştirak məbləği ($)",calcPool:"ÜMUMİ MÜKAFAT FONDU",
+  calcFee:"PLATFORMA KOMİSSİYASI · 1%",calcWinner:"QALİBİN QAZANCI · 99%",
+  tableHead:["Oyunçu A","Oyunçu B","Ümumi fond","Komissiya","Qalib"],
+  calcNote:"Qeyd: Heç-heçə, texniki problem, bağlantı itkisi, ləğv və mübahisəli nəticələr üçün ayrıca açıqlanmış refund qaydaları tətbiq edilməlidir.",
+  s5label:"05 / REAL ŞAHMAT TƏCRÜBƏSİ",s5title:"Simulyasiya deyil. Real oyunçular arasında real şahmat.",
+  s5desc:"Oyun mexanizmi standart şahmat qaydalarına əsaslanır. Oyun nəticələri server tərəfindən təsdiqlənir.",
+  timeCards:[["Bullet","1+0 və 1+1 vaxt nəzarəti."],["Blitz","3+0, 3+2 və 5+0 vaxt nəzarəti."],["Rapid","10+0, 10+5 və 15+10 vaxt nəzarəti."]],
+  gameCards:[["Oyun funksiyaları",["Real vaxt şahmat taxtası","Avtomatik gediş yoxlanılması","Canlı oyun saatı","Draw və Resign","Rematch","PGN ixracı","Oyun təkrarı"]],["Oyun tarixçəsi",["Oyun identifikatoru","İştirakçı profilləri","Bütün gedişlər","Oyun nəticəsi","Əvvəlki və sonrakı Elo","Oyun rejimi","Fair Play yoxlama statusu"]]],
+  s6label:"06 / ETİBAR VƏ TƏHLÜKƏSİZLİK",s6title:"Etibar. Şəffaflıq. Ədalətli rəqabət.",
+  s6desc:"Standart oyunlar üçün kamera və mikrofon məcburi deyil. Təhlükəsizlik identifikasiya, oyun analitikası və davranış yoxlamalarının çoxqatlı sistemi ilə təmin edilməlidir.",
+  securityCards:[
+    ["KYC Verification","Şəxsiyyət sənədinin yoxlanılması, məlumatların uyğunlaşdırılması və uyğun provayder vasitəsilə identifikasiya."],
+    ["FIDE ID Verification","FIDE profilinin uyğunluğu yoxlanılır. FIDE ID təkbaşına hesab sahibinin şəxsiyyətini təsdiqləmir."],
+    ["Chess Engine Analysis","Gediş keyfiyyəti, oyun statistikası və müxtəlif oyunlar üzrə davranış uyğunluğunun təhlili."],
+    ["Behavioral Analysis","Gediş vaxtları, qeyri-adi davranış dəyişiklikləri və şübhəli rəqib uyğunluqları."],
+    ["Device & Session Security","Sessiya təhlükəsizliyi, eyni vaxtda hesab istifadəsi riskləri və API sui-istifadəsinin aşkarlanması."],
+    ["Human Review & Appeals","Şübhəli oyunların insan tərəfindən araşdırılması, qərarların audit tarixçəsi və apellyasiya imkanı."]
+  ],
+  fairTitle:"Fair Play qərar mexanizmi",riskTags:["AŞAĞI RİSK","ORTA RİSK","YÜKSƏK RİSK","KRİTİK RİSK"],
+  fairDesc:"Təkcə mühərrikə uyğun yüksək keyfiyyətli gedişlər avtomatik bloklama üçün kifayət etməməlidir. Yüksək riskli oyunlar əlavə araşdırmaya yönləndirilməlidir.",
+  s7label:"07 / SOSİAL TƏCRÜBƏ",s7title:"Şahmatdan daha çox. Beynəlxalq icma.",
+  socialCards:[
+    ["Live Game Chat","Oyun zamanı mesaj, emoji, salamlaşma və oyun sonrası söhbət."],
+    ["Quick Messages","Hello, Good luck, Good game, Well played, Rematch və hazır mesajlar."],
+    ["Friends System","Dostluq sorğuları, onlayn status, oyun dəvətləri və özəl otaqlar."],
+    ["Chat Controls","Chat-i bağlamaq, səssizə almaq və şəxsi ünsiyyət parametrləri."],
+    ["Moderation","Spam filtri, bloklama, şikayət və təhqir moderasiyası."],
+    ["Global Rankings","Ölkə, həftəlik, aylıq və qlobal lider cədvəlləri."]
+  ],
+  s8label:"08 / TURNİR EKOSİSTEMİ",s8title:"Fərdi oyunlardan beynəlxalq çempionatlara.",
+  s8desc:"İstifadəçilər müxtəlif formatlarda təşkil edilən yarışlarda iştirak edə və turnir nəticələrini izləyə biləcəklər.",
+  tournamentCards:[["Daily Tournaments","Gündəlik yarışlar."],["Weekly Tournaments","Həftəlik turnirlər."],["Monthly Championships","Aylıq çempionatlar."],["Country Championships","Ölkə səviyyəli yarışlar."],["International","Beynəlxalq turnirlər."],["Private Tournaments","Özəl turnirlər və dəvətli iştirakçılar."]],
+  s9label:"09 / MALİYYƏ EKOSİSTEMİ",s9title:"Şəffaf maliyyə. Aydın əməliyyatlar.",
+  s9desc:"İstifadəçi hər bir maliyyə əməliyyatını, balansını və mükafatını ayrıca izləyə bilməlidir.",
+  walletCards:[
+    ["Available Balance","İstifadəçinin sərbəst istifadə edə bildiyi balans."],
+    ["Locked Balance","Aktiv oyunlar üçün müvəqqəti bloklanmış vəsait."],
+    ["Transaction History","Bütün maliyyə əməliyyatlarının tarixçəsi."],
+    ["Deposit","Dəstəklənən ödəniş üsulları ilə balans artırılması."],
+    ["Withdraw","Uyğunluq və yoxlamalardan sonra vəsait çıxarılması."],
+    ["Rewards & Refunds","Oyun və turnir mükafatları, geri ödənişlər."]
+  ],
+  s10label:"10 / TEXNİKİ ARXİTEKTURA",s10title:"Miqyaslana bilən texniki infrastruktur.",
+  s10desc:"Real vaxtlı oyunların, mesajlaşmanın, istifadəçi hesablarının və maliyyə əməliyyatlarının idarə edilməsi üçün modulyar arxitektura.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"Əsas sistem xidmətləri",
+  moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / TƏHLÜKƏSİZLİK VƏ UYĞUNLUQ",s11title:"Təhlükəsizlik və beynəlxalq uyğunluq.",
+  s11desc:"Platformanın beynəlxalq fəaliyyəti ölkələr üzrə hüquqi və maliyyə tələblərinin ayrıca qiymətləndirilməsini tələb edir.",
+  legalCards:[
+    ["Platforma təhlükəsizliyi",["HTTPS və şifrələnmiş məlumat ötürülməsi","Şifrələrin təhlükəsiz hash edilməsi","İki mərhələli autentifikasiya seçimi","Rate limiting və API təhlükəsizliyi","SQL Injection, XSS və CSRF müdafiəsi","Rol əsaslı giriş və audit log","Backup və Disaster Recovery"]],
+    ["Hüquqi uyğunluq",["Ölkə üzrə ödənişli yarışların hüquqi statusu","Yaş məhdudiyyətləri","KYC və AML tələbləri","Ödəniş provayderlərinin şərtləri","Vergi və istehlakçı hüquqları","Məlumatların qorunması","İcazə və lisenziya tələbləri"]]
+  ],
+  legalNote:"Paid Rooms funksiyası bütün ölkələrdə avtomatik aktiv edilməməlidir. Hüquqi baxımdan uyğun olmayan regionlarda ödənişli funksiyalar deaktiv edilə bilər. Bu təqdimat hüquqi rəy və ya fəaliyyət icazəsi deyil.",
+  s12label:"12 / İNKİŞAF YOL XƏRİTƏSİ",s12title:"Mərhələli inkişaf. Davamlı genişlənmə.",
+  s12desc:"Platformanın bütün sistemləri bir anda deyil, ardıcıl inkişaf mərhələləri üzrə istifadəyə hazırlanacaq.",
+  roadmap:[
+    ["PHASE 01 — CORE CHESS PLATFORM","Əsas şahmat təcrübəsinin yaradılması.",["Qeydiyyat və istifadəçi profilləri","10 dil infrastrukturu","Real şahmat mühərriki","Pulsuz oyun otaqları və matchmaking","Elo, oyun tarixçəsi və chat","Dostluq sistemi"]],
+    ["PHASE 02 — FAIR PLAY & VERIFICATION","İdentifikasiya və təhlükəsizlik infrastrukturunun qurulması.",["KYC və FIDE ID","Anti-Cheat","Fair Play Dashboard","Şikayət və apellyasiya sistemi"]],
+    ["PHASE 03 — P2P PAID ROOMS","Könüllü ödənişli rəqabət mexanizmi.",["Wallet və ödəniş infrastrukturu","Paid Room Creation / Joining","Locked Balance","1% komissiya və payout","Refund və mübahisə idarəetməsi"]],
+    ["PHASE 04 — GLOBAL TOURNAMENTS","Beynəlxalq yarış ekosisteminin genişləndirilməsi.",["Beynəlxalq turnirlər","Mövsümi yarışlar","Ölkə reytinqləri","Təşkilatçı paneli"]],
+    ["PHASE 05 — GLOBAL EXPANSION","Yeni regionlar və tərəfdaşlıqlar.",["Beynəlxalq marketinq","Mobil tətbiqlər","Sosial icmalar","Yeni funksiyalar və tərəfdaşlıqlar"]]
+  ],
+  s13label:"13 / BİZNES MODELİ",s13title:"Davamlı gəlir modeli.",
+  s13desc:"Əsas gəlir mexanizmi ödənişli oyunların ümumi mükafat fondundan tutulan 1% platforma komissiyasıdır.",
+  businessCards:[
+    ["1% Paid Room Commission","Ödənişli oyunların ümumi mükafat fondundan platforma komissiyası."],
+    ["Tournament Services","Ödənişli turnirlərin təşkilati xidmət haqqı."],
+    ["Premium","Könüllü premium abunəlik və profil dizaynları."],
+    ["Sponsorship","Tərəfdaşlıq və sponsorlu turnirlər."],
+    ["Brand Partnerships","Brend əməkdaşlıqları."],
+    ["Advertising","Uyğun reklam və brend inteqrasiyaları."]
+  ],
+  businessNote:"Əlavə gəlir modelləri pulsuz şahmat təcrübəsini məhdudlaşdırmamalı və premium abunəlik rəqabətdə süni üstünlük verməməlidir.",
+  s14label:"14 / PERFORMANS GÖSTƏRİCİLƏRİ",s14title:"İnkişaf ölçülə bilən olmalıdır.",
+  s14desc:"Platformanın inkişafı istifadəçi aktivliyi, oyun keyfiyyəti, maliyyə etibarlılığı və təhlükəsizlik göstəriciləri əsasında qiymətləndiriləcək.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / İDARƏETMƏ PANELİ",s15title:"Mərkəzləşdirilmiş idarəetmə.",
+  s15desc:"Administratorlar üçün istifadəçi, maliyyə, oyun və təhlükəsizlik əməliyyatlarını idarə edən ayrıca panel.",
+  adminCards:[
+    ["User Management","İstifadəçi hesabları və profillərin idarə olunması."],
+    ["KYC & FIDE","Şəxsiyyət və şahmatçı identifikasiyasının yoxlanılması."],
+    ["Game Monitoring","Oyunlar, otaqlar və nəticələrin izlənməsi."],
+    ["Wallet & Transactions","Balans, əməliyyat və ödəniş nəzarəti."],
+    ["Anti-Cheat Cases","Şübhəli oyunların və təhlükəsizlik hallarının araşdırılması."],
+    ["Reports & Appeals","Şikayətlər, apellyasiyalar və moderasiya."]
+  ],
+  s16label:"16 / YEKUN MÖVQELƏNDİRMƏ",s16title:"Bir qlobal şahmat ekosistemi.",
+  s16desc:"ChessArena.io şahmatı qlobal, sosial, rəqabətli və əlçatan rəqəmsal ekosistemə çevirməyi hədəfləyir.",
+  principleCards:[
+    ["REAL CHESS","Dünyanın müxtəlif ölkələrindən real insanlarla şahmat."],
+    ["FREE COMPETITION","Heç bir ödəniş etmədən oyun yaratmaq və oynamaq."],
+    ["PAID COMPETITION","İstəyə bağlı iştirak haqqı ilə P2P mükafatlı rəqabət."],
+    ["GLOBAL COMMUNITY","10 dildə beynəlxalq istifadəçi icması."],
+    ["FAIR PLAY","KYC, FIDE ID və çoxqatlı Anti-Cheat."],
+    ["USER FREEDOM","İstifadəçinin necə oynayacağına və hansı funksiyalardan yararlanacağına özü qərar verməsi."]
+  ],
+  finalTitle:'REAL PLAYERS.<br>REAL CHESS.<br><span>GLOBAL COMPETITION.</span>',
+  finalDesc:"One platform. Every country. Every chess player. Every level.",
+  backTop:"YUXARI QAYIT ↑",footerDescription:"GLOBAL CHESS & P2P COMPETITION PLATFORM",rights:"Bütün hüquqlar qorunur."
+},
+
+en: {
+  name:"English",
+  navVision:"Vision",navPlatform:"Platform",navCompetition:"Competition",navSecurity:"Security",navTechnology:"Technology",navRoadmap:"Roadmap",navButton:"EXPLORE PROJECT",
+  eyebrow:"GLOBAL CHESS & P2P COMPETITION PLATFORM",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io is a global digital chess ecosystem connecting players from different countries through real-time games, international tournaments, social interaction and optional prize-based competition.",
+  heroButton1:"EXPLORE THE PROJECT ↗",heroButton2:"DISCOVER THE PLATFORM",boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"Interface languages",stat2:"Platform commission",stat3:"Game models",stat4:"Target market",
+  s1label:"01 / PROJECT OVERVIEW",s1title:"Transforming chess into a new global competition ecosystem.",
+  s1desc:"ChessArena.io is more than a platform for playing chess. Its goal is to bring real players, an international community, fair competition and an optional reward mechanism together in one connected ecosystem.",
+  visionCards:[["♟","Mission","Connect chess players worldwide and create a trusted global environment where they can play freely and demonstrate their skills."],["◎","Vision","Build ChessArena.io into an accessible, social, trusted and competition-driven international chess platform."],["◇","Core Principles","Real players, real chess, voluntary participation, transparent finance, user freedom and fair competition."]],
+  s2label:"02 / PLATFORM ECOSYSTEM",s2title:"One platform. The complete chess experience.",s2desc:"All features operate through a unified user account and connected system modules.",
+  platformCards:[["♟","Real Chess Engine","Live chess between real players, clocks, move history, PGN and game replay."],["🌐","Global Community","International profiles, countries, friends, online status and player connections."],["⚔","P2P Competition","Optional entry fees and a shared prize pool for head-to-head competition."],["🏆","Tournaments","Daily, weekly, monthly, national and international tournaments."],["💬","Live Chat","In-game messaging, quick messages, emojis and a friends system."],["🛡","Fair Play","KYC, FIDE ID, multi-layer anti-cheat and human review."],["💳","Wallet","Deposits, withdrawals, locked balance, rewards and transaction history."],["📊","Rating System","Bullet, Blitz, Rapid, tournament and overall rating statistics."],["⚙","Admin Dashboard","User, game, finance, security and system administration."]],
+  s3label:"03 / GLOBAL LOCALIZATION",s3title:"One experience for a global audience.",s3desc:"Ten interface languages at launch. Users can change the application language at any time, independently of their country.",
+  languageNames:[["🇦🇿","Azerbaijani","AZ"],["🇬🇧","English","EN"],["🇹🇷","Turkish","TR"],["🇷🇺","Russian","RU"],["🇸🇦","Arabic","AR"],["🇪🇸","Spanish","ES"],["🇫🇷","French","FR"],["🇩🇪","German","DE"],["🇵🇹","Portuguese","PT"],["🇨🇳","Simplified Chinese","ZH-CN"]],
+  s4label:"04 / COMPETITION MODEL",s4title:"Two ways to play. One freedom of choice.",s4desc:"Paid competition is optional. Users can enjoy the core chess experience for free.",
+  freeTitle:"FREE CHESS",freeDesc:"Open and free chess for everyone.",
+  freeFeatures:["No entry fee","No deposit required","Play against real people","Game history","Elo ratings","In-game chat","Private rooms with friends"],
+  paidTitle:"PAID CHESS",paidDesc:"Optional P2P prize competition with an entry fee.",
+  paidFeatures:["Players choose their own entry amount","The opponent contributes the same amount","A shared prize pool is created","1% platform commission","Winner receives 99% of the pool","Funds are locked before the game","Payout after result confirmation"],
+  calcLabel:"INTERACTIVE P2P CALCULATOR",calcTitle:"Calculate the prize distribution",calcInput:"Entry amount per player ($)",calcPool:"TOTAL PRIZE POOL",calcFee:"PLATFORM COMMISSION · 1%",calcWinner:"WINNER'S PRIZE · 99%",
+  tableHead:["Player A","Player B","Total pool","Commission","Winner"],
+  calcNote:"Note: Separate refund rules should be published for draws, technical issues, disconnections, cancellations and disputed results.",
+  s5label:"05 / REAL CHESS EXPERIENCE",s5title:"Not a simulation. Real chess between real players.",s5desc:"The game system follows standard chess rules. Game results are confirmed by the server.",
+  timeCards:[["Bullet","1+0 and 1+1 time controls."],["Blitz","3+0, 3+2 and 5+0 time controls."],["Rapid","10+0, 10+5 and 15+10 time controls."]],
+  gameCards:[["Game Features",["Real-time chessboard","Automatic legal move validation","Live game clock","Draw and Resign","Rematch","PGN export","Game replay"]],["Game History",["Game identifier","Player profiles","Complete move list","Game result","Before and after Elo","Game mode","Fair Play review status"]]],
+  s6label:"06 / TRUST & SECURITY",s6title:"Trust. Transparency. Fair competition.",s6desc:"Camera and microphone access are not mandatory for standard games. Security is based on layered identity, game analytics and behavioural checks.",
+  securityCards:[["KYC Verification","Identity document verification, information matching and identification through a suitable provider."],["FIDE ID Verification","FIDE profile matching. A FIDE ID alone does not prove the account holder's identity."],["Chess Engine Analysis","Analysis of move quality, game statistics and behavioural consistency across games."],["Behavioural Analysis","Move timing, unusual behavioural changes and suspicious opponent patterns."],["Device & Session Security","Session security, concurrent account usage risks and detection of API abuse."],["Human Review & Appeals","Human review of suspicious games, audit trails and an appeals process."]],
+  fairTitle:"Fair Play decision process",riskTags:["LOW RISK","MEDIUM RISK","HIGH RISK","CRITICAL RISK"],fairDesc:"High-quality engine-like moves alone should not trigger an automatic ban. High-risk games should be referred for further review.",
+  s7label:"07 / SOCIAL EXPERIENCE",s7title:"More than chess. An international community.",
+  socialCards:[["Live Game Chat","Messages, emojis, greetings and post-game conversations."],["Quick Messages","Hello, Good luck, Good game, Well played, Rematch and other presets."],["Friends System","Friend requests, online status, game invitations and private rooms."],["Chat Controls","Disable chat, mute conversations and manage communication settings."],["Moderation","Spam filtering, blocking, reporting and abusive-content moderation."],["Global Rankings","Country, weekly, monthly and global leaderboards."]],
+  s8label:"08 / TOURNAMENT ECOSYSTEM",s8title:"From individual games to international championships.",s8desc:"Users can participate in competitions in different formats and follow tournament results.",
+  tournamentCards:[["Daily Tournaments","Daily competitions."],["Weekly Tournaments","Weekly tournaments."],["Monthly Championships","Monthly championships."],["Country Championships","National-level competitions."],["International","International tournaments."],["Private Tournaments","Private tournaments and invited participants."]],
+  s9label:"09 / FINANCIAL ECOSYSTEM",s9title:"Transparent finance. Clear transactions.",s9desc:"Users should be able to track every financial operation, balance and reward separately.",
+  walletCards:[["Available Balance","Funds available for the user to spend."],["Locked Balance","Funds temporarily locked for active games."],["Transaction History","A complete record of financial transactions."],["Deposit","Adding funds through supported payment methods."],["Withdraw","Withdrawals after applicable checks and compliance reviews."],["Rewards & Refunds","Game and tournament rewards, and refunds."]],
+  s10label:"10 / TECHNICAL ARCHITECTURE",s10title:"Scalable technical infrastructure.",s10desc:"A modular architecture for real-time games, messaging, user accounts and financial operations.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"Core system services",moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / SECURITY & COMPLIANCE",s11title:"Security and international compliance.",s11desc:"International operations require country-by-country assessment of legal and financial requirements.",
+  legalCards:[["Platform Security",["HTTPS and encrypted data transmission","Secure password hashing","Optional two-factor authentication","Rate limiting and API security","SQL Injection, XSS and CSRF protection","Role-based access and audit logs","Backup and disaster recovery"]],["Legal Compliance",["Legal status of paid skill competitions by country","Age restrictions","KYC and AML requirements","Payment provider terms","Tax and consumer obligations","Data protection","Permit and licensing requirements"]]],
+  legalNote:"Paid Rooms should not be automatically enabled in every country. Paid features may be disabled in jurisdictions where they are not legally supported. This presentation is not legal advice or an authorization to operate.",
+  s12label:"12 / DEVELOPMENT ROADMAP",s12title:"Phased development. Continuous expansion.",s12desc:"The platform's systems will be introduced progressively rather than all at once.",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","Build the essential chess experience.",["Registration and user profiles","10-language infrastructure","Real chess engine","Free rooms and matchmaking","Elo, game history and chat","Friends system"]],["PHASE 02 — FAIR PLAY & VERIFICATION","Build identity and security infrastructure.",["KYC and FIDE ID","Anti-Cheat","Fair Play Dashboard","Reports and appeals"]],["PHASE 03 — P2P PAID ROOMS","Introduce optional paid competition.",["Wallet and payment infrastructure","Paid Room Creation / Joining","Locked Balance","1% commission and payout","Refund and dispute management"]],["PHASE 04 — GLOBAL TOURNAMENTS","Expand the international competition ecosystem.",["International tournaments","Seasonal competitions","Country rankings","Organizer dashboard"]],["PHASE 05 — GLOBAL EXPANSION","Expand into new regions and partnerships.",["International marketing","Mobile applications","Social communities","New features and partnerships"]]],
+  s13label:"13 / BUSINESS MODEL",s13title:"A sustainable revenue model.",s13desc:"The primary revenue mechanism is a 1% platform commission on the total prize pool of paid games.",
+  businessCards:[["1% Paid Room Commission","Platform commission from the total paid-game prize pool."],["Tournament Services","Organizational service fees for paid tournaments."],["Premium","Optional premium subscriptions and profile designs."],["Sponsorship","Partnerships and sponsored tournaments."],["Brand Partnerships","Brand collaborations."],["Advertising","Relevant advertising and brand integrations."]],
+  businessNote:"Additional revenue models should not restrict free chess. Premium subscriptions must not provide an artificial competitive advantage.",
+  s14label:"14 / PERFORMANCE INDICATORS",s14title:"Progress should be measurable.",s14desc:"Platform performance will be evaluated through user activity, game quality, financial reliability and security metrics.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / ADMINISTRATION",s15title:"Centralized platform management.",s15desc:"A dedicated dashboard for administrators to manage users, finance, games and security operations.",
+  adminCards:[["User Management","Management of user accounts and profiles."],["KYC & FIDE","Identity and chess-player verification."],["Game Monitoring","Monitoring games, rooms and results."],["Wallet & Transactions","Balance, transactions and payment oversight."],["Anti-Cheat Cases","Investigation of suspicious games and security cases."],["Reports & Appeals","Reports, appeals and moderation."]],
+  s16label:"16 / FINAL POSITIONING",s16title:"One global chess ecosystem.",s16desc:"ChessArena.io aims to transform chess into a global, social, competitive and accessible digital ecosystem.",
+  principleCards:[["REAL CHESS","Chess against real people from around the world."],["FREE COMPETITION","Create and play games without paying."],["PAID COMPETITION","Optional P2P prize competition with an entry fee."],["GLOBAL COMMUNITY","An international community in 10 languages."],["FAIR PLAY","KYC, FIDE ID and multi-layer anti-cheat."],["USER FREEDOM","Users decide how to play and which features to use."]],
+  finalTitle:'REAL PLAYERS.<br>REAL CHESS.<br><span>GLOBAL COMPETITION.</span>',
+  finalDesc:"One platform. Every country. Every chess player. Every level.",
+  backTop:"BACK TO TOP ↑",footerDescription:"GLOBAL CHESS & P2P COMPETITION PLATFORM",rights:"All rights reserved."
+},
+
+tr: {
+  name:"Türkçe",
+  navVision:"Vizyon",navPlatform:"Platform",navCompetition:"Rekabet",navSecurity:"Güvenlik",navTechnology:"Teknoloji",navRoadmap:"Yol Haritası",navButton:"PROJEYİ KEŞFET",
+  eyebrow:"KÜRESEL SATRANÇ VE P2P REKABET PLATFORMU",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io; farklı ülkelerden satranç oyuncularını gerçek zamanlı oyunlar, uluslararası turnuvalar, sosyal etkileşim ve isteğe bağlı ödüllü rekabet etrafında birleştiren küresel bir dijital satranç ekosistemidir.",
+  heroButton1:"PROJEYİ KEŞFET ↗",heroButton2:"PLATFORMU TANI",boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"Arayüz dili",stat2:"Platform komisyonu",stat3:"Oyun modeli",stat4:"Hedef pazar",
+  s1label:"01 / PROJEYE GENEL BAKIŞ",s1title:"Satranç için yeni bir küresel rekabet ekosistemi.",
+  s1desc:"ChessArena.io yalnızca satranç oynamak için tasarlanmış bir platform değildir. Gerçek oyuncuları, uluslararası topluluğu, adil rekabeti ve isteğe bağlı ödül mekanizmasını tek bir ekosistemde birleştirmeyi amaçlar.",
+  visionCards:[["♟","Misyon","Dünyanın dört bir yanındaki satranç oyuncularını bir araya getirmek ve becerilerini sergileyebilecekleri güvenilir bir ortam oluşturmak."],["◎","Vizyon","ChessArena.io'yu erişilebilir, sosyal, güvenilir ve rekabet odaklı uluslararası bir satranç platformuna dönüştürmek."],["◇","Temel İlkeler","Gerçek oyuncular, gerçek satranç, gönüllü katılım, şeffaf finans, kullanıcı özgürlüğü ve adil rekabet."]],
+  s2label:"02 / PLATFORM EKOSİSTEMİ",s2title:"Tek platform. Eksiksiz satranç deneyimi.",s2desc:"Tüm özellikler tek bir kullanıcı hesabı ve bağlantılı sistem modülleri üzerinden çalışır.",
+  platformCards:[["♟","Real Chess Engine","Gerçek oyuncular arasında canlı satranç, saat, hamle geçmişi, PGN ve oyun tekrarı."],["🌐","Global Community","Uluslararası profiller, ülkeler, arkadaşlar ve çevrimiçi durum."],["⚔","P2P Competition","İsteğe bağlı katılım ücreti ve ortak ödül havuzu ile rekabet."],["🏆","Tournaments","Günlük, haftalık, aylık, ulusal ve uluslararası turnuvalar."],["💬","Live Chat","Oyun içi mesajlaşma, hızlı mesajlar, emojiler ve arkadaş sistemi."],["🛡","Fair Play","KYC, FIDE ID, çok katmanlı hile önleme ve insan incelemesi."],["💳","Wallet","Para yatırma, çekme, kilitli bakiye, ödüller ve işlem geçmişi."],["📊","Rating System","Bullet, Blitz, Rapid ve turnuva puanları."],["⚙","Admin Dashboard","Kullanıcı, oyun, finans, güvenlik ve sistem yönetimi."]],
+  s3label:"03 / KÜRESEL DİL DESTEĞİ",s3title:"Dünya çapında tek bir deneyim.",s3desc:"İlk sürümde 10 arayüz dili. Kullanıcı uygulama dilini ülkesinden bağımsız olarak değiştirebilir.",
+  languageNames:[["🇦🇿","Azerbaycanca","AZ"],["🇬🇧","İngilizce","EN"],["🇹🇷","Türkçe","TR"],["🇷🇺","Rusça","RU"],["🇸🇦","Arapça","AR"],["🇪🇸","İspanyolca","ES"],["🇫🇷","Fransızca","FR"],["🇩🇪","Almanca","DE"],["🇵🇹","Portekizce","PT"],["🇨🇳","Basitleştirilmiş Çince","ZH-CN"]],
+  s4label:"04 / REKABET MODELİ",s4title:"İki farklı oyun deneyimi. Seçim özgürlüğü.",s4desc:"Ücretli rekabet zorunlu değildir. Kullanıcılar temel satranç özelliklerinden ücretsiz yararlanabilir.",
+  freeTitle:"FREE CHESS",freeDesc:"Herkes için ücretsiz satranç.",freeFeatures:["Katılım ücreti yok","Depozito gerekmez","Gerçek oyuncularla oyun","Oyun geçmişi","Elo puanı","Oyun içi sohbet","Arkadaşlarla özel odalar"],
+  paidTitle:"PAID CHESS",paidDesc:"İsteğe bağlı katılım ücretiyle P2P ödüllü rekabet.",paidFeatures:["Oyuncu katılım tutarını seçer","Rakip aynı tutarı yatırır","Ortak ödül havuzu oluşur","%1 platform komisyonu","Kazanan havuzun %99'unu alır","Fonlar oyun öncesinde kilitlenir","Sonuç onayından sonra ödeme"],
+  calcLabel:"ETKİLEŞİMLİ P2P HESAPLAYICI",calcTitle:"Ödül dağılımını hesapla",calcInput:"Oyuncu başına katılım tutarı ($)",calcPool:"TOPLAM ÖDÜL HAVUZU",calcFee:"PLATFORM KOMİSYONU · %1",calcWinner:"KAZANANIN ÖDÜLÜ · %99",
+  tableHead:["Oyuncu A","Oyuncu B","Toplam havuz","Komisyon","Kazanan"],calcNote:"Not: Beraberlik, teknik sorun, bağlantı kesilmesi, iptal ve itirazlı sonuçlar için ayrı iade kuralları yayımlanmalıdır.",
+  s5label:"05 / GERÇEK SATRANÇ DENEYİMİ",s5title:"Simülasyon değil. Gerçek oyuncular arasında gerçek satranç.",s5desc:"Oyun sistemi standart satranç kurallarına dayanır. Oyun sonuçları sunucu tarafından doğrulanır.",
+  timeCards:[["Bullet","1+0 ve 1+1 zaman kontrolleri."],["Blitz","3+0, 3+2 ve 5+0 zaman kontrolleri."],["Rapid","10+0, 10+5 ve 15+10 zaman kontrolleri."]],
+  gameCards:[["Oyun Özellikleri",["Gerçek zamanlı satranç tahtası","Yasal hamle doğrulaması","Canlı oyun saati","Beraberlik ve terk","Yeniden maç","PGN dışa aktarma","Oyun tekrarı"]],["Oyun Geçmişi",["Oyun kimliği","Oyuncu profilleri","Tüm hamleler","Oyun sonucu","Önceki ve sonraki Elo","Oyun modu","Fair Play inceleme durumu"]]],
+  s6label:"06 / GÜVEN VE GÜVENLİK",s6title:"Güven. Şeffaflık. Adil rekabet.",s6desc:"Standart oyunlar için kamera ve mikrofon zorunlu değildir. Güvenlik; kimlik doğrulama, oyun analizi ve davranış kontrollerinin katmanlı sistemiyle sağlanır.",
+  securityCards:[["KYC Verification","Kimlik belgesi kontrolü ve uygun sağlayıcı üzerinden doğrulama."],["FIDE ID Verification","FIDE profilinin eşleştirilmesi. FIDE ID tek başına hesap sahibinin kimliğini kanıtlamaz."],["Chess Engine Analysis","Hamle kalitesi, oyun istatistikleri ve oyunlar arası davranış tutarlılığının analizi."],["Behavioural Analysis","Hamle süreleri, olağandışı davranış değişiklikleri ve şüpheli eşleşmeler."],["Device & Session Security","Oturum güvenliği, eşzamanlı hesap kullanımı riskleri ve API kötüye kullanımının tespiti."],["Human Review & Appeals","Şüpheli oyunların insan incelemesi, denetim kayıtları ve itiraz süreci."]],
+  fairTitle:"Fair Play karar süreci",riskTags:["DÜŞÜK RİSK","ORTA RİSK","YÜKSEK RİSK","KRİTİK RİSK"],fairDesc:"Yalnızca motorla uyumlu yüksek kaliteli hamleler otomatik yasaklama için yeterli olmamalıdır. Yüksek riskli oyunlar ek incelemeye gönderilmelidir.",
+  s7label:"07 / SOSYAL DENEYİM",s7title:"Satrancın ötesinde. Uluslararası topluluk.",
+  socialCards:[["Live Game Chat","Oyun sırasında mesajlar, emojiler ve oyun sonrası sohbet."],["Quick Messages","Hello, Good luck, Good game, Well played, Rematch ve hazır mesajlar."],["Friends System","Arkadaşlık istekleri, çevrimiçi durumu, oyun davetleri ve özel odalar."],["Chat Controls","Sohbeti kapatma, sessize alma ve iletişim ayarları."],["Moderation","Spam filtresi, engelleme, şikâyet ve içerik moderasyonu."],["Global Rankings","Ülke, haftalık, aylık ve küresel sıralamalar."]],
+  s8label:"08 / TURNUVA EKOSİSTEMİ",s8title:"Bireysel oyunlardan uluslararası şampiyonalara.",s8desc:"Kullanıcılar farklı formatlardaki yarışmalara katılabilir ve turnuva sonuçlarını takip edebilir.",
+  tournamentCards:[["Daily Tournaments","Günlük yarışmalar."],["Weekly Tournaments","Haftalık turnuvalar."],["Monthly Championships","Aylık şampiyonalar."],["Country Championships","Ulusal yarışmalar."],["International","Uluslararası turnuvalar."],["Private Tournaments","Özel turnuvalar ve davetli katılımcılar."]],
+  s9label:"09 / FİNANSAL EKOSİSTEM",s9title:"Şeffaf finans. Açık işlemler.",s9desc:"Kullanıcılar tüm finansal işlemlerini, bakiyelerini ve ödüllerini ayrı ayrı takip edebilmelidir.",
+  walletCards:[["Available Balance","Kullanıcının serbestçe kullanabileceği bakiye."],["Locked Balance","Aktif oyunlar için geçici olarak kilitlenen fonlar."],["Transaction History","Tüm finansal işlemlerin geçmişi."],["Deposit","Desteklenen ödeme yöntemleriyle bakiye yükleme."],["Withdraw","Uygunluk kontrollerinden sonra para çekme."],["Rewards & Refunds","Oyun ve turnuva ödülleri ile iadeler."]],
+  s10label:"10 / TEKNİK MİMARİ",s10title:"Ölçeklenebilir teknik altyapı.",s10desc:"Gerçek zamanlı oyunlar, mesajlaşma, kullanıcı hesapları ve finansal işlemler için modüler mimari.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"Temel sistem hizmetleri",moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / GÜVENLİK VE UYUM",s11title:"Güvenlik ve uluslararası uyum.",s11desc:"Uluslararası faaliyet, her ülkenin yasal ve finansal gerekliliklerinin ayrı değerlendirilmesini gerektirir.",
+  legalCards:[["Platform Güvenliği",["HTTPS ve şifreli veri aktarımı","Güvenli parola hashleme","İsteğe bağlı iki aşamalı kimlik doğrulama","Rate limiting ve API güvenliği","SQL Injection, XSS ve CSRF koruması","Rol tabanlı erişim ve denetim kayıtları","Yedekleme ve felaket kurtarma"]],["Yasal Uyum",["Ülkelere göre ücretli beceri yarışmalarının hukuki durumu","Yaş sınırlamaları","KYC ve AML gereklilikleri","Ödeme sağlayıcısı koşulları","Vergi ve tüketici yükümlülükleri","Veri koruma","İzin ve lisans gereklilikleri"]]],
+  legalNote:"Paid Rooms her ülkede otomatik olarak etkinleştirilmemelidir. Hukuken uygun olmayan bölgelerde ücretli özellikler devre dışı bırakılabilir. Bu sunum hukuki görüş veya faaliyet izni değildir.",
+  s12label:"12 / GELİŞİM YOL HARİTASI",s12title:"Aşamalı gelişim. Sürekli genişleme.",s12desc:"Platformun tüm sistemleri aynı anda değil, aşamalı olarak kullanıma sunulacaktır.",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","Temel satranç deneyiminin oluşturulması.",["Kayıt ve kullanıcı profilleri","10 dil altyapısı","Gerçek satranç motoru","Ücretsiz odalar ve eşleştirme","Elo, oyun geçmişi ve sohbet","Arkadaş sistemi"]],["PHASE 02 — FAIR PLAY & VERIFICATION","Kimlik ve güvenlik altyapısının kurulması.",["KYC ve FIDE ID","Anti-Cheat","Fair Play Dashboard","Şikâyet ve itiraz sistemi"]],["PHASE 03 — P2P PAID ROOMS","İsteğe bağlı ücretli rekabetin başlatılması.",["Cüzdan ve ödeme altyapısı","Paid Room Creation / Joining","Locked Balance","%1 komisyon ve ödeme","İade ve uyuşmazlık yönetimi"]],["PHASE 04 — GLOBAL TOURNAMENTS","Uluslararası rekabet ekosisteminin genişletilmesi.",["Uluslararası turnuvalar","Sezonluk yarışmalar","Ülke sıralamaları","Organizatör paneli"]],["PHASE 05 — GLOBAL EXPANSION","Yeni bölgeler ve ortaklıklar.",["Uluslararası pazarlama","Mobil uygulamalar","Sosyal topluluklar","Yeni özellikler ve ortaklıklar"]]],
+  s13label:"13 / İŞ MODELİ",s13title:"Sürdürülebilir gelir modeli.",s13desc:"Temel gelir mekanizması, ücretli oyunların toplam ödül havuzundan alınan %1 platform komisyonudur.",
+  businessCards:[["%1 Paid Room Commission","Ücretli oyunların toplam ödül havuzundan platform komisyonu."],["Tournament Services","Ücretli turnuvalar için organizasyon hizmet bedeli."],["Premium","İsteğe bağlı premium abonelik ve profil tasarımları."],["Sponsorship","Ortaklıklar ve sponsorlu turnuvalar."],["Brand Partnerships","Marka iş birlikleri."],["Advertising","Uygun reklam ve marka entegrasyonları."]],
+  businessNote:"Ek gelir modelleri ücretsiz satranç deneyimini kısıtlamamalı ve premium üyelik rekabet avantajı sağlamamalıdır.",
+  s14label:"14 / PERFORMANS GÖSTERGELERİ",s14title:"Gelişim ölçülebilir olmalıdır.",s14desc:"Platform; kullanıcı etkinliği, oyun kalitesi, finansal güvenilirlik ve güvenlik ölçütleriyle değerlendirilecektir.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / YÖNETİM PANELİ",s15title:"Merkezi platform yönetimi.",s15desc:"Yöneticilerin kullanıcıları, finansı, oyunları ve güvenlik operasyonlarını yönetmesi için özel panel.",
+  adminCards:[["User Management","Kullanıcı hesapları ve profillerin yönetimi."],["KYC & FIDE","Kimlik ve satranç oyuncusu doğrulaması."],["Game Monitoring","Oyunların, odaların ve sonuçların takibi."],["Wallet & Transactions","Bakiye, işlemler ve ödemelerin denetimi."],["Anti-Cheat Cases","Şüpheli oyunların ve güvenlik vakalarının incelenmesi."],["Reports & Appeals","Şikâyetler, itirazlar ve moderasyon."]],
+  s16label:"16 / SON KONUMLANDIRMA",s16title:"Tek bir küresel satranç ekosistemi.",s16desc:"ChessArena.io satrancı küresel, sosyal, rekabetçi ve erişilebilir bir dijital ekosisteme dönüştürmeyi hedefler.",
+  principleCards:[["REAL CHESS","Dünyanın dört bir yanından gerçek insanlarla satranç."],["FREE COMPETITION","Ücret ödemeden oyun oluşturma ve oynama."],["PAID COMPETITION","İsteğe bağlı katılım ücretiyle P2P ödüllü rekabet."],["GLOBAL COMMUNITY","10 dilde uluslararası kullanıcı topluluğu."],["FAIR PLAY","KYC, FIDE ID ve çok katmanlı Anti-Cheat."],["USER FREEDOM","Kullanıcılar nasıl oynayacaklarına ve hangi özellikleri kullanacaklarına kendileri karar verir."]],
+  finalTitle:'REAL PLAYERS.<br>REAL CHESS.<br><span>GLOBAL COMPETITION.</span>',finalDesc:"One platform. Every country. Every chess player. Every level.",backTop:"YUKARI DÖN ↑",footerDescription:"GLOBAL CHESS & P2P COMPETITION PLATFORM",rights:"Tüm hakları saklıdır."
+},
+
+ru: {
+  name:"Русский",
+  navVision:"Видение",navPlatform:"Платформа",navCompetition:"Соревнования",navSecurity:"Безопасность",navTechnology:"Технологии",navRoadmap:"План развития",navButton:"ИЗУЧИТЬ ПРОЕКТ",
+  eyebrow:"ГЛОБАЛЬНАЯ ШАХМАТНАЯ P2P-ПЛАТФОРМА",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io — глобальная цифровая шахматная экосистема, объединяющая игроков из разных стран посредством игр в реальном времени, международных турниров, общения и добровольных соревнований с призами.",
+  heroButton1:"ИЗУЧИТЬ ПРОЕКТ ↗",heroButton2:"О ПЛАТФОРМЕ",boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"Языков интерфейса",stat2:"Комиссия платформы",stat3:"Игровые модели",stat4:"Целевой рынок",
+  s1label:"01 / ОБЗОР ПРОЕКТА",s1title:"Превращаем шахматы в новую глобальную соревновательную экосистему.",
+  s1desc:"ChessArena.io — это больше, чем платформа для игры в шахматы. Цель проекта — объединить реальных игроков, международное сообщество, честную конкуренцию и добровольный призовой механизм в единой системе.",
+  visionCards:[["♟","Миссия","Объединить шахматистов со всего мира и создать надёжную среду для свободной игры и демонстрации мастерства."],["◎","Видение","Создать доступную, социальную и надёжную международную шахматную платформу с акцентом на соревнования."],["◇","Принципы","Реальные игроки, реальные шахматы, добровольное участие, прозрачные финансы и честная конкуренция."]],
+  s2label:"02 / ЭКОСИСТЕМА ПЛАТФОРМЫ",s2title:"Одна платформа. Полноценный шахматный опыт.",s2desc:"Все функции работают через единую учётную запись и взаимосвязанные системные модули.",
+  platformCards:[["♟","Real Chess Engine","Шахматы между реальными игроками, часы, история ходов, PGN и повтор партий."],["🌐","Global Community","Международные профили, страны, друзья и онлайн-статусы."],["⚔","P2P Competition","Добровольный взнос и общий призовой фонд для соревнования один на один."],["🏆","Tournaments","Ежедневные, еженедельные, ежемесячные, национальные и международные турниры."],["💬","Live Chat","Сообщения во время игры, быстрые фразы, эмодзи и друзья."],["🛡","Fair Play","KYC, FIDE ID, многоуровневая защита от читов и проверка специалистами."],["💳","Wallet","Пополнение, вывод, заблокированный баланс, награды и история операций."],["📊","Rating System","Рейтинги Bullet, Blitz, Rapid и турнирные показатели."],["⚙","Admin Dashboard","Управление пользователями, играми, финансами, безопасностью и системой."]],
+  s3label:"03 / МЕЖДУНАРОДНАЯ ЛОКАЛИЗАЦИЯ",s3title:"Единый опыт для всего мира.",s3desc:"Десять языков интерфейса на старте. Пользователь может изменить язык независимо от страны.",
+  languageNames:[["🇦🇿","Азербайджанский","AZ"],["🇬🇧","Английский","EN"],["🇹🇷","Турецкий","TR"],["🇷🇺","Русский","RU"],["🇸🇦","Арабский","AR"],["🇪🇸","Испанский","ES"],["🇫🇷","Французский","FR"],["🇩🇪","Немецкий","DE"],["🇵🇹","Португальский","PT"],["🇨🇳","Упрощённый китайский","ZH-CN"]],
+  s4label:"04 / МОДЕЛЬ СОРЕВНОВАНИЙ",s4title:"Два формата игры. Свобода выбора.",s4desc:"Платное соревнование необязательно. Основные шахматные функции доступны бесплатно.",
+  freeTitle:"FREE CHESS",freeDesc:"Бесплатные шахматы для всех.",freeFeatures:["Нет вступительного взноса","Депозит не требуется","Игры с реальными игроками","История партий","Рейтинг Elo","Игровой чат","Приватные комнаты с друзьями"],
+  paidTitle:"PAID CHESS",paidDesc:"Добровольные P2P-соревнования с призовым фондом.",paidFeatures:["Игрок выбирает сумму взноса","Соперник вносит такую же сумму","Формируется общий призовой фонд","Комиссия платформы 1%","Победитель получает 99% фонда","Средства блокируются до игры","Выплата после подтверждения результата"],
+  calcLabel:"ИНТЕРАКТИВНЫЙ P2P-КАЛЬКУЛЯТОР",calcTitle:"Рассчитать распределение призов",calcInput:"Взнос каждого игрока ($)",calcPool:"ОБЩИЙ ПРИЗОВОЙ ФОНД",calcFee:"КОМИССИЯ ПЛАТФОРМЫ · 1%",calcWinner:"ПРИЗ ПОБЕДИТЕЛЯ · 99%",
+  tableHead:["Игрок A","Игрок B","Общий фонд","Комиссия","Победитель"],calcNote:"Примечание: Для ничьих, технических проблем, потери связи, отмен и спорных результатов должны быть опубликованы отдельные правила возврата средств.",
+  s5label:"05 / НАСТОЯЩИЕ ШАХМАТЫ",s5title:"Не симуляция. Настоящие шахматы между реальными игроками.",s5desc:"Игровая система основана на стандартных правилах шахмат. Результаты подтверждаются сервером.",
+  timeCards:[["Bullet","Контроль времени 1+0 и 1+1."],["Blitz","Контроль времени 3+0, 3+2 и 5+0."],["Rapid","Контроль времени 10+0, 10+5 и 15+10."]],
+  gameCards:[["Функции игры",["Шахматная доска в реальном времени","Проверка допустимости ходов","Игровые часы","Ничья и сдача","Реванш","Экспорт PGN","Повтор партии"]],["История игр",["Идентификатор партии","Профили игроков","Все ходы","Результат игры","Elo до и после","Режим игры","Статус проверки Fair Play"]]],
+  s6label:"06 / ДОВЕРИЕ И БЕЗОПАСНОСТЬ",s6title:"Доверие. Прозрачность. Честная игра.",s6desc:"Камера и микрофон не обязательны для стандартных игр. Безопасность обеспечивается многоуровневой проверкой личности, анализом партий и поведения.",
+  securityCards:[["KYC Verification","Проверка документа, сопоставление данных и идентификация через подходящего провайдера."],["FIDE ID Verification","Сопоставление профиля FIDE. Сам по себе FIDE ID не подтверждает личность владельца аккаунта."],["Chess Engine Analysis","Анализ качества ходов, статистики партий и последовательности поведения."],["Behavioural Analysis","Время ходов, необычные изменения поведения и подозрительные совпадения соперников."],["Device & Session Security","Безопасность сессий, риски одновременного использования аккаунта и злоупотребления API."],["Human Review & Appeals","Проверка подозрительных партий специалистами, аудит и процедура апелляции."]],
+  fairTitle:"Процесс принятия решений Fair Play",riskTags:["НИЗКИЙ РИСК","СРЕДНИЙ РИСК","ВЫСОКИЙ РИСК","КРИТИЧЕСКИЙ РИСК"],fairDesc:"Одних только сильных ходов, похожих на компьютерные, недостаточно для автоматической блокировки. Игры с высоким риском должны направляться на дополнительную проверку.",
+  s7label:"07 / СОЦИАЛЬНЫЙ ОПЫТ",s7title:"Больше, чем шахматы. Международное сообщество.",
+  socialCards:[["Live Game Chat","Сообщения, эмодзи, приветствия и общение после партии."],["Quick Messages","Hello, Good luck, Good game, Well played, Rematch и готовые сообщения."],["Friends System","Запросы в друзья, онлайн-статус, приглашения и приватные комнаты."],["Chat Controls","Отключение чата, отключение звука и настройки общения."],["Moderation","Фильтрация спама, блокировка, жалобы и модерация."],["Global Rankings","Национальные, еженедельные, ежемесячные и мировые рейтинги."]],
+  s8label:"08 / ЭКОСИСТЕМА ТУРНИРОВ",s8title:"От отдельных партий до международных чемпионатов.",s8desc:"Пользователи смогут участвовать в соревнованиях разных форматов и следить за результатами.",
+  tournamentCards:[["Daily Tournaments","Ежедневные соревнования."],["Weekly Tournaments","Еженедельные турниры."],["Monthly Championships","Ежемесячные чемпионаты."],["Country Championships","Национальные соревнования."],["International","Международные турниры."],["Private Tournaments","Закрытые турниры и приглашённые участники."]],
+  s9label:"09 / ФИНАНСОВАЯ ЭКОСИСТЕМА",s9title:"Прозрачные финансы. Понятные операции.",s9desc:"Пользователь должен иметь возможность отдельно отслеживать все операции, баланс и награды.",
+  walletCards:[["Available Balance","Средства, доступные для использования."],["Locked Balance","Средства, временно заблокированные для активных игр."],["Transaction History","Полная история финансовых операций."],["Deposit","Пополнение через поддерживаемые способы оплаты."],["Withdraw","Вывод средств после необходимых проверок."],["Rewards & Refunds","Игровые и турнирные награды, возвраты."]],
+  s10label:"10 / ТЕХНИЧЕСКАЯ АРХИТЕКТУРА",s10title:"Масштабируемая техническая инфраструктура.",s10desc:"Модульная архитектура для игр в реальном времени, сообщений, аккаунтов и финансовых операций.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"Основные системные службы",moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / БЕЗОПАСНОСТЬ И СООТВЕТСТВИЕ",s11title:"Безопасность и международные требования.",s11desc:"Международная деятельность требует отдельной оценки юридических и финансовых требований каждой страны.",
+  legalCards:[["Безопасность платформы",["HTTPS и шифрование передачи данных","Безопасное хеширование паролей","Дополнительная двухфакторная аутентификация","Rate limiting и безопасность API","Защита от SQL Injection, XSS и CSRF","Ролевой доступ и журналы аудита","Резервное копирование и восстановление"]],["Юридическое соответствие",["Правовой статус платных соревнований по странам","Возрастные ограничения","Требования KYC и AML","Условия платёжных провайдеров","Налоги и права потребителей","Защита данных","Разрешения и лицензии"]]],
+  legalNote:"Функция Paid Rooms не должна автоматически включаться во всех странах. В регионах, где она юридически не разрешена, платные функции могут быть отключены. Эта презентация не является юридическим заключением или разрешением на деятельность.",
+  s12label:"12 / ДОРОЖНАЯ КАРТА",s12title:"Поэтапное развитие. Постоянное расширение.",s12desc:"Системы платформы будут запускаться последовательно, а не одновременно.",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","Создание базового шахматного опыта.",["Регистрация и профили","Инфраструктура 10 языков","Настоящий шахматный движок","Бесплатные комнаты и подбор соперников","Elo, история игр и чат","Система друзей"]],["PHASE 02 — FAIR PLAY & VERIFICATION","Создание инфраструктуры идентификации и безопасности.",["KYC и FIDE ID","Anti-Cheat","Fair Play Dashboard","Жалобы и апелляции"]],["PHASE 03 — P2P PAID ROOMS","Запуск добровольных платных соревнований.",["Кошелёк и платежи","Создание и присоединение к Paid Room","Locked Balance","Комиссия 1% и выплаты","Возвраты и споры"]],["PHASE 04 — GLOBAL TOURNAMENTS","Расширение международной соревновательной экосистемы.",["Международные турниры","Сезонные соревнования","Рейтинги стран","Панель организатора"]],["PHASE 05 — GLOBAL EXPANSION","Новые регионы и партнёрства.",["Международный маркетинг","Мобильные приложения","Сообщества","Новые функции и партнёрства"]]],
+  s13label:"13 / БИЗНЕС-МОДЕЛЬ",s13title:"Устойчивая модель дохода.",s13desc:"Основной источник дохода — комиссия платформы 1% от общего призового фонда платных игр.",
+  businessCards:[["1% Paid Room Commission","Комиссия платформы от общего призового фонда платных игр."],["Tournament Services","Организационные услуги для платных турниров."],["Premium","Добровольная премиум-подписка и оформление профиля."],["Sponsorship","Партнёрства и спонсорские турниры."],["Brand Partnerships","Сотрудничество с брендами."],["Advertising","Релевантная реклама и интеграции брендов."]],
+  businessNote:"Дополнительные модели дохода не должны ограничивать бесплатные шахматы. Премиум-подписка не должна давать искусственное конкурентное преимущество.",
+  s14label:"14 / ПОКАЗАТЕЛИ ЭФФЕКТИВНОСТИ",s14title:"Развитие должно быть измеримым.",s14desc:"Платформа оценивается по активности пользователей, качеству игр, финансовой надёжности и безопасности.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / ПАНЕЛЬ УПРАВЛЕНИЯ",s15title:"Централизованное управление платформой.",s15desc:"Специальная панель для управления пользователями, финансами, играми и безопасностью.",
+  adminCards:[["User Management","Управление аккаунтами и профилями."],["KYC & FIDE","Проверка личности и шахматной идентификации."],["Game Monitoring","Контроль игр, комнат и результатов."],["Wallet & Transactions","Контроль баланса, операций и платежей."],["Anti-Cheat Cases","Расследование подозрительных игр и случаев безопасности."],["Reports & Appeals","Жалобы, апелляции и модерация."]],
+  s16label:"16 / ИТОГОВОЕ ПОЗИЦИОНИРОВАНИЕ",s16title:"Единая глобальная шахматная экосистема.",s16desc:"ChessArena.io стремится превратить шахматы в глобальную, социальную, соревновательную и доступную цифровую экосистему.",
+  principleCards:[["REAL CHESS","Шахматы с реальными людьми со всего мира."],["FREE COMPETITION","Создание и участие в играх без оплаты."],["PAID COMPETITION","Добровольные P2P-соревнования с призовым фондом."],["GLOBAL COMMUNITY","Международное сообщество на 10 языках."],["FAIR PLAY","KYC, FIDE ID и многоуровневая защита от читов."],["USER FREEDOM","Пользователь сам выбирает формат игры и функции."]],
+  finalTitle:'REAL PLAYERS.<br>REAL CHESS.<br><span>GLOBAL COMPETITION.</span>',finalDesc:"One platform. Every country. Every chess player. Every level.",backTop:"НАВЕРХ ↑",footerDescription:"GLOBAL CHESS & P2P COMPETITION PLATFORM",rights:"Все права защищены."
+},
+
+ar: {
+  name:"العربية",
+  navVision:"الرؤية",navPlatform:"المنصة",navCompetition:"المنافسة",navSecurity:"الأمان",navTechnology:"التقنية",navRoadmap:"خارطة الطريق",navButton:"اكتشف المشروع",
+  eyebrow:"منصة شطرنج ومنافسة عالمية بنظام P2P",
+  heroTitle:'العالم.<br>ساحة <span>واحدة.</span>',
+  heroDesc:"ChessArena.io منظومة شطرنج رقمية عالمية تجمع اللاعبين من مختلف البلدان عبر مباريات مباشرة وبطولات دولية وتواصل اجتماعي ومنافسات اختيارية بجوائز.",
+  heroButton1:"اكتشف المشروع ↗",heroButton2:"تعرّف على المنصة",boardCaption:"لاعبون حقيقيون · شطرنج حقيقي",
+  stat1:"لغات الواجهة",stat2:"عمولة المنصة",stat3:"أنماط اللعب",stat4:"السوق المستهدف",
+  s1label:"01 / نظرة عامة على المشروع",s1title:"تحويل الشطرنج إلى منظومة منافسة عالمية جديدة.",
+  s1desc:"ChessArena.io أكثر من مجرد منصة للعب الشطرنج. هدفها جمع اللاعبين الحقيقيين والمجتمع الدولي والمنافسة العادلة وآلية الجوائز الاختيارية ضمن منظومة واحدة.",
+  visionCards:[["♟","المهمة","جمع لاعبي الشطرنج من مختلف أنحاء العالم وإنشاء بيئة موثوقة للعب وإظهار المهارات."],["◎","الرؤية","بناء منصة شطرنج دولية سهلة الوصول واجتماعية وموثوقة وتركز على المنافسة."],["◇","المبادئ","لاعبون حقيقيون، شطرنج حقيقي، مشاركة اختيارية، شفافية مالية وحرية المستخدم والمنافسة العادلة."]],
+  s2label:"02 / منظومة المنصة",s2title:"منصة واحدة. تجربة شطرنج متكاملة.",s2desc:"تعمل جميع الميزات من خلال حساب موحد ووحدات نظام مترابطة.",
+  platformCards:[["♟","محرك الشطرنج الحقيقي","مباريات مباشرة بين لاعبين حقيقيين وساعة اللعب وسجل النقلات وPGN وإعادة المباراة."],["🌐","المجتمع العالمي","ملفات شخصية دولية وبلدان وأصدقاء وحالة الاتصال."],["⚔","منافسة P2P","رسوم مشاركة اختيارية وصندوق جوائز مشترك للمنافسة المباشرة."],["🏆","البطولات","بطولات يومية وأسبوعية وشهرية ووطنية ودولية."],["💬","المحادثة المباشرة","رسائل أثناء اللعب ورسائل سريعة ورموز تعبيرية ونظام أصدقاء."],["🛡","اللعب النزيه","KYC وFIDE ID ونظام متعدد الطبقات لمكافحة الغش ومراجعة بشرية."],["💳","المحفظة","إيداع وسحب ورصيد محجوز ومكافآت وسجل المعاملات."],["📊","نظام التصنيف","إحصاءات Bullet وBlitz وRapid وتصنيفات البطولات."],["⚙","لوحة الإدارة","إدارة المستخدمين والألعاب والمال والأمان والنظام."]],
+  s3label:"03 / التوطين العالمي",s3title:"تجربة واحدة لجمهور عالمي.",s3desc:"عشر لغات للواجهة عند الإطلاق. يمكن للمستخدم تغيير اللغة في أي وقت بصرف النظر عن بلده.",
+  languageNames:[["🇦🇿","الأذربيجانية","AZ"],["🇬🇧","الإنجليزية","EN"],["🇹🇷","التركية","TR"],["🇷🇺","الروسية","RU"],["🇸🇦","العربية","AR"],["🇪🇸","الإسبانية","ES"],["🇫🇷","الفرنسية","FR"],["🇩🇪","الألمانية","DE"],["🇵🇹","البرتغالية","PT"],["🇨🇳","الصينية المبسطة","ZH-CN"]],
+  s4label:"04 / نموذج المنافسة",s4title:"طريقتان للعب. حرية الاختيار.",s4desc:"المنافسة المدفوعة اختيارية. يمكن للمستخدمين الاستمتاع بميزات الشطرنج الأساسية مجاناً.",
+  freeTitle:"الشطرنج المجاني",freeDesc:"شطرنج مجاني ومتاح للجميع.",freeFeatures:["لا توجد رسوم مشاركة","لا يلزم إيداع","اللعب مع أشخاص حقيقيين","سجل المباريات","تصنيف Elo","محادثة داخل اللعبة","غرف خاصة مع الأصدقاء"],
+  paidTitle:"الشطرنج المدفوع",paidDesc:"منافسة P2P اختيارية مع جوائز.",paidFeatures:["يختار اللاعب مبلغ المشاركة","يدفع الخصم المبلغ نفسه","يتكون صندوق جوائز مشترك","عمولة المنصة 1%","يحصل الفائز على 99% من الصندوق","يتم حجز الأموال قبل المباراة","الدفع بعد تأكيد النتيجة"],
+  calcLabel:"حاسبة P2P تفاعلية",calcTitle:"احسب توزيع الجوائز",calcInput:"مبلغ المشاركة لكل لاعب ($)",calcPool:"إجمالي صندوق الجوائز",calcFee:"عمولة المنصة · 1%",calcWinner:"جائزة الفائز · 99%",
+  tableHead:["اللاعب A","اللاعب B","الصندوق الإجمالي","العمولة","الفائز"],calcNote:"ملاحظة: يجب نشر قواعد منفصلة لاسترداد الأموال في حالات التعادل والمشكلات التقنية وانقطاع الاتصال والإلغاء والنتائج المتنازع عليها.",
+  s5label:"05 / تجربة الشطرنج الحقيقية",s5title:"ليست محاكاة. شطرنج حقيقي بين لاعبين حقيقيين.",s5desc:"يعتمد نظام اللعب على قواعد الشطرنج القياسية وتُعتمد النتائج من الخادم.",
+  timeCards:[["Bullet","أنظمة وقت 1+0 و1+1."],["Blitz","أنظمة وقت 3+0 و3+2 و5+0."],["Rapid","أنظمة وقت 10+0 و10+5 و15+10."]],
+  gameCards:[["ميزات اللعبة",["لوحة شطرنج مباشرة","التحقق من قانونية النقلات","ساعة لعب مباشرة","التعادل والاستسلام","إعادة المباراة","تصدير PGN","إعادة عرض المباراة"]],["سجل المباريات",["معرّف المباراة","ملفات اللاعبين","جميع النقلات","نتيجة المباراة","تصنيف Elo قبل وبعد","نمط اللعب","حالة مراجعة اللعب النزيه"]]],
+  s6label:"06 / الثقة والأمان",s6title:"الثقة. الشفافية. المنافسة العادلة.",s6desc:"الكاميرا والميكروفون غير إلزاميين في المباريات العادية. يعتمد الأمان على التحقق من الهوية وتحليل اللعب والسلوك عبر طبقات متعددة.",
+  securityCards:[["التحقق KYC","التحقق من وثيقة الهوية ومطابقة البيانات والتعريف عبر مزود مناسب."],["التحقق من FIDE ID","مطابقة ملف FIDE. لا يثبت رقم FIDE وحده هوية صاحب الحساب."],["تحليل محرك الشطرنج","تحليل جودة النقلات وإحصاءات المباريات واتساق السلوك."],["تحليل السلوك","توقيت النقلات والتغيرات غير المعتادة وأنماط الخصوم المشبوهة."],["أمان الأجهزة والجلسات","أمان الجلسات ومخاطر الاستخدام المتزامن للحساب واكتشاف إساءة استخدام API."],["المراجعة البشرية والاستئناف","مراجعة المباريات المشبوهة وتسجيل القرارات وإتاحة الاستئناف."]],
+  fairTitle:"آلية قرارات اللعب النزيه",riskTags:["مخاطر منخفضة","مخاطر متوسطة","مخاطر عالية","مخاطر حرجة"],fairDesc:"لا ينبغي أن تكون النقلات عالية الجودة المشابهة للمحرك وحدها سبباً للحظر التلقائي. يجب إحالة المباريات عالية المخاطر إلى مراجعة إضافية.",
+  s7label:"07 / التجربة الاجتماعية",s7title:"أكثر من الشطرنج. مجتمع دولي.",
+  socialCards:[["المحادثة المباشرة","رسائل ورموز تعبيرية وتحيات ومحادثات بعد المباراة."],["الرسائل السريعة","Hello وGood luck وGood game وWell played وRematch ورسائل جاهزة."],["نظام الأصدقاء","طلبات الصداقة وحالة الاتصال ودعوات اللعب والغرف الخاصة."],["إعدادات المحادثة","تعطيل المحادثة وكتمها وإدارة إعدادات التواصل."],["الإشراف","تصفية الرسائل المزعجة والحظر والإبلاغ والإشراف."],["التصنيفات العالمية","قوائم ترتيب وطنية وأسبوعية وشهرية وعالمية."]],
+  s8label:"08 / منظومة البطولات",s8title:"من المباريات الفردية إلى البطولات الدولية.",s8desc:"يمكن للمستخدمين المشاركة في مسابقات بصيغ مختلفة ومتابعة النتائج.",
+  tournamentCards:[["بطولات يومية","مسابقات يومية."],["بطولات أسبوعية","بطولات أسبوعية."],["بطولات شهرية","بطولات شهرية."],["بطولات وطنية","مسابقات على مستوى الدول."],["دولية","بطولات دولية."],["بطولات خاصة","بطولات خاصة ومشاركون مدعوون."]],
+  s9label:"09 / المنظومة المالية",s9title:"تمويل شفاف. معاملات واضحة.",s9desc:"يجب أن يتمكن المستخدم من متابعة كل معاملة ورصيد ومكافأة بشكل منفصل.",
+  walletCards:[["الرصيد المتاح","الأموال المتاحة للاستخدام."],["الرصيد المحجوز","أموال محجوزة مؤقتاً للمباريات النشطة."],["سجل المعاملات","سجل كامل لجميع المعاملات المالية."],["الإيداع","إضافة الرصيد عبر طرق الدفع المدعومة."],["السحب","سحب الأموال بعد فحوصات الامتثال اللازمة."],["المكافآت والاسترداد","مكافآت المباريات والبطولات والمبالغ المستردة."]],
+  s10label:"10 / البنية التقنية",s10title:"بنية تقنية قابلة للتوسع.",s10desc:"بنية معيارية للألعاب المباشرة والمراسلة وحسابات المستخدمين والمعاملات المالية.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"خدمات النظام الأساسية",moduleCards:[["الهوية","Authentication, Profiles, Localization, Verification."],["نواة الشطرنج","Chess Game, Room Management, Matchmaking, Rating."],["المجتمع","Chat, Friends, Moderation, Notifications."],["المالية","Wallet, Payment, Payout, Ledger."],["المنافسة","Tournaments, Rewards, Leaderboards."],["الحوكمة","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / الأمان والامتثال",s11title:"الأمان والامتثال الدولي.",s11desc:"يتطلب العمل الدولي تقييم المتطلبات القانونية والمالية لكل دولة بشكل مستقل.",
+  legalCards:[["أمان المنصة",["HTTPS ونقل البيانات المشفر","تجزئة كلمات المرور بشكل آمن","المصادقة الثنائية الاختيارية","تحديد معدل الطلبات وأمان API","الحماية من SQL Injection وXSS وCSRF","صلاحيات مبنية على الأدوار وسجلات التدقيق","النسخ الاحتياطي والتعافي من الكوارث"]],["الامتثال القانوني",["الوضع القانوني للمنافسات المدفوعة حسب الدولة","قيود العمر","متطلبات KYC وAML","شروط مزودي الدفع","الضرائب وحقوق المستهلك","حماية البيانات","متطلبات التصاريح والتراخيص"]]],
+  legalNote:"لا ينبغي تفعيل Paid Rooms تلقائياً في جميع الدول. يمكن تعطيل الميزات المدفوعة في المناطق التي لا تسمح بها القوانين. هذا العرض ليس استشارة قانونية أو تصريحاً بالتشغيل.",
+  s12label:"12 / خارطة التطوير",s12title:"تطوير مرحلي. توسع مستمر.",s12desc:"سيتم إطلاق أنظمة المنصة تدريجياً بدلاً من إطلاقها جميعاً في وقت واحد.",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","إنشاء تجربة الشطرنج الأساسية.",["التسجيل والملفات الشخصية","بنية لعشر لغات","محرك شطرنج حقيقي","غرف مجانية ومطابقة اللاعبين","Elo وسجل المباريات والمحادثة","نظام الأصدقاء"]],["PHASE 02 — FAIR PLAY & VERIFICATION","إنشاء بنية الهوية والأمان.",["KYC وFIDE ID","Anti-Cheat","Fair Play Dashboard","الشكاوى والاستئناف"]],["PHASE 03 — P2P PAID ROOMS","إطلاق المنافسة المدفوعة الاختيارية.",["المحفظة والبنية المالية","إنشاء الغرف المدفوعة والانضمام إليها","الرصيد المحجوز","عمولة 1% والدفع","الاسترداد وإدارة النزاعات"]],["PHASE 04 — GLOBAL TOURNAMENTS","توسيع منظومة المنافسة الدولية.",["البطولات الدولية","المنافسات الموسمية","تصنيفات الدول","لوحة المنظمين"]],["PHASE 05 — GLOBAL EXPANSION","مناطق جديدة وشراكات.",["التسويق الدولي","تطبيقات الهاتف","المجتمعات الاجتماعية","ميزات وشراكات جديدة"]]],
+  s13label:"13 / نموذج الأعمال",s13title:"نموذج إيرادات مستدام.",s13desc:"مصدر الإيرادات الأساسي هو عمولة منصة بنسبة 1% من إجمالي صندوق جوائز المباريات المدفوعة.",
+  businessCards:[["عمولة Paid Room بنسبة 1%","عمولة المنصة من إجمالي صندوق جوائز المباريات المدفوعة."],["خدمات البطولات","رسوم الخدمات التنظيمية للبطولات المدفوعة."],["Premium","اشتراك اختياري وتصميمات للملفات الشخصية."],["الرعاية","الشراكات والبطولات برعاية الجهات."],["شراكات العلامات التجارية","التعاون مع العلامات التجارية."],["الإعلانات","إعلانات مناسبة ودمج العلامات التجارية."]],
+  businessNote:"يجب ألا تحد نماذج الإيرادات الإضافية من تجربة الشطرنج المجانية، وألا تمنح العضوية المميزة أفضلية تنافسية مصطنعة.",
+  s14label:"14 / مؤشرات الأداء",s14title:"يجب أن يكون التطور قابلاً للقياس.",s14desc:"سيتم تقييم المنصة من خلال نشاط المستخدمين وجودة اللعب والموثوقية المالية والأمان.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / لوحة الإدارة",s15title:"إدارة مركزية للمنصة.",s15desc:"لوحة مخصصة لإدارة المستخدمين والمال والألعاب وعمليات الأمان.",
+  adminCards:[["إدارة المستخدمين","إدارة الحسابات والملفات الشخصية."],["KYC وFIDE","التحقق من الهوية وهوية لاعب الشطرنج."],["مراقبة الألعاب","متابعة الألعاب والغرف والنتائج."],["المحفظة والمعاملات","مراقبة الأرصدة والمعاملات والمدفوعات."],["حالات مكافحة الغش","التحقيق في المباريات والحالات المشبوهة."],["البلاغات والاستئناف","البلاغات والاستئنافات والإشراف."]],
+  s16label:"16 / التموضع النهائي",s16title:"منظومة شطرنج عالمية واحدة.",s16desc:"تهدف ChessArena.io إلى تحويل الشطرنج إلى منظومة رقمية عالمية واجتماعية وتنافسية ومتاحة للجميع.",
+  principleCards:[["REAL CHESS","الشطرنج مع أشخاص حقيقيين من جميع أنحاء العالم."],["FREE COMPETITION","إنشاء المباريات واللعب دون دفع."],["PAID COMPETITION","منافسة P2P اختيارية برسوم مشاركة وجوائز."],["GLOBAL COMMUNITY","مجتمع دولي بعشر لغات."],["FAIR PLAY","KYC وFIDE ID ونظام متعدد الطبقات لمكافحة الغش."],["USER FREEDOM","يختار المستخدم طريقة اللعب والميزات التي يريد استخدامها."]],
+  finalTitle:'لاعبون حقيقيون.<br>شطرنج حقيقي.<br><span>منافسة عالمية.</span>',finalDesc:"One platform. Every country. Every chess player. Every level.",backTop:"العودة للأعلى ↑",footerDescription:"منصة شطرنج ومنافسة عالمية بنظام P2P",rights:"جميع الحقوق محفوظة."
+},
+
+es: {
+  name:"Español",
+  navVision:"Visión",navPlatform:"Plataforma",navCompetition:"Competición",navSecurity:"Seguridad",navTechnology:"Tecnología",navRoadmap:"Hoja de ruta",navButton:"DESCUBRIR PROYECTO",
+  eyebrow:"PLATAFORMA GLOBAL DE AJEDREZ Y COMPETICIÓN P2P",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io es un ecosistema digital global de ajedrez que conecta a jugadores de distintos países mediante partidas en tiempo real, torneos internacionales, interacción social y competiciones opcionales con premios.",
+  heroButton1:"DESCUBRIR EL PROYECTO ↗",heroButton2:"CONOCER LA PLATAFORMA",boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"Idiomas de interfaz",stat2:"Comisión de plataforma",stat3:"Modelos de juego",stat4:"Mercado objetivo",
+  s1label:"01 / VISIÓN GENERAL",s1title:"Convertimos el ajedrez en un nuevo ecosistema global de competición.",
+  s1desc:"ChessArena.io es mucho más que una plataforma para jugar al ajedrez. Su objetivo es reunir jugadores reales, una comunidad internacional, competición justa y un mecanismo opcional de premios en un único ecosistema.",
+  visionCards:[["♟","Misión","Conectar a jugadores de ajedrez de todo el mundo y crear un entorno fiable para jugar y demostrar sus habilidades."],["◎","Visión","Convertir ChessArena.io en una plataforma internacional de ajedrez accesible, social, fiable y orientada a la competición."],["◇","Principios","Jugadores reales, ajedrez real, participación voluntaria, transparencia financiera, libertad del usuario y juego limpio."]],
+  s2label:"02 / ECOSISTEMA",s2title:"Una plataforma. Toda la experiencia del ajedrez.",s2desc:"Todas las funciones operan mediante una cuenta unificada y módulos de sistema conectados.",
+  platformCards:[["♟","Real Chess Engine","Ajedrez en directo entre jugadores reales, relojes, historial de movimientos, PGN y repetición."],["🌐","Global Community","Perfiles internacionales, países, amigos y estado en línea."],["⚔","P2P Competition","Cuotas opcionales y un fondo de premios compartido para competir."],["🏆","Tournaments","Torneos diarios, semanales, mensuales, nacionales e internacionales."],["💬","Live Chat","Mensajes durante la partida, mensajes rápidos, emojis y amigos."],["🛡","Fair Play","KYC, FIDE ID, sistema antitrampas multicapa y revisión humana."],["💳","Wallet","Depósitos, retiros, saldo bloqueado, premios e historial de transacciones."],["📊","Rating System","Estadísticas de Bullet, Blitz, Rapid y torneos."],["⚙","Admin Dashboard","Administración de usuarios, partidas, finanzas, seguridad y sistema."]],
+  s3label:"03 / LOCALIZACIÓN GLOBAL",s3title:"Una experiencia para todo el mundo.",s3desc:"Diez idiomas de interfaz desde el lanzamiento. El usuario puede cambiar el idioma independientemente de su país.",
+  languageNames:[["🇦🇿","Azerbaiyano","AZ"],["🇬🇧","Inglés","EN"],["🇹🇷","Turco","TR"],["🇷🇺","Ruso","RU"],["🇸🇦","Árabe","AR"],["🇪🇸","Español","ES"],["🇫🇷","Francés","FR"],["🇩🇪","Alemán","DE"],["🇵🇹","Portugués","PT"],["🇨🇳","Chino simplificado","ZH-CN"]],
+  s4label:"04 / MODELO DE COMPETICIÓN",s4title:"Dos formas de jugar. Libertad para elegir.",s4desc:"La competición de pago es opcional. Las funciones principales de ajedrez están disponibles gratuitamente.",
+  freeTitle:"FREE CHESS",freeDesc:"Ajedrez gratuito y abierto para todos.",freeFeatures:["Sin cuota de entrada","No se requiere depósito","Partidas con personas reales","Historial de partidas","Clasificación Elo","Chat durante la partida","Salas privadas con amigos"],
+  paidTitle:"PAID CHESS",paidDesc:"Competición P2P opcional con premios.",paidFeatures:["El jugador elige su importe de entrada","El rival aporta la misma cantidad","Se crea un fondo de premios compartido","Comisión de plataforma del 1%","El ganador recibe el 99% del fondo","Los fondos se bloquean antes de jugar","Pago tras confirmar el resultado"],
+  calcLabel:"CALCULADORA P2P INTERACTIVA",calcTitle:"Calcula la distribución de premios",calcInput:"Importe de entrada por jugador ($)",calcPool:"FONDO TOTAL DE PREMIOS",calcFee:"COMISIÓN DE PLATAFORMA · 1%",calcWinner:"PREMIO DEL GANADOR · 99%",
+  tableHead:["Jugador A","Jugador B","Fondo total","Comisión","Ganador"],calcNote:"Nota: Deben publicarse reglas de reembolso específicas para empates, problemas técnicos, desconexiones, cancelaciones y resultados disputados.",
+  s5label:"05 / EXPERIENCIA DE AJEDREZ REAL",s5title:"No es una simulación. Ajedrez real entre jugadores reales.",s5desc:"El sistema sigue las reglas estándar del ajedrez. Los resultados se confirman en el servidor.",
+  timeCards:[["Bullet","Controles de tiempo 1+0 y 1+1."],["Blitz","Controles de tiempo 3+0, 3+2 y 5+0."],["Rapid","Controles de tiempo 10+0, 10+5 y 15+10."]],
+  gameCards:[["Funciones de juego",["Tablero en tiempo real","Validación automática de movimientos legales","Reloj en directo","Tablas y abandono","Revancha","Exportación PGN","Repetición de partida"]],["Historial de partidas",["Identificador de partida","Perfiles de jugadores","Lista completa de movimientos","Resultado","Elo antes y después","Modo de juego","Estado de revisión Fair Play"]]],
+  s6label:"06 / CONFIANZA Y SEGURIDAD",s6title:"Confianza. Transparencia. Competición justa.",s6desc:"La cámara y el micrófono no son obligatorios para las partidas estándar. La seguridad combina verificación de identidad, análisis de partidas y controles de comportamiento.",
+  securityCards:[["KYC Verification","Verificación de documentos de identidad y validación mediante un proveedor adecuado."],["FIDE ID Verification","Comprobación del perfil FIDE. Un FIDE ID por sí solo no demuestra la identidad del titular de la cuenta."],["Chess Engine Analysis","Análisis de la calidad de movimientos, estadísticas y consistencia entre partidas."],["Behavioural Analysis","Tiempos de movimiento, cambios de comportamiento inusuales y emparejamientos sospechosos."],["Device & Session Security","Seguridad de sesiones, riesgos de uso simultáneo y detección de abuso de API."],["Human Review & Appeals","Revisión humana de partidas sospechosas, registros de auditoría y proceso de apelación."]],
+  fairTitle:"Proceso de decisión Fair Play",riskTags:["RIESGO BAJO","RIESGO MEDIO","RIESGO ALTO","RIESGO CRÍTICO"],fairDesc:"Los movimientos de alta calidad similares a los de un motor no deben provocar por sí solos un bloqueo automático. Las partidas de alto riesgo deben revisarse adicionalmente.",
+  s7label:"07 / EXPERIENCIA SOCIAL",s7title:"Más que ajedrez. Una comunidad internacional.",
+  socialCards:[["Live Game Chat","Mensajes, emojis, saludos y conversaciones después de la partida."],["Quick Messages","Hello, Good luck, Good game, Well played, Rematch y mensajes predefinidos."],["Friends System","Solicitudes de amistad, estado en línea, invitaciones y salas privadas."],["Chat Controls","Desactivar el chat, silenciar conversaciones y configurar la comunicación."],["Moderation","Filtros de spam, bloqueos, denuncias y moderación."],["Global Rankings","Clasificaciones nacionales, semanales, mensuales y globales."]],
+  s8label:"08 / ECOSISTEMA DE TORNEOS",s8title:"De partidas individuales a campeonatos internacionales.",s8desc:"Los usuarios podrán participar en competiciones de distintos formatos y seguir sus resultados.",
+  tournamentCards:[["Daily Tournaments","Competiciones diarias."],["Weekly Tournaments","Torneos semanales."],["Monthly Championships","Campeonatos mensuales."],["Country Championships","Competiciones nacionales."],["International","Torneos internacionales."],["Private Tournaments","Torneos privados y participantes invitados."]],
+  s9label:"09 / ECOSISTEMA FINANCIERO",s9title:"Finanzas transparentes. Operaciones claras.",s9desc:"Los usuarios deben poder consultar por separado sus operaciones, saldo y premios.",
+  walletCards:[["Available Balance","Fondos disponibles para el usuario."],["Locked Balance","Fondos bloqueados temporalmente para partidas activas."],["Transaction History","Historial completo de transacciones financieras."],["Deposit","Añadir saldo mediante métodos de pago compatibles."],["Withdraw","Retirar fondos tras las comprobaciones pertinentes."],["Rewards & Refunds","Premios de partidas y torneos, y reembolsos."]],
+  s10label:"10 / ARQUITECTURA TÉCNICA",s10title:"Infraestructura técnica escalable.",s10desc:"Arquitectura modular para partidas en tiempo real, mensajería, cuentas y operaciones financieras.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"Servicios principales",moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / SEGURIDAD Y CUMPLIMIENTO",s11title:"Seguridad y cumplimiento internacional.",s11desc:"La actividad internacional requiere evaluar por separado los requisitos legales y financieros de cada país.",
+  legalCards:[["Seguridad de la plataforma",["HTTPS y transmisión cifrada de datos","Hash seguro de contraseñas","Autenticación de dos factores opcional","Rate limiting y seguridad de API","Protección contra SQL Injection, XSS y CSRF","Acceso basado en roles y registros de auditoría","Copias de seguridad y recuperación ante desastres"]],["Cumplimiento legal",["Situación legal de competiciones de pago por país","Restricciones de edad","Requisitos KYC y AML","Condiciones de proveedores de pago","Impuestos y derechos del consumidor","Protección de datos","Permisos y licencias"]]],
+  legalNote:"Paid Rooms no debe activarse automáticamente en todos los países. Las funciones de pago pueden deshabilitarse en jurisdicciones donde no estén permitidas. Esta presentación no constituye asesoramiento legal ni autorización de actividad.",
+  s12label:"12 / HOJA DE RUTA",s12title:"Desarrollo por fases. Expansión continua.",s12desc:"Los sistemas de la plataforma se introducirán progresivamente, no todos a la vez.",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","Creación de la experiencia esencial de ajedrez.",["Registro y perfiles","Infraestructura de 10 idiomas","Motor de ajedrez real","Salas gratuitas y emparejamiento","Elo, historial y chat","Sistema de amigos"]],["PHASE 02 — FAIR PLAY & VERIFICATION","Infraestructura de identidad y seguridad.",["KYC y FIDE ID","Anti-Cheat","Fair Play Dashboard","Denuncias y apelaciones"]],["PHASE 03 — P2P PAID ROOMS","Introducción de competición de pago opcional.",["Billetera y pagos","Creación y acceso a Paid Rooms","Locked Balance","Comisión del 1% y pagos","Reembolsos y disputas"]],["PHASE 04 — GLOBAL TOURNAMENTS","Ampliación del ecosistema internacional.",["Torneos internacionales","Competiciones de temporada","Clasificaciones nacionales","Panel de organizadores"]],["PHASE 05 — GLOBAL EXPANSION","Nuevas regiones y alianzas.",["Marketing internacional","Aplicaciones móviles","Comunidades sociales","Nuevas funciones y alianzas"]]],
+  s13label:"13 / MODELO DE NEGOCIO",s13title:"Un modelo de ingresos sostenible.",s13desc:"El principal mecanismo de ingresos es una comisión de plataforma del 1% sobre el fondo total de premios de las partidas de pago.",
+  businessCards:[["1% Paid Room Commission","Comisión sobre el fondo total de premios de partidas de pago."],["Tournament Services","Tarifas por servicios organizativos de torneos de pago."],["Premium","Suscripción premium opcional y diseños de perfil."],["Sponsorship","Alianzas y torneos patrocinados."],["Brand Partnerships","Colaboraciones con marcas."],["Advertising","Publicidad relevante e integraciones de marca."]],
+  businessNote:"Los ingresos adicionales no deben limitar la experiencia gratuita. Premium no debe ofrecer una ventaja competitiva artificial.",
+  s14label:"14 / INDICADORES DE RENDIMIENTO",s14title:"El progreso debe poder medirse.",s14desc:"La plataforma se evaluará mediante actividad de usuarios, calidad de juego, fiabilidad financiera y seguridad.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / PANEL DE ADMINISTRACIÓN",s15title:"Gestión centralizada de la plataforma.",s15desc:"Un panel específico para administrar usuarios, finanzas, partidas y operaciones de seguridad.",
+  adminCards:[["User Management","Gestión de cuentas y perfiles."],["KYC & FIDE","Verificación de identidad y del jugador de ajedrez."],["Game Monitoring","Supervisión de partidas, salas y resultados."],["Wallet & Transactions","Control de saldo, operaciones y pagos."],["Anti-Cheat Cases","Investigación de partidas sospechosas y casos de seguridad."],["Reports & Appeals","Denuncias, apelaciones y moderación."]],
+  s16label:"16 / POSICIONAMIENTO FINAL",s16title:"Un ecosistema global de ajedrez.",s16desc:"ChessArena.io busca convertir el ajedrez en un ecosistema digital global, social, competitivo y accesible.",
+  principleCards:[["REAL CHESS","Ajedrez con personas reales de todo el mundo."],["FREE COMPETITION","Crear y jugar partidas sin pagar."],["PAID COMPETITION","Competición P2P opcional con premios."],["GLOBAL COMMUNITY","Comunidad internacional en 10 idiomas."],["FAIR PLAY","KYC, FIDE ID y sistema antitrampas multicapa."],["USER FREEDOM","Los usuarios deciden cómo jugar y qué funciones utilizar."]],
+  finalTitle:'REAL PLAYERS.<br>REAL CHESS.<br><span>GLOBAL COMPETITION.</span>',finalDesc:"One platform. Every country. Every chess player. Every level.",backTop:"VOLVER ARRIBA ↑",footerDescription:"PLATAFORMA GLOBAL DE AJEDREZ Y COMPETICIÓN P2P",rights:"Todos los derechos reservados."
+},
+
+fr: {
+  name:"Français",
+  navVision:"Vision",navPlatform:"Plateforme",navCompetition:"Compétition",navSecurity:"Sécurité",navTechnology:"Technologie",navRoadmap:"Feuille de route",navButton:"DÉCOUVRIR LE PROJET",
+  eyebrow:"PLATEFORME MONDIALE D'ÉCHECS ET DE COMPÉTITION P2P",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io est un écosystème numérique mondial d'échecs qui relie des joueurs de différents pays grâce à des parties en temps réel, des tournois internationaux, des interactions sociales et des compétitions facultatives avec récompenses.",
+  heroButton1:"DÉCOUVRIR LE PROJET ↗",heroButton2:"DÉCOUVRIR LA PLATEFORME",boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"Langues de l'interface",stat2:"Commission de la plateforme",stat3:"Modes de jeu",stat4:"Marché cible",
+  s1label:"01 / PRÉSENTATION DU PROJET",s1title:"Transformer les échecs en un nouvel écosystème mondial de compétition.",
+  s1desc:"ChessArena.io est bien plus qu'une plateforme de jeu d'échecs. Son objectif est de réunir de vrais joueurs, une communauté internationale, une compétition équitable et un mécanisme de récompense facultatif dans un seul écosystème.",
+  visionCards:[["♟","Mission","Rassembler les joueurs d'échecs du monde entier et créer un environnement fiable pour jouer et démontrer leurs compétences."],["◎","Vision","Faire de ChessArena.io une plateforme internationale d'échecs accessible, sociale, fiable et axée sur la compétition."],["◇","Principes fondamentaux","Vrais joueurs, vrais échecs, participation volontaire, transparence financière, liberté des utilisateurs et fair-play."]],
+  s2label:"02 / ÉCOSYSTÈME DE LA PLATEFORME",s2title:"Une plateforme. Toute l'expérience des échecs.",s2desc:"Toutes les fonctionnalités fonctionnent grâce à un compte utilisateur unifié et des modules connectés.",
+  platformCards:[["♟","Real Chess Engine","Échecs en direct entre vrais joueurs, pendules, historique des coups, PGN et relecture."],["🌐","Global Community","Profils internationaux, pays, amis et statut en ligne."],["⚔","P2P Competition","Frais d'entrée facultatifs et cagnotte commune pour les duels."],["🏆","Tournaments","Tournois quotidiens, hebdomadaires, mensuels, nationaux et internationaux."],["💬","Live Chat","Messages en jeu, messages rapides, emojis et système d'amis."],["🛡","Fair Play","KYC, FIDE ID, système anti-triche multicouche et examen humain."],["💳","Wallet","Dépôts, retraits, solde bloqué, récompenses et historique des transactions."],["📊","Rating System","Statistiques Bullet, Blitz, Rapid et classements de tournois."],["⚙","Admin Dashboard","Gestion des utilisateurs, parties, finances, sécurité et système."]],
+  s3label:"03 / LOCALISATION MONDIALE",s3title:"Une expérience pour le monde entier.",s3desc:"Dix langues d'interface au lancement. L'utilisateur peut changer de langue indépendamment de son pays.",
+  languageNames:[["🇦🇿","Azéri","AZ"],["🇬🇧","Anglais","EN"],["🇹🇷","Turc","TR"],["🇷🇺","Russe","RU"],["🇸🇦","Arabe","AR"],["🇪🇸","Espagnol","ES"],["🇫🇷","Français","FR"],["🇩🇪","Allemand","DE"],["🇵🇹","Portugais","PT"],["🇨🇳","Chinois simplifié","ZH-CN"]],
+  s4label:"04 / MODÈLE DE COMPÉTITION",s4title:"Deux façons de jouer. La liberté de choisir.",s4desc:"La compétition payante est facultative. Les fonctionnalités principales des échecs sont accessibles gratuitement.",
+  freeTitle:"FREE CHESS",freeDesc:"Des échecs gratuits et ouverts à tous.",freeFeatures:["Aucun droit d'entrée","Aucun dépôt requis","Parties contre de vraies personnes","Historique des parties","Classement Elo","Chat en jeu","Salons privés avec des amis"],
+  paidTitle:"PAID CHESS",paidDesc:"Compétition P2P facultative avec récompenses.",paidFeatures:["Le joueur choisit son montant d'entrée","L'adversaire verse le même montant","Une cagnotte commune est créée","Commission de plateforme de 1%","Le gagnant reçoit 99% de la cagnotte","Les fonds sont bloqués avant la partie","Paiement après confirmation du résultat"],
+  calcLabel:"CALCULATEUR P2P INTERACTIF",calcTitle:"Calculer la répartition des gains",calcInput:"Mise par joueur ($)",calcPool:"CAGNOTTE TOTALE",calcFee:"COMMISSION DE LA PLATEFORME · 1%",calcWinner:"GAIN DU VAINQUEUR · 99%",
+  tableHead:["Joueur A","Joueur B","Cagnotte totale","Commission","Vainqueur"],calcNote:"Remarque : des règles de remboursement distinctes doivent être publiées pour les nulles, problèmes techniques, déconnexions, annulations et résultats contestés.",
+  s5label:"05 / EXPÉRIENCE D'ÉCHECS RÉELS",s5title:"Pas une simulation. De vrais échecs entre de vrais joueurs.",s5desc:"Le système suit les règles standard des échecs. Les résultats sont confirmés par le serveur.",
+  timeCards:[["Bullet","Contrôles de temps 1+0 et 1+1."],["Blitz","Contrôles de temps 3+0, 3+2 et 5+0."],["Rapid","Contrôles de temps 10+0, 10+5 et 15+10."]],
+  gameCards:[["Fonctionnalités de jeu",["Échiquier en temps réel","Validation automatique des coups légaux","Pendule en direct","Nulle et abandon","Revanche","Export PGN","Relecture de partie"]],["Historique des parties",["Identifiant de partie","Profils des joueurs","Liste complète des coups","Résultat de la partie","Elo avant et après","Mode de jeu","Statut de vérification Fair Play"]]],
+  s6label:"06 / CONFIANCE ET SÉCURITÉ",s6title:"Confiance. Transparence. Compétition équitable.",s6desc:"La caméra et le microphone ne sont pas obligatoires pour les parties standard. La sécurité repose sur une vérification d'identité, une analyse des parties et des contrôles comportementaux à plusieurs niveaux.",
+  securityCards:[["KYC Verification","Vérification des pièces d'identité et identification par un prestataire adapté."],["FIDE ID Verification","Correspondance du profil FIDE. Un FIDE ID seul ne prouve pas l'identité du titulaire du compte."],["Chess Engine Analysis","Analyse de la qualité des coups, des statistiques et de la cohérence entre les parties."],["Behavioural Analysis","Temps de réflexion, changements de comportement inhabituels et appariements suspects."],["Device & Session Security","Sécurité des sessions, risques d'utilisation simultanée et détection des abus d'API."],["Human Review & Appeals","Examen humain des parties suspectes, journaux d'audit et procédure d'appel."]],
+  fairTitle:"Processus de décision Fair Play",riskTags:["RISQUE FAIBLE","RISQUE MOYEN","RISQUE ÉLEVÉ","RISQUE CRITIQUE"],fairDesc:"Des coups de haute qualité similaires à ceux d'un moteur ne doivent pas suffire à déclencher un bannissement automatique. Les parties à haut risque doivent faire l'objet d'un examen complémentaire.",
+  s7label:"07 / EXPÉRIENCE SOCIALE",s7title:"Plus que des échecs. Une communauté internationale.",
+  socialCards:[["Live Game Chat","Messages, emojis, salutations et conversations après la partie."],["Quick Messages","Hello, Good luck, Good game, Well played, Rematch et messages prédéfinis."],["Friends System","Demandes d'amis, statut en ligne, invitations et salons privés."],["Chat Controls","Désactiver le chat, mettre en sourdine et gérer les paramètres de communication."],["Moderation","Filtrage du spam, blocage, signalement et modération."],["Global Rankings","Classements nationaux, hebdomadaires, mensuels et mondiaux."]],
+  s8label:"08 / ÉCOSYSTÈME DES TOURNOIS",s8title:"Des parties individuelles aux championnats internationaux.",s8desc:"Les utilisateurs peuvent participer à des compétitions de différents formats et suivre les résultats.",
+  tournamentCards:[["Daily Tournaments","Compétitions quotidiennes."],["Weekly Tournaments","Tournois hebdomadaires."],["Monthly Championships","Championnats mensuels."],["Country Championships","Compétitions nationales."],["International","Tournois internationaux."],["Private Tournaments","Tournois privés et participants invités."]],
+  s9label:"09 / ÉCOSYSTÈME FINANCIER",s9title:"Finance transparente. Opérations claires.",s9desc:"Les utilisateurs doivent pouvoir suivre séparément chaque opération financière, solde et récompense.",
+  walletCards:[["Available Balance","Fonds disponibles pour l'utilisateur."],["Locked Balance","Fonds temporairement bloqués pour les parties actives."],["Transaction History","Historique complet des opérations financières."],["Deposit","Ajouter des fonds avec les moyens de paiement pris en charge."],["Withdraw","Retrait après les vérifications applicables."],["Rewards & Refunds","Récompenses de parties et de tournois, et remboursements."]],
+  s10label:"10 / ARCHITECTURE TECHNIQUE",s10title:"Infrastructure technique évolutive.",s10desc:"Architecture modulaire pour les parties en temps réel, la messagerie, les comptes et les opérations financières.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"Services système principaux",moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / SÉCURITÉ ET CONFORMITÉ",s11title:"Sécurité et conformité internationale.",s11desc:"Les opérations internationales nécessitent une évaluation distincte des exigences juridiques et financières de chaque pays.",
+  legalCards:[["Sécurité de la plateforme",["HTTPS et transmission chiffrée","Hachage sécurisé des mots de passe","Authentification à deux facteurs facultative","Rate limiting et sécurité API","Protection SQL Injection, XSS et CSRF","Accès par rôle et journaux d'audit","Sauvegardes et reprise après sinistre"]],["Conformité juridique",["Statut juridique des compétitions payantes par pays","Restrictions d'âge","Exigences KYC et AML","Conditions des prestataires de paiement","Fiscalité et droits des consommateurs","Protection des données","Autorisations et licences"]]],
+  legalNote:"Paid Rooms ne doit pas être activé automatiquement dans tous les pays. Les fonctionnalités payantes peuvent être désactivées dans les juridictions où elles ne sont pas autorisées. Cette présentation ne constitue ni un avis juridique ni une autorisation d'exercer.",
+  s12label:"12 / FEUILLE DE ROUTE",s12title:"Développement par phases. Expansion continue.",s12desc:"Les systèmes de la plateforme seront introduits progressivement, et non tous en même temps.",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","Créer l'expérience d'échecs essentielle.",["Inscription et profils","Infrastructure en 10 langues","Véritable moteur d'échecs","Salons gratuits et matchmaking","Elo, historique et chat","Système d'amis"]],["PHASE 02 — FAIR PLAY & VERIFICATION","Mettre en place l'identité et la sécurité.",["KYC et FIDE ID","Anti-Cheat","Fair Play Dashboard","Signalements et appels"]],["PHASE 03 — P2P PAID ROOMS","Introduire la compétition payante facultative.",["Portefeuille et paiements","Création et accès aux Paid Rooms","Locked Balance","Commission de 1% et paiement","Remboursements et litiges"]],["PHASE 04 — GLOBAL TOURNAMENTS","Développer l'écosystème international.",["Tournois internationaux","Compétitions saisonnières","Classements nationaux","Tableau de bord organisateur"]],["PHASE 05 — GLOBAL EXPANSION","Nouvelles régions et partenariats.",["Marketing international","Applications mobiles","Communautés sociales","Nouvelles fonctionnalités et partenariats"]]],
+  s13label:"13 / MODÈLE ÉCONOMIQUE",s13title:"Un modèle de revenus durable.",s13desc:"La principale source de revenus est une commission de plateforme de 1% sur la cagnotte totale des parties payantes.",
+  businessCards:[["1% Paid Room Commission","Commission sur la cagnotte totale des parties payantes."],["Tournament Services","Frais de services d'organisation de tournois payants."],["Premium","Abonnement premium facultatif et designs de profil."],["Sponsorship","Partenariats et tournois sponsorisés."],["Brand Partnerships","Collaborations avec des marques."],["Advertising","Publicités pertinentes et intégrations de marque."]],
+  businessNote:"Les revenus supplémentaires ne doivent pas limiter l'expérience gratuite. Premium ne doit pas procurer d'avantage compétitif artificiel.",
+  s14label:"14 / INDICATEURS DE PERFORMANCE",s14title:"Les progrès doivent être mesurables.",s14desc:"La plateforme sera évaluée selon l'activité des utilisateurs, la qualité des parties, la fiabilité financière et la sécurité.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / TABLEAU DE BORD ADMINISTRATEUR",s15title:"Gestion centralisée de la plateforme.",s15desc:"Un tableau de bord dédié à la gestion des utilisateurs, des finances, des parties et des opérations de sécurité.",
+  adminCards:[["User Management","Gestion des comptes et profils."],["KYC & FIDE","Vérification d'identité et des joueurs d'échecs."],["Game Monitoring","Suivi des parties, salons et résultats."],["Wallet & Transactions","Contrôle des soldes, transactions et paiements."],["Anti-Cheat Cases","Enquête sur les parties suspectes et incidents de sécurité."],["Reports & Appeals","Signalements, appels et modération."]],
+  s16label:"16 / POSITIONNEMENT FINAL",s16title:"Un écosystème mondial des échecs.",s16desc:"ChessArena.io vise à transformer les échecs en un écosystème numérique mondial, social, compétitif et accessible.",
+  principleCards:[["REAL CHESS","Des parties contre de vraies personnes du monde entier."],["FREE COMPETITION","Créer et jouer des parties sans payer."],["PAID COMPETITION","Compétition P2P facultative avec frais et récompenses."],["GLOBAL COMMUNITY","Communauté internationale en 10 langues."],["FAIR PLAY","KYC, FIDE ID et système anti-triche multicouche."],["USER FREEDOM","Les utilisateurs choisissent comment jouer et quelles fonctions utiliser."]],
+  finalTitle:'REAL PLAYERS.<br>REAL CHESS.<br><span>GLOBAL COMPETITION.</span>',finalDesc:"One platform. Every country. Every chess player. Every level.",backTop:"RETOUR EN HAUT ↑",footerDescription:"PLATEFORME MONDIALE D'ÉCHECS ET DE COMPÉTITION P2P",rights:"Tous droits réservés."
+},
+
+de: {
+  name:"Deutsch",
+  navVision:"Vision",navPlatform:"Plattform",navCompetition:"Wettbewerb",navSecurity:"Sicherheit",navTechnology:"Technologie",navRoadmap:"Fahrplan",navButton:"PROJEKT ENTDECKEN",
+  eyebrow:"GLOBALE SCHACH- UND P2P-WETTBEWERBSPLATTFORM",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io ist ein globales digitales Schachökosystem, das Spieler aus verschiedenen Ländern durch Echtzeitpartien, internationale Turniere, soziale Interaktion und optionale Wettbewerbe mit Preisen verbindet.",
+  heroButton1:"PROJEKT ENTDECKEN ↗",heroButton2:"PLATTFORM ENTDECKEN",boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"Oberflächensprachen",stat2:"Plattformprovision",stat3:"Spielmodelle",stat4:"Zielmarkt",
+  s1label:"01 / PROJEKTÜBERBLICK",s1title:"Schach in ein neues globales Wettbewerbsökosystem verwandeln.",
+  s1desc:"ChessArena.io ist mehr als eine Plattform zum Schachspielen. Ziel ist es, echte Spieler, eine internationale Community, fairen Wettbewerb und einen optionalen Preismechanismus in einem Ökosystem zu vereinen.",
+  visionCards:[["♟","Mission","Schachspieler weltweit verbinden und eine vertrauenswürdige Umgebung schaffen, in der sie frei spielen und ihre Fähigkeiten zeigen können."],["◎","Vision","ChessArena.io zu einer zugänglichen, sozialen, vertrauenswürdigen und wettbewerbsorientierten internationalen Schachplattform entwickeln."],["◇","Grundprinzipien","Echte Spieler, echtes Schach, freiwillige Teilnahme, transparente Finanzen, Nutzerfreiheit und Fair Play."]],
+  s2label:"02 / PLATTFORMÖKOSYSTEM",s2title:"Eine Plattform. Das gesamte Schacherlebnis.",s2desc:"Alle Funktionen arbeiten über ein einheitliches Benutzerkonto und verbundene Systemmodule.",
+  platformCards:[["♟","Real Chess Engine","Live-Schach zwischen echten Spielern, Uhren, Zugverlauf, PGN und Partiewiederholung."],["🌐","Global Community","Internationale Profile, Länder, Freunde und Online-Status."],["⚔","P2P Competition","Optionale Einsatzgebühren und ein gemeinsamer Preispool für direkte Wettbewerbe."],["🏆","Tournaments","Tägliche, wöchentliche, monatliche, nationale und internationale Turniere."],["💬","Live Chat","Nachrichten während des Spiels, Schnellnachrichten, Emojis und Freundesystem."],["🛡","Fair Play","KYC, FIDE ID, mehrstufiges Anti-Cheat-System und menschliche Prüfung."],["💳","Wallet","Einzahlungen, Auszahlungen, gesperrtes Guthaben, Prämien und Transaktionsverlauf."],["📊","Rating System","Bullet-, Blitz-, Rapid- und Turnierstatistiken."],["⚙","Admin Dashboard","Verwaltung von Benutzern, Spielen, Finanzen, Sicherheit und System."]],
+  s3label:"03 / GLOBALE LOKALISIERUNG",s3title:"Ein Erlebnis für die ganze Welt.",s3desc:"Zehn Oberflächensprachen zum Start. Nutzer können die Sprache unabhängig von ihrem Land ändern.",
+  languageNames:[["🇦🇿","Aserbaidschanisch","AZ"],["🇬🇧","Englisch","EN"],["🇹🇷","Türkisch","TR"],["🇷🇺","Russisch","RU"],["🇸🇦","Arabisch","AR"],["🇪🇸","Spanisch","ES"],["🇫🇷","Französisch","FR"],["🇩🇪","Deutsch","DE"],["🇵🇹","Portugiesisch","PT"],["🇨🇳","Vereinfachtes Chinesisch","ZH-CN"]],
+  s4label:"04 / WETTBEWERBSMODELL",s4title:"Zwei Spielmöglichkeiten. Freie Wahl.",s4desc:"Bezahlter Wettbewerb ist optional. Die grundlegenden Schachfunktionen stehen kostenlos zur Verfügung.",
+  freeTitle:"FREE CHESS",freeDesc:"Kostenloses Schach für alle.",freeFeatures:["Keine Teilnahmegebühr","Keine Einzahlung erforderlich","Spiele gegen echte Menschen","Spielverlauf","Elo-Wertung","In-Game-Chat","Private Räume mit Freunden"],
+  paidTitle:"PAID CHESS",paidDesc:"Optionaler P2P-Wettbewerb mit Preisen.",paidFeatures:["Spieler wählen ihren Einsatz selbst","Der Gegner zahlt denselben Betrag","Ein gemeinsamer Preispool entsteht","1% Plattformprovision","Der Gewinner erhält 99% des Pools","Gelder werden vor dem Spiel gesperrt","Auszahlung nach Ergebnisbestätigung"],
+  calcLabel:"INTERAKTIVER P2P-RECHNER",calcTitle:"Preisverteilung berechnen",calcInput:"Einsatz pro Spieler ($)",calcPool:"GESAMTER PREISPOOL",calcFee:"PLATTFORMPROVISION · 1%",calcWinner:"GEWINN DES SIEGERS · 99%",
+  tableHead:["Spieler A","Spieler B","Gesamtpool","Provision","Gewinner"],calcNote:"Hinweis: Für Remis, technische Probleme, Verbindungsabbrüche, Stornierungen und strittige Ergebnisse müssen gesonderte Rückerstattungsregeln veröffentlicht werden.",
+  s5label:"05 / ECHTES SCHACHERLEBNIS",s5title:"Keine Simulation. Echtes Schach zwischen echten Spielern.",s5desc:"Das Spielsystem basiert auf den Standard-Schachregeln. Spielergebnisse werden serverseitig bestätigt.",
+  timeCards:[["Bullet","Zeitkontrollen 1+0 und 1+1."],["Blitz","Zeitkontrollen 3+0, 3+2 und 5+0."],["Rapid","Zeitkontrollen 10+0, 10+5 und 15+10."]],
+  gameCards:[["Spielfunktionen",["Schachbrett in Echtzeit","Automatische Prüfung legaler Züge","Live-Spieluhr","Remis und Aufgabe","Revanche","PGN-Export","Partiewiederholung"]],["Spielverlauf",["Spielkennung","Spielerprofile","Vollständige Zugliste","Spielergebnis","Elo vorher und nachher","Spielmodus","Fair-Play-Prüfstatus"]]],
+  s6label:"06 / VERTRAUEN & SICHERHEIT",s6title:"Vertrauen. Transparenz. Fairer Wettbewerb.",s6desc:"Kamera und Mikrofon sind für Standardpartien nicht erforderlich. Sicherheit basiert auf mehrstufiger Identitätsprüfung, Spielanalyse und Verhaltenskontrollen.",
+  securityCards:[["KYC Verification","Prüfung von Identitätsdokumenten und Identifizierung über einen geeigneten Anbieter."],["FIDE ID Verification","Abgleich des FIDE-Profils. Eine FIDE-ID allein beweist nicht die Identität des Kontoinhabers."],["Chess Engine Analysis","Analyse der Zugqualität, Spielstatistiken und Verhaltenskonsistenz über mehrere Partien."],["Behavioural Analysis","Zugzeiten, ungewöhnliche Verhaltensänderungen und verdächtige Gegnerkonstellationen."],["Device & Session Security","Sitzungssicherheit, Risiken gleichzeitiger Kontonutzung und Erkennung von API-Missbrauch."],["Human Review & Appeals","Menschliche Prüfung verdächtiger Partien, Audit-Protokolle und Einspruchsverfahren."]],
+  fairTitle:"Fair-Play-Entscheidungsprozess",riskTags:["NIEDRIGES RISIKO","MITTLERES RISIKO","HOHES RISIKO","KRITISCHES RISIKO"],fairDesc:"Hochwertige, engineähnliche Züge allein sollten keine automatische Sperre auslösen. Partien mit hohem Risiko müssen zusätzlich geprüft werden.",
+  s7label:"07 / SOZIALES ERLEBNIS",s7title:"Mehr als Schach. Eine internationale Community.",
+  socialCards:[["Live Game Chat","Nachrichten, Emojis, Begrüßungen und Gespräche nach der Partie."],["Quick Messages","Hello, Good luck, Good game, Well played, Rematch und vorbereitete Nachrichten."],["Friends System","Freundschaftsanfragen, Online-Status, Spieleinladungen und private Räume."],["Chat Controls","Chat deaktivieren, stummschalten und Kommunikationseinstellungen verwalten."],["Moderation","Spamfilter, Blockieren, Melden und Moderation."],["Global Rankings","Nationale, wöchentliche, monatliche und globale Ranglisten."]],
+  s8label:"08 / TURNIERÖKOSYSTEM",s8title:"Von Einzelpartien zu internationalen Meisterschaften.",s8desc:"Nutzer können an Wettbewerben in verschiedenen Formaten teilnehmen und Ergebnisse verfolgen.",
+  tournamentCards:[["Daily Tournaments","Tägliche Wettbewerbe."],["Weekly Tournaments","Wöchentliche Turniere."],["Monthly Championships","Monatliche Meisterschaften."],["Country Championships","Nationale Wettbewerbe."],["International","Internationale Turniere."],["Private Tournaments","Private Turniere und eingeladene Teilnehmer."]],
+  s9label:"09 / FINANZÖKOSYSTEM",s9title:"Transparente Finanzen. Klare Transaktionen.",s9desc:"Nutzer sollen alle Finanztransaktionen, Guthaben und Prämien einzeln verfolgen können.",
+  walletCards:[["Available Balance","Für den Nutzer verfügbare Mittel."],["Locked Balance","Vorübergehend für aktive Spiele gesperrte Mittel."],["Transaction History","Vollständiger Verlauf aller Finanztransaktionen."],["Deposit","Guthaben über unterstützte Zahlungsmethoden aufladen."],["Withdraw","Auszahlungen nach den erforderlichen Prüfungen."],["Rewards & Refunds","Spiel- und Turnierprämien sowie Rückerstattungen."]],
+  s10label:"10 / TECHNISCHE ARCHITEKTUR",s10title:"Skalierbare technische Infrastruktur.",s10desc:"Modulare Architektur für Echtzeitspiele, Nachrichten, Benutzerkonten und Finanztransaktionen.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"Zentrale Systemdienste",moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / SICHERHEIT & COMPLIANCE",s11title:"Sicherheit und internationale Compliance.",s11desc:"Der internationale Betrieb erfordert eine separate Prüfung der rechtlichen und finanziellen Anforderungen jedes Landes.",
+  legalCards:[["Plattformsicherheit",["HTTPS und verschlüsselte Datenübertragung","Sicheres Passwort-Hashing","Optionale Zwei-Faktor-Authentifizierung","Rate Limiting und API-Sicherheit","Schutz vor SQL Injection, XSS und CSRF","Rollenbasierter Zugriff und Audit-Protokolle","Backups und Disaster Recovery"]],["Rechtliche Compliance",["Rechtsstatus bezahlter Geschicklichkeitswettbewerbe je Land","Altersbeschränkungen","KYC- und AML-Anforderungen","Bedingungen der Zahlungsanbieter","Steuern und Verbraucherrechte","Datenschutz","Genehmigungen und Lizenzen"]]],
+  legalNote:"Paid Rooms dürfen nicht automatisch in allen Ländern aktiviert werden. In Regionen, in denen sie rechtlich nicht zulässig sind, können kostenpflichtige Funktionen deaktiviert werden. Diese Präsentation ist keine Rechtsberatung oder Betriebsgenehmigung.",
+  s12label:"12 / ENTWICKLUNGSFAHRPLAN",s12title:"Schrittweise Entwicklung. Kontinuierliche Expansion.",s12desc:"Die Systeme der Plattform werden schrittweise und nicht alle gleichzeitig eingeführt.",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","Aufbau des grundlegenden Schacherlebnisses.",["Registrierung und Benutzerprofile","Infrastruktur für 10 Sprachen","Echte Schach-Engine","Kostenlose Räume und Matchmaking","Elo, Spielverlauf und Chat","Freundesystem"]],["PHASE 02 — FAIR PLAY & VERIFICATION","Aufbau der Identitäts- und Sicherheitsinfrastruktur.",["KYC und FIDE ID","Anti-Cheat","Fair Play Dashboard","Meldungen und Einsprüche"]],["PHASE 03 — P2P PAID ROOMS","Einführung optionaler bezahlter Wettbewerbe.",["Wallet und Zahlungsinfrastruktur","Paid Room erstellen und beitreten","Locked Balance","1% Provision und Auszahlung","Rückerstattung und Streitbeilegung"]],["PHASE 04 — GLOBAL TOURNAMENTS","Erweiterung des internationalen Wettbewerbsökosystems.",["Internationale Turniere","Saisonale Wettbewerbe","Länderranglisten","Organisatoren-Dashboard"]],["PHASE 05 — GLOBAL EXPANSION","Neue Regionen und Partnerschaften.",["Internationales Marketing","Mobile Apps","Soziale Communities","Neue Funktionen und Partnerschaften"]]],
+  s13label:"13 / GESCHÄFTSMODELL",s13title:"Ein nachhaltiges Umsatzmodell.",s13desc:"Die wichtigste Einnahmequelle ist eine Plattformprovision von 1% auf den gesamten Preispool bezahlter Spiele.",
+  businessCards:[["1% Paid Room Commission","Plattformprovision aus dem gesamten Preispool bezahlter Spiele."],["Tournament Services","Organisationsgebühren für bezahlte Turniere."],["Premium","Freiwilliges Premium-Abo und Profildesigns."],["Sponsorship","Partnerschaften und gesponserte Turniere."],["Brand Partnerships","Markenkooperationen."],["Advertising","Relevante Werbung und Markenintegrationen."]],
+  businessNote:"Zusätzliche Einnahmemodelle dürfen das kostenlose Schacherlebnis nicht einschränken. Premium darf keinen künstlichen Wettbewerbsvorteil bieten.",
+  s14label:"14 / LEISTUNGSKENNZAHLEN",s14title:"Fortschritt muss messbar sein.",s14desc:"Die Plattform wird anhand von Nutzeraktivität, Spielqualität, finanzieller Zuverlässigkeit und Sicherheitskennzahlen bewertet.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / ADMIN-BEREICH",s15title:"Zentrale Plattformverwaltung.",s15desc:"Ein eigenes Dashboard zur Verwaltung von Benutzern, Finanzen, Spielen und Sicherheitsabläufen.",
+  adminCards:[["User Management","Verwaltung von Benutzerkonten und Profilen."],["KYC & FIDE","Identitäts- und Schachspielerprüfung."],["Game Monitoring","Überwachung von Spielen, Räumen und Ergebnissen."],["Wallet & Transactions","Kontrolle von Guthaben, Transaktionen und Zahlungen."],["Anti-Cheat Cases","Untersuchung verdächtiger Spiele und Sicherheitsfälle."],["Reports & Appeals","Meldungen, Einsprüche und Moderation."]],
+  s16label:"16 / ABSCHLIESSENDE POSITIONIERUNG",s16title:"Ein globales Schachökosystem.",s16desc:"ChessArena.io möchte Schach in ein globales, soziales, wettbewerbsorientiertes und zugängliches digitales Ökosystem verwandeln.",
+  principleCards:[["REAL CHESS","Schach mit echten Menschen aus aller Welt."],["FREE COMPETITION","Spiele erstellen und spielen, ohne zu bezahlen."],["PAID COMPETITION","Optionaler P2P-Wettbewerb mit Einsatz und Preisen."],["GLOBAL COMMUNITY","Internationale Community in 10 Sprachen."],["FAIR PLAY","KYC, FIDE ID und mehrstufiges Anti-Cheat-System."],["USER FREEDOM","Nutzer entscheiden selbst, wie sie spielen und welche Funktionen sie verwenden."]],
+  finalTitle:'REAL PLAYERS.<br>REAL CHESS.<br><span>GLOBAL COMPETITION.</span>',finalDesc:"One platform. Every country. Every chess player. Every level.",backTop:"NACH OBEN ↑",footerDescription:"GLOBALE SCHACH- UND P2P-WETTBEWERBSPLATTFORM",rights:"Alle Rechte vorbehalten."
+},
+
+pt: {
+  name:"Português",
+  navVision:"Visão",navPlatform:"Plataforma",navCompetition:"Competição",navSecurity:"Segurança",navTechnology:"Tecnologia",navRoadmap:"Roteiro",navButton:"EXPLORAR PROJETO",
+  eyebrow:"PLATAFORMA GLOBAL DE XADREZ E COMPETIÇÃO P2P",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io é um ecossistema digital global de xadrez que conecta jogadores de diferentes países através de partidas em tempo real, torneios internacionais, interação social e competições opcionais com prémios.",
+  heroButton1:"EXPLORAR O PROJETO ↗",heroButton2:"CONHECER A PLATAFORMA",boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"Idiomas da interface",stat2:"Comissão da plataforma",stat3:"Modelos de jogo",stat4:"Mercado-alvo",
+  s1label:"01 / VISÃO GERAL DO PROJETO",s1title:"Transformar o xadrez num novo ecossistema global de competição.",
+  s1desc:"ChessArena.io é mais do que uma plataforma para jogar xadrez. O objetivo é reunir jogadores reais, uma comunidade internacional, competição justa e um mecanismo opcional de prémios num único ecossistema.",
+  visionCards:[["♟","Missão","Conectar jogadores de xadrez de todo o mundo e criar um ambiente fiável para jogar e demonstrar as suas capacidades."],["◎","Visão","Transformar ChessArena.io numa plataforma internacional de xadrez acessível, social, fiável e orientada para a competição."],["◇","Princípios","Jogadores reais, xadrez real, participação voluntária, transparência financeira, liberdade do utilizador e fair play."]],
+  s2label:"02 / ECOSSISTEMA DA PLATAFORMA",s2title:"Uma plataforma. Toda a experiência de xadrez.",s2desc:"Todas as funcionalidades operam através de uma conta unificada e módulos de sistema interligados.",
+  platformCards:[["♟","Real Chess Engine","Xadrez ao vivo entre jogadores reais, relógios, histórico de lances, PGN e repetição."],["🌐","Global Community","Perfis internacionais, países, amigos e estado online."],["⚔","P2P Competition","Taxas de entrada opcionais e um fundo de prémios partilhado."],["🏆","Tournaments","Torneios diários, semanais, mensais, nacionais e internacionais."],["💬","Live Chat","Mensagens durante o jogo, mensagens rápidas, emojis e sistema de amigos."],["🛡","Fair Play","KYC, FIDE ID, sistema anti-batota multicamada e revisão humana."],["💳","Wallet","Depósitos, levantamentos, saldo bloqueado, prémios e histórico de transações."],["📊","Rating System","Estatísticas Bullet, Blitz, Rapid e classificações de torneios."],["⚙","Admin Dashboard","Gestão de utilizadores, jogos, finanças, segurança e sistema."]],
+  s3label:"03 / LOCALIZAÇÃO GLOBAL",s3title:"Uma experiência para todo o mundo.",s3desc:"Dez idiomas de interface no lançamento. O utilizador pode alterar o idioma independentemente do país.",
+  languageNames:[["🇦🇿","Azerbaijano","AZ"],["🇬🇧","Inglês","EN"],["🇹🇷","Turco","TR"],["🇷🇺","Russo","RU"],["🇸🇦","Árabe","AR"],["🇪🇸","Espanhol","ES"],["🇫🇷","Francês","FR"],["🇩🇪","Alemão","DE"],["🇵🇹","Português","PT"],["🇨🇳","Chinês simplificado","ZH-CN"]],
+  s4label:"04 / MODELO DE COMPETIÇÃO",s4title:"Duas formas de jogar. Liberdade de escolha.",s4desc:"A competição paga é opcional. As funcionalidades essenciais de xadrez estão disponíveis gratuitamente.",
+  freeTitle:"FREE CHESS",freeDesc:"Xadrez gratuito e aberto a todos.",freeFeatures:["Sem taxa de entrada","Sem depósito obrigatório","Jogos com pessoas reais","Histórico de jogos","Classificação Elo","Chat durante o jogo","Salas privadas com amigos"],
+  paidTitle:"PAID CHESS",paidDesc:"Competição P2P opcional com prémios.",paidFeatures:["O jogador escolhe o valor de entrada","O adversário contribui com o mesmo valor","É criado um fundo de prémios partilhado","Comissão da plataforma de 1%","O vencedor recebe 99% do fundo","Os fundos são bloqueados antes do jogo","Pagamento após confirmação do resultado"],
+  calcLabel:"CALCULADORA P2P INTERATIVA",calcTitle:"Calcular a distribuição dos prémios",calcInput:"Valor de entrada por jogador ($)",calcPool:"FUNDO TOTAL DE PRÉMIOS",calcFee:"COMISSÃO DA PLATAFORMA · 1%",calcWinner:"PRÉMIO DO VENCEDOR · 99%",
+  tableHead:["Jogador A","Jogador B","Fundo total","Comissão","Vencedor"],calcNote:"Nota: Devem ser publicadas regras de reembolso específicas para empates, problemas técnicos, desconexões, cancelamentos e resultados contestados.",
+  s5label:"05 / EXPERIÊNCIA DE XADREZ REAL",s5title:"Não é uma simulação. Xadrez real entre jogadores reais.",s5desc:"O sistema segue as regras padrão do xadrez. Os resultados são confirmados pelo servidor.",
+  timeCards:[["Bullet","Controlos de tempo 1+0 e 1+1."],["Blitz","Controlos de tempo 3+0, 3+2 e 5+0."],["Rapid","Controlos de tempo 10+0, 10+5 e 15+10."]],
+  gameCards:[["Funcionalidades do jogo",["Tabuleiro em tempo real","Validação automática de lances legais","Relógio de jogo ao vivo","Empate e desistência","Desforra","Exportação PGN","Repetição da partida"]],["Histórico de jogos",["Identificador da partida","Perfis dos jogadores","Lista completa de lances","Resultado da partida","Elo antes e depois","Modo de jogo","Estado da revisão Fair Play"]]],
+  s6label:"06 / CONFIANÇA E SEGURANÇA",s6title:"Confiança. Transparência. Competição justa.",s6desc:"Câmara e microfone não são obrigatórios para jogos padrão. A segurança combina verificação de identidade, análise de jogos e controlos comportamentais em várias camadas.",
+  securityCards:[["KYC Verification","Verificação de documentos de identidade e identificação através de um fornecedor adequado."],["FIDE ID Verification","Correspondência do perfil FIDE. Um FIDE ID, por si só, não comprova a identidade do titular da conta."],["Chess Engine Analysis","Análise da qualidade dos lances, estatísticas e consistência comportamental entre partidas."],["Behavioural Analysis","Tempos de lance, alterações comportamentais invulgares e emparelhamentos suspeitos."],["Device & Session Security","Segurança de sessões, riscos de utilização simultânea e deteção de abuso da API."],["Human Review & Appeals","Revisão humana de jogos suspeitos, registos de auditoria e processo de recurso."]],
+  fairTitle:"Processo de decisão Fair Play",riskTags:["RISCO BAIXO","RISCO MÉDIO","RISCO ELEVADO","RISCO CRÍTICO"],fairDesc:"Lances de elevada qualidade semelhantes aos de um motor não devem, por si só, provocar uma suspensão automática. Jogos de alto risco devem ser encaminhados para análise adicional.",
+  s7label:"07 / EXPERIÊNCIA SOCIAL",s7title:"Mais do que xadrez. Uma comunidade internacional.",
+  socialCards:[["Live Game Chat","Mensagens, emojis, cumprimentos e conversas após a partida."],["Quick Messages","Hello, Good luck, Good game, Well played, Rematch e mensagens predefinidas."],["Friends System","Pedidos de amizade, estado online, convites e salas privadas."],["Chat Controls","Desativar o chat, silenciar conversas e gerir definições de comunicação."],["Moderation","Filtro de spam, bloqueio, denúncias e moderação."],["Global Rankings","Classificações nacionais, semanais, mensais e globais."]],
+  s8label:"08 / ECOSSISTEMA DE TORNEIOS",s8title:"De jogos individuais a campeonatos internacionais.",s8desc:"Os utilizadores poderão participar em competições de diferentes formatos e acompanhar os resultados.",
+  tournamentCards:[["Daily Tournaments","Competições diárias."],["Weekly Tournaments","Torneios semanais."],["Monthly Championships","Campeonatos mensais."],["Country Championships","Competições nacionais."],["International","Torneios internacionais."],["Private Tournaments","Torneios privados e participantes convidados."]],
+  s9label:"09 / ECOSSISTEMA FINANCEIRO",s9title:"Finanças transparentes. Operações claras.",s9desc:"Os utilizadores devem poder acompanhar separadamente todas as operações financeiras, saldos e prémios.",
+  walletCards:[["Available Balance","Fundos disponíveis para utilização."],["Locked Balance","Fundos temporariamente bloqueados para jogos ativos."],["Transaction History","Histórico completo das transações financeiras."],["Deposit","Adicionar saldo através de métodos de pagamento suportados."],["Withdraw","Levantamentos após as verificações aplicáveis."],["Rewards & Refunds","Prémios de jogos e torneios, e reembolsos."]],
+  s10label:"10 / ARQUITETURA TÉCNICA",s10title:"Infraestrutura técnica escalável.",s10desc:"Arquitetura modular para jogos em tempo real, mensagens, contas de utilizador e operações financeiras.",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"Serviços principais do sistema",moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / SEGURANÇA E CONFORMIDADE",s11title:"Segurança e conformidade internacional.",s11desc:"A atividade internacional exige uma avaliação separada dos requisitos legais e financeiros de cada país.",
+  legalCards:[["Segurança da plataforma",["HTTPS e transmissão de dados encriptada","Hash seguro de palavras-passe","Autenticação de dois fatores opcional","Rate limiting e segurança da API","Proteção contra SQL Injection, XSS e CSRF","Acesso baseado em funções e registos de auditoria","Cópias de segurança e recuperação de desastres"]],["Conformidade legal",["Estatuto legal das competições pagas por país","Restrições de idade","Requisitos KYC e AML","Condições dos fornecedores de pagamento","Impostos e direitos do consumidor","Proteção de dados","Autorizações e licenças"]]],
+  legalNote:"Paid Rooms não deve ser ativado automaticamente em todos os países. As funcionalidades pagas podem ser desativadas em jurisdições onde não sejam legalmente permitidas. Esta apresentação não constitui aconselhamento jurídico nem autorização de atividade.",
+  s12label:"12 / ROTEIRO DE DESENVOLVIMENTO",s12title:"Desenvolvimento por fases. Expansão contínua.",s12desc:"Os sistemas da plataforma serão introduzidos progressivamente, e não todos de uma só vez.",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","Criar a experiência essencial de xadrez.",["Registo e perfis de utilizador","Infraestrutura para 10 idiomas","Motor de xadrez real","Salas gratuitas e matchmaking","Elo, histórico e chat","Sistema de amigos"]],["PHASE 02 — FAIR PLAY & VERIFICATION","Criar a infraestrutura de identidade e segurança.",["KYC e FIDE ID","Anti-Cheat","Fair Play Dashboard","Denúncias e recursos"]],["PHASE 03 — P2P PAID ROOMS","Introduzir competição paga opcional.",["Carteira e infraestrutura de pagamentos","Criação e entrada em Paid Rooms","Locked Balance","Comissão de 1% e pagamento","Reembolsos e disputas"]],["PHASE 04 — GLOBAL TOURNAMENTS","Expandir o ecossistema internacional.",["Torneios internacionais","Competições sazonais","Classificações nacionais","Painel do organizador"]],["PHASE 05 — GLOBAL EXPANSION","Novas regiões e parcerias.",["Marketing internacional","Aplicações móveis","Comunidades sociais","Novas funcionalidades e parcerias"]]],
+  s13label:"13 / MODELO DE NEGÓCIO",s13title:"Um modelo de receitas sustentável.",s13desc:"O principal mecanismo de receitas é uma comissão de plataforma de 1% sobre o fundo total de prémios dos jogos pagos.",
+  businessCards:[["1% Paid Room Commission","Comissão da plataforma sobre o fundo total de prémios dos jogos pagos."],["Tournament Services","Taxas de serviços organizacionais para torneios pagos."],["Premium","Subscrição premium opcional e designs de perfil."],["Sponsorship","Parcerias e torneios patrocinados."],["Brand Partnerships","Colaborações com marcas."],["Advertising","Publicidade relevante e integrações de marcas."]],
+  businessNote:"As receitas adicionais não devem limitar a experiência gratuita de xadrez. O Premium não deve conceder uma vantagem competitiva artificial.",
+  s14label:"14 / INDICADORES DE DESEMPENHO",s14title:"O progresso deve ser mensurável.",s14desc:"A plataforma será avaliada através da atividade dos utilizadores, qualidade dos jogos, fiabilidade financeira e métricas de segurança.",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / PAINEL DE ADMINISTRAÇÃO",s15title:"Gestão centralizada da plataforma.",s15desc:"Um painel dedicado para gerir utilizadores, finanças, jogos e operações de segurança.",
+  adminCards:[["User Management","Gestão de contas e perfis."],["KYC & FIDE","Verificação de identidade e de jogadores de xadrez."],["Game Monitoring","Monitorização de jogos, salas e resultados."],["Wallet & Transactions","Controlo de saldos, transações e pagamentos."],["Anti-Cheat Cases","Investigação de jogos suspeitos e casos de segurança."],["Reports & Appeals","Denúncias, recursos e moderação."]],
+  s16label:"16 / POSICIONAMENTO FINAL",s16title:"Um ecossistema global de xadrez.",s16desc:"ChessArena.io pretende transformar o xadrez num ecossistema digital global, social, competitivo e acessível.",
+  principleCards:[["REAL CHESS","Xadrez com pessoas reais de todo o mundo."],["FREE COMPETITION","Criar e jogar partidas sem pagar."],["PAID COMPETITION","Competição P2P opcional com entrada e prémios."],["GLOBAL COMMUNITY","Comunidade internacional em 10 idiomas."],["FAIR PLAY","KYC, FIDE ID e sistema anti-batota multicamada."],["USER FREEDOM","Os utilizadores escolhem como jogar e que funcionalidades utilizar."]],
+  finalTitle:'REAL PLAYERS.<br>REAL CHESS.<br><span>GLOBAL COMPETITION.</span>',finalDesc:"One platform. Every country. Every chess player. Every level.",backTop:"VOLTAR AO TOPO ↑",footerDescription:"PLATAFORMA GLOBAL DE XADREZ E COMPETIÇÃO P2P",rights:"Todos os direitos reservados."
+},
+
+zh: {
+  name:"简体中文",
+  navVision:"愿景",navPlatform:"平台",navCompetition:"竞技",navSecurity:"安全",navTechnology:"技术",navRoadmap:"发展路线",navButton:"了解项目",
+  eyebrow:"全球国际象棋与 P2P 竞技平台",
+  heroTitle:'THE WORLD.<br>ONE <span>ARENA.</span>',
+  heroDesc:"ChessArena.io 是一个全球数字国际象棋生态系统，通过实时对局、国际锦标赛、社交互动以及可选的奖金竞赛，连接来自不同国家的棋手。",
+  heroButton1:"了解项目 ↗",heroButton2:"探索平台",boardCaption:"REAL PLAYERS · REAL CHESS",
+  stat1:"界面语言",stat2:"平台佣金",stat3:"游戏模式",stat4:"目标市场",
+  s1label:"01 / 项目概览",s1title:"将国际象棋打造为全新的全球竞技生态系统。",
+  s1desc:"ChessArena.io 不仅仅是一个国际象棋游戏平台。项目旨在将真实棋手、国际社区、公平竞技和自愿参与的奖励机制整合到一个统一生态系统中。",
+  visionCards:[["♟","使命","连接全球各地的国际象棋棋手，建立一个值得信赖的环境，让他们自由对弈并展示自己的实力。"],["◎","愿景","将 ChessArena.io 打造成一个易于使用、社交化、可信赖且以竞技为核心的国际象棋平台。"],["◇","核心原则","真实玩家、真实国际象棋、自愿参与、财务透明、用户自由和公平竞技。"]],
+  s2label:"02 / 平台生态系统",s2title:"一个平台。完整的国际象棋体验。",s2desc:"所有功能通过统一的用户账户和互联的系统模块运行。",
+  platformCards:[["♟","Real Chess Engine","真实玩家之间的实时对局、棋钟、走棋记录、PGN 和棋局回放。"],["🌐","Global Community","国际用户资料、国家、好友和在线状态。"],["⚔","P2P Competition","可选参赛费用以及双方共同组成的奖金池。"],["🏆","Tournaments","每日、每周、每月、国家级和国际锦标赛。"],["💬","Live Chat","对局聊天、快捷消息、表情符号和好友系统。"],["🛡","Fair Play","KYC、FIDE ID、多层反作弊系统和人工审核。"],["💳","Wallet","充值、提现、冻结余额、奖励和交易记录。"],["📊","Rating System","Bullet、Blitz、Rapid 和锦标赛等级统计。"],["⚙","Admin Dashboard","用户、对局、财务、安全和系统管理。"]],
+  s3label:"03 / 全球本地化",s3title:"面向全球用户的统一体验。",s3desc:"首发支持十种界面语言。用户可以随时更改应用语言，不受所在国家限制。",
+  languageNames:[["🇦🇿","阿塞拜疆语","AZ"],["🇬🇧","英语","EN"],["🇹🇷","土耳其语","TR"],["🇷🇺","俄语","RU"],["🇸🇦","阿拉伯语","AR"],["🇪🇸","西班牙语","ES"],["🇫🇷","法语","FR"],["🇩🇪","德语","DE"],["🇵🇹","葡萄牙语","PT"],["🇨🇳","简体中文","ZH-CN"]],
+  s4label:"04 / 竞技模式",s4title:"两种游戏方式。自由选择。",s4desc:"付费竞技完全自愿。用户可以免费使用核心国际象棋功能。",
+  freeTitle:"FREE CHESS",freeDesc:"面向所有人的免费国际象棋。",freeFeatures:["无需参赛费","无需充值","与真实玩家对局","对局历史","Elo 等级分","游戏内聊天","与好友创建私人房间"],
+  paidTitle:"PAID CHESS",paidDesc:"可选的 P2P 奖金竞技模式。",paidFeatures:["玩家自行选择参赛金额","对手支付相同金额","形成共同奖金池","平台收取 1% 佣金","获胜者获得奖金池的 99%","比赛开始前冻结资金","结果确认后发放奖金"],
+  calcLabel:"交互式 P2P 计算器",calcTitle:"计算奖金分配",calcInput:"每位玩家的参赛金额 ($)",calcPool:"奖金池总额",calcFee:"平台佣金 · 1%",calcWinner:"获胜者奖金 · 99%",
+  tableHead:["玩家 A","玩家 B","奖金池总额","佣金","获胜者"],calcNote:"注意：平局、技术问题、连接中断、取消和结果争议应有单独公布的退款规则。",
+  s5label:"05 / 真实国际象棋体验",s5title:"不是模拟。真实玩家之间的真实国际象棋。",s5desc:"游戏系统遵循标准国际象棋规则。比赛结果由服务器确认。",
+  timeCards:[["Bullet","1+0 和 1+1 时间控制。"],["Blitz","3+0、3+2 和 5+0 时间控制。"],["Rapid","10+0、10+5 和 15+10 时间控制。"]],
+  gameCards:[["游戏功能",["实时棋盘","自动验证合法走棋","实时棋钟","和棋与认输","再来一局","PGN 导出","棋局回放"]],["对局历史",["对局编号","玩家资料","完整走棋记录","对局结果","对局前后 Elo","游戏模式","公平竞技审核状态"]]],
+  s6label:"06 / 信任与安全",s6title:"信任。透明。公平竞技。",s6desc:"标准对局不强制使用摄像头或麦克风。安全机制结合身份验证、棋局分析和多层行为检查。",
+  securityCards:[["KYC Verification","身份文件验证、信息匹配以及通过合适服务商进行身份识别。"],["FIDE ID Verification","核对 FIDE 资料。单独的 FIDE ID 并不能证明账户持有人的身份。"],["Chess Engine Analysis","分析走棋质量、对局统计以及多场比赛中的行为一致性。"],["Behavioural Analysis","走棋时间、异常行为变化和可疑匹配模式。"],["Device & Session Security","会话安全、账户同时使用风险以及 API 滥用检测。"],["Human Review & Appeals","人工审核可疑对局、审计记录和申诉流程。"]],
+  fairTitle:"Fair Play 判定流程",riskTags:["低风险","中风险","高风险","严重风险"],fairDesc:"仅凭类似引擎的高质量走棋不应自动封禁账户。高风险对局应进入进一步审核流程。",
+  s7label:"07 / 社交体验",s7title:"不止是国际象棋。全球社区。",
+  socialCards:[["Live Game Chat","对局消息、表情、问候以及赛后交流。"],["Quick Messages","Hello、Good luck、Good game、Well played、Rematch 等快捷消息。"],["Friends System","好友申请、在线状态、对局邀请和私人房间。"],["Chat Controls","关闭聊天、静音以及管理沟通设置。"],["Moderation","垃圾信息过滤、屏蔽、举报和内容审核。"],["Global Rankings","国家、每周、每月和全球排行榜。"]],
+  s8label:"08 / 锦标赛生态系统",s8title:"从个人对局到国际锦标赛。",s8desc:"用户可以参加不同形式的比赛，并跟踪锦标赛结果。",
+  tournamentCards:[["Daily Tournaments","每日比赛。"],["Weekly Tournaments","每周锦标赛。"],["Monthly Championships","每月冠军赛。"],["Country Championships","国家级比赛。"],["International","国际锦标赛。"],["Private Tournaments","私人锦标赛和受邀参赛者。"]],
+  s9label:"09 / 金融生态系统",s9title:"财务透明。交易清晰。",s9desc:"用户应能够分别查看每一笔财务操作、余额和奖励。",
+  walletCards:[["Available Balance","用户可以自由使用的资金。"],["Locked Balance","为正在进行的比赛临时冻结的资金。"],["Transaction History","完整的财务交易记录。"],["Deposit","通过支持的支付方式充值。"],["Withdraw","通过适用的审核后提现。"],["Rewards & Refunds","比赛及锦标赛奖励和退款。"]],
+  s10label:"10 / 技术架构",s10title:"可扩展的技术基础设施。",s10desc:"用于实时对局、消息、用户账户和财务操作的模块化架构。",
+  architecture:[["FRONTEND","React · TypeScript"],["BACKEND","Node.js · REST API"],["REALTIME","WebSocket · Socket.io"],["DATABASE","PostgreSQL"],["CACHE","Redis"],["CHESS RULES","Chess.js / Equivalent"],["CHESSBOARD","Chessboard.js / Equivalent"],["SECURITY","Auth · Audit · Encryption"]],
+  modulesTitle:"核心系统服务",moduleCards:[["Identity","Authentication, Profiles, Localization, Verification."],["Chess Core","Chess Game, Room Management, Matchmaking, Rating."],["Community","Chat, Friends, Moderation, Notifications."],["Finance","Wallet, Payment, Payout, Ledger."],["Competition","Tournaments, Rewards, Leaderboards."],["Governance","Anti-Cheat, Fair Play, Admin, Audit."]],
+  s11label:"11 / 安全与合规",s11title:"安全与国际合规。",s11desc:"国际运营需要分别评估每个国家的法律和财务要求。",
+  legalCards:[["平台安全",["HTTPS 和加密数据传输","安全密码哈希","可选双重身份验证","速率限制和 API 安全","SQL Injection、XSS 和 CSRF 防护","基于角色的访问和审计日志","备份与灾难恢复"]],["法律合规",["各国付费技能竞赛的法律地位","年龄限制","KYC 和 AML 要求","支付服务商条款","税务和消费者权益","数据保护","许可和牌照要求"]]],
+  legalNote:"Paid Rooms 不应在所有国家自动启用。在法律不允许的地区，可以关闭付费功能。本介绍不构成法律意见或运营许可。",
+  s12label:"12 / 开发路线图",s12title:"分阶段开发。持续扩展。",s12desc:"平台系统将分阶段推出，而不是一次性全部上线。",
+  roadmap:[["PHASE 01 — CORE CHESS PLATFORM","建立核心国际象棋体验。",["注册和用户资料","十种语言基础设施","真实国际象棋引擎","免费房间和匹配系统","Elo、对局历史和聊天","好友系统"]],["PHASE 02 — FAIR PLAY & VERIFICATION","建立身份验证和安全基础设施。",["KYC 和 FIDE ID","Anti-Cheat","Fair Play Dashboard","举报和申诉系统"]],["PHASE 03 — P2P PAID ROOMS","推出可选付费竞技。",["钱包和支付基础设施","创建和加入 Paid Rooms","Locked Balance","1% 佣金和奖金支付","退款和争议管理"]],["PHASE 04 — GLOBAL TOURNAMENTS","扩展国际竞技生态系统。",["国际锦标赛","赛季比赛","国家排行榜","组织者面板"]],["PHASE 05 — GLOBAL EXPANSION","拓展新地区和合作伙伴关系。",["国际营销","移动应用","社交社区","新功能和合作伙伴关系"]]],
+  s13label:"13 / 商业模式",s13title:"可持续的收入模式。",s13desc:"主要收入来源为付费比赛奖金池总额的 1% 平台佣金。",
+  businessCards:[["1% Paid Room Commission","从付费比赛总奖金池中收取平台佣金。"],["Tournament Services","付费锦标赛的组织服务费。"],["Premium","自愿高级订阅和个人资料设计。"],["Sponsorship","合作伙伴关系和赞助锦标赛。"],["Brand Partnerships","品牌合作。"],["Advertising","相关广告和品牌整合。"]],
+  businessNote:"额外收入模式不应限制免费国际象棋体验。高级订阅不应提供人为的竞技优势。",
+  s14label:"14 / 绩效指标",s14title:"发展必须可以衡量。",s14desc:"平台将根据用户活跃度、对局质量、财务可靠性和安全指标进行评估。",
+  kpis:["Daily Active Users","Monthly Active Users","Completed Games","Free Games","Paid Games","Active Rooms","User Retention","Match Completion Rate","Chat Engagement","Tournament Participation","KYC Completion Rate","Anti-Cheat Accuracy","False Positive Rate","Deposit Success Rate","Payout Processing Time","Refund Rate","Country Distribution","Language Distribution"],
+  s15label:"15 / 管理后台",s15title:"集中式平台管理。",s15desc:"专用管理面板用于管理用户、财务、比赛和安全运营。",
+  adminCards:[["User Management","用户账户和资料管理。"],["KYC & FIDE","身份和棋手验证。"],["Game Monitoring","比赛、房间和结果监控。"],["Wallet & Transactions","余额、交易和支付管理。"],["Anti-Cheat Cases","调查可疑比赛和安全事件。"],["Reports & Appeals","举报、申诉和内容审核。"]],
+  s16label:"16 / 最终定位",s16title:"一个全球国际象棋生态系统。",s16desc:"ChessArena.io 致力于将国际象棋转变为全球化、社交化、竞技化且易于使用的数字生态系统。",
+  principleCards:[["REAL CHESS","与来自世界各地的真实玩家对弈。"],["FREE COMPETITION","无需付费即可创建和参加比赛。"],["PAID COMPETITION","可选参赛费用和奖金的 P2P 竞技。"],["GLOBAL COMMUNITY","支持十种语言的国际用户社区。"],["FAIR PLAY","KYC、FIDE ID 和多层反作弊系统。"],["USER FREEDOM","用户自行决定如何对弈以及使用哪些功能。"]],
+  finalTitle:'真实玩家。<br>真实国际象棋。<br><span>全球竞技。</span>',finalDesc:"One platform. Every country. Every chess player. Every level.",backTop:"返回顶部 ↑",footerDescription:"全球国际象棋与 P2P 竞技平台",rights:"保留所有权利。"
+}
+};
+
+const languageOptions = ["az","en","tr","ru","ar","es","fr","de","pt","zh"];
+
+const flagLanguage = {
+  az:"az",en:"en",tr:"tr",ru:"ru",ar:"ar",es:"es",fr:"fr",de:"de",pt:"pt",zh:"zh"
+};
+
+const card = (item) => `
+  <article class="card">
+    <div class="card-icon">${item[0]}</div>
+    <h3>${item[1]}</h3>
+    <p>${item[2]}</p>
+  </article>
+`;
+
+const simpleCard = (item) => `
+  <article class="card">
+    <h3>${item[0]}</h3>
+    <p>${item[1]}</p>
+  </article>
+`;
+
+function renderList(id, items) {
+  document.getElementById(id).innerHTML =
+    items.map(x => `<li>${x}</li>`).join("");
+}
+
+function renderCards(id, items, simple=false) {
+  document.getElementById(id).innerHTML =
+    items.map(x => simple ? simpleCard(x) : card(x)).join("");
+}
+
+function renderLanguageCards(items) {
+  document.getElementById("languageCards").innerHTML =
+    items.map(x => `
+      <div class="language-card">
+        ${x[0]} ${x[1]}
+        <small>${x[2]}</small>
+      </div>
+    `).join("");
+}
+
+function renderTags(id, items) {
+  document.getElementById(id).innerHTML =
+    items.map(x => `<span class="tag">${x}</span>`).join("");
+}
+
+function renderTable(t) {
+  document.getElementById("tableHead").innerHTML =
+    t.tableHead.map(x => `<th>${x}</th>`).join("");
+
+  const stakes = [1,2,5,10,25,50,100];
+
+  document.getElementById("tableBody").innerHTML =
+    stakes.map(n => {
+      const pool=n*2;
+      const fee=pool*.01;
+      const winner=pool*.99;
+      return `<tr>
+        <td>$${n.toFixed(2)}</td>
+        <td>$${n.toFixed(2)}</td>
+        <td>$${pool.toFixed(2)}</td>
+        <td>$${fee.toFixed(2)}</td>
+        <td>$${winner.toFixed(2)}</td>
+      </tr>`;
+    }).join("");
+}
+
+function renderRoadmap(items) {
+  document.getElementById("roadmapItems").innerHTML =
+    items.map(p => `
+      <div class="phase">
+        <h3>${p[0]}</h3>
+        <p>${p[1]}</p>
+        <ul>${p[2].map(x=>`<li>${x}</li>`).join("")}</ul>
+      </div>
+    `).join("");
+}
+
+function renderArchitecture(items) {
+  document.getElementById("architecture").innerHTML =
+    items.map(x => `
+      <div class="arch-item">
+        <strong>${x[0]}</strong>
+        <small>${x[1]}</small>
+      </div>
+    `).join("");
+}
+
+function setText(language) {
+  const t = languages[language] || languages.en;
+
+  document.documentElement.lang = language === "zh" ? "zh-CN" : language;
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+  document.body.dir = language === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  document.querySelectorAll("[data-i18n-html]").forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  renderCards("visionCards",t.visionCards);
+  renderCards("platformCards",t.platformCards);
+  renderLanguageCards(t.languageNames);
+  renderList("freeFeatures",t.freeFeatures);
+  renderList("paidFeatures",t.paidFeatures);
+  renderTable(t);
+  renderCards("timeCards",t.timeCards,true);
+
+  document.getElementById("gameCards").innerHTML =
+    t.gameCards.map(x => `
+      <article class="card">
+        <h3>${x[0]}</h3>
+        <ul class="feature-list">${x[1].map(y=>`<li>${y}</li>`).join("")}</ul>
+      </article>
+    `).join("");
+
+  renderCards("securityCards",t.securityCards.map((x,i)=>["🛡",x[0],x[1]]));
+  document.getElementById("riskTags").innerHTML =
+    t.riskTags.map(x=>`<span class="tag">${x}</span>`).join("");
+
+  renderCards("socialCards",t.socialCards.map(x=>["✦",x[0],x[1]]));
+  renderCards("tournamentCards",t.tournamentCards.map(x=>["🏆",x[0],x[1]]));
+  renderCards("walletCards",t.walletCards.map(x=>["◇",x[0],x[1]]));
+  renderArchitecture(t.architecture);
+  renderCards("moduleCards",t.moduleCards.map(x=>["◈",x[0],x[1]]));
+  renderCards("legalCards",t.legalCards.map(x=>["◉",x[0],x[1].join(" · ")]),true);
+  renderRoadmap(t.roadmap);
+  renderCards("businessCards",t.businessCards.map(x=>["◆",x[0],x[1]]));
+  renderTags("kpiTags",t.kpis);
+  renderCards("adminCards",t.adminCards.map(x=>["⚙",x[0],x[1]]));
+  renderCards("principleCards",t.principleCards.map(x=>["◇",x[0],x[1]]));
+
+  const select = document.getElementById("languageSelect");
+  select.value = language;
+
+  document.title = "ChessArena.io — " + t.name;
+
+  document.getElementById("mobilePanel").classList.remove("open");
+}
+
+function detectLanguage() {
+  const saved = localStorage.getItem("chessarena_language");
+
+  if (saved && languages[saved]) return saved;
+
+  const browser = (navigator.language || "en").toLowerCase();
+
+  if (browser.startsWith("az")) return "az";
+  if (browser.startsWith("tr")) return "tr";
+  if (browser.startsWith("ru")) return "ru";
+  if (browser.startsWith("ar")) return "ar";
+  if (browser.startsWith("es")) return "es";
+  if (browser.startsWith("fr")) return "fr";
+  if (browser.startsWith("de")) return "de";
+  if (browser.startsWith("pt")) return "pt";
+  if (browser.startsWith("zh")) return "zh";
+
+  return "en";
+}
+
+document.getElementById("languageSelect").addEventListener("change",e=>{
+  const language = e.target.value;
+  localStorage.setItem("chessarena_language",language);
+  setText(language);
+});
+
+document.getElementById("mobileMenu").addEventListener("click",()=>{
+  document.getElementById("mobilePanel").classList.toggle("open");
+});
+
+/* Interactive P2P calculator */
+
+function calculate() {
+  const stake = Math.max(0,Number(document.getElementById("stake").value)||0);
+  const pool = stake*2;
+  const fee = pool*.01;
+  const winner = pool*.99;
+
+  document.getElementById("pool").textContent="$"+pool.toFixed(2);
+  document.getElementById("fee").textContent="$"+fee.toFixed(2);
+  document.getElementById("winner").textContent="$"+winner.toFixed(2);
+}
+
+document.getElementById("stake").addEventListener("input",calculate);
+
+/* Chessboard illustration */
 
 const board = document.getElementById("chessboard");
 
@@ -1451,55 +1899,29 @@ const pieces = [
   "♖","♘","♗","♕","♔","♗","♘","♖"
 ];
 
-pieces.forEach((piece,index) => {
-  const square = document.createElement("div");
-  const row = Math.floor(index / 8);
-  const col = index % 8;
-
-  square.className = "square " +
-    ((row + col) % 2 === 0 ? "light" : "dark");
-
-  square.textContent = piece;
+pieces.forEach((piece,index)=>{
+  const square=document.createElement("div");
+  const row=Math.floor(index/8);
+  const col=index%8;
+  square.className="square "+((row+col)%2===0?"light":"dark");
+  square.textContent=piece;
   board.appendChild(square);
 });
 
-/* P2P calculator */
-
-const stakeInput = document.getElementById("stake");
-
-function calculate() {
-  let stake = Math.max(0, Number(stakeInput.value) || 0);
-
-  const pool = stake * 2;
-  const fee = pool * 0.01;
-  const winner = pool * 0.99;
-
-  document.getElementById("pool").textContent =
-    "$" + pool.toFixed(2);
-
-  document.getElementById("fee").textContent =
-    "$" + fee.toFixed(2);
-
-  document.getElementById("winner").textContent =
-    "$" + winner.toFixed(2);
-}
-
-stakeInput.addEventListener("input", calculate);
-
 /* Scroll progress */
 
-window.addEventListener("scroll", () => {
-  const scrollTop = window.scrollY;
-  const maxScroll =
-    document.documentElement.scrollHeight - window.innerHeight;
-
-  const progress = maxScroll > 0
-    ? (scrollTop / maxScroll) * 100
-    : 0;
-
-  document.getElementById("progress").style.width =
-    progress + "%";
+window.addEventListener("scroll",()=>{
+  const scrollTop=window.scrollY;
+  const maxScroll=document.documentElement.scrollHeight-window.innerHeight;
+  const progress=maxScroll>0?(scrollTop/maxScroll)*100:0;
+  document.getElementById("progress").style.width=progress+"%";
 });
+
+/* Initialize */
+
+const initialLanguage=detectLanguage();
+setText(initialLanguage);
+calculate();
 </script>
 
 </body>
